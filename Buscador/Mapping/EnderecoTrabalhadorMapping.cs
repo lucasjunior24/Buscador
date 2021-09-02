@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Buscador.Mappings
 {
-    public class EnderecoTrabalhadorMapping : IEntityTypeConfiguration<EnderecoCliente>
+    public class EnderecoTrabalhadorMapping : IEntityTypeConfiguration<EnderecoTrabalhador>
     {
-        public void Configure(EntityTypeBuilder<EnderecoCliente> builder)
+        public void Configure(EntityTypeBuilder<EnderecoTrabalhador> builder)
         {
             builder.HasKey(keyExpression: p => p.Id);
 
@@ -38,7 +38,7 @@ namespace Buscador.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(50)");
 
-            builder.ToTable("EnderecosDosTrabalhadores");
+            builder.ToTable("EnderecoDosTrabalhadores");
 
         }
     }

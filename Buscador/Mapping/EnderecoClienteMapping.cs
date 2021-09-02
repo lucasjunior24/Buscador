@@ -38,7 +38,7 @@ namespace Buscador.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(50)");
 
-            builder.ToTable("EnderecosDosClientes");
+            builder.ToTable("EnderecoDosClientes");
 
         }
     }
