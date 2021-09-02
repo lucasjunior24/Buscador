@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Buscador.ViewModels
 {
@@ -10,6 +8,7 @@ namespace Buscador.ViewModels
     {
         [Key]
         public Guid Id { get; set; }
+        public IFormFile FotoCliente { get; set; }
         public string Nome { get; set; }
         public string Foto { get; set; }
         public string Telefone { get; set; }

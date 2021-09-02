@@ -23,5 +23,6 @@ namespace Buscador.Data.Context
 
             base.OnModelCreating(builder);
         }
+        public DbSet<Buscador.ViewModels.TipoDeServicoViewModel> TipoDeServicoViewModel { get; set; }
     }
 }

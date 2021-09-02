@@ -23,7 +23,7 @@ namespace Buscador.ViewModels
         public string Descricao { get; set; }
 
         [DisplayName("Imagem do Serviço")]
-        //public IFormFile ImagemUpload { get; set; }        //public IFormFile ImagemUpload { get; set; }
+        public IFormFile ImagemUpload { get; set; }        //public IFormFile ImagemUpload { get; set; }
         public string Imagem { get; set; }
         public string AreaProfissional { get; set; }
 

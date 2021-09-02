@@ -1,41 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Buscador.Data.Context;
 using Buscador.ViewModels;
 using Buscador.Interfaces;
+using AutoMapper;
+using Buscador.Models;
 
 namespace Buscador.Controllers
 {
-    public class TrabalhadoresController : Controller
+    public class TrabalhadoresController : BaseController
     {
         private readonly ITrabalhadorRepository _trabalhadorRepository;
+        private readonly IMapper _mapper;
 
-        public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository)
+        public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository, 
+                                       IMapper mapper = null)
         {
             _trabalhadorRepository = trabalhadorRepository;
+            _mapper = mapper;
         }
 
-        // GET: Trabalhadores
         public async Task<IActionResult> Index()
         {
-            return View(await _trabalhadorRepository.ObterTodos());
+            return View(_mapper.Map<IEnumerable<TrabalhadorViewModel>>(await _trabalhadorRepository.ObterTodos()));
         }
 
-        // GET: Trabalhadores/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var trabalhadorViewModel = await _context.TrabalhadorViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);
             if (trabalhadorViewModel == null)
             {
                 return NotFound();
@@ -44,38 +37,26 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
         }
 
-        // GET: Trabalhadores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Trabalhadores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Foto,Telefone,Email,Documento,TipoDeTrabalhador,Profissao")] TrabalhadorViewModel trabalhadorViewModel)
+        public async Task<IActionResult> Create(TrabalhadorViewModel trabalhadorViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                trabalhadorViewModel.Id = Guid.NewGuid();
-                _context.Add(trabalhadorViewModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(trabalhadorViewModel);
+            if (!ModelState.IsValid) return View(trabalhadorViewModel);
+
+            var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
+            await _trabalhadorRepository.Adicionar(trabalhador);
+       
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Trabalhadores/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var trabalhadorViewModel = await _context.TrabalhadorViewModel.FindAsync(id);
+            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
             if (trabalhadorViewModel == null)
             {
                 return NotFound();
@@ -83,51 +64,24 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
         }
 
-        // POST: Trabalhadores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Foto,Telefone,Email,Documento,TipoDeTrabalhador,Profissao")] TrabalhadorViewModel trabalhadorViewModel)
+        public async Task<IActionResult> Edit(Guid id, TrabalhadorViewModel trabalhadorViewModel)
         {
-            if (id != trabalhadorViewModel.Id)
-            {
-                return NotFound();
-            }
+            if (id != trabalhadorViewModel.Id) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(trabalhadorViewModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TrabalhadorViewModelExists(trabalhadorViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(trabalhadorViewModel);
+            if (!ModelState.IsValid) return View(trabalhadorViewModel);
+
+            var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
+            await _trabalhadorRepository.Atualizar(trabalhador);
+            
+            return RedirectToAction("Index");
         }
 
-        // GET: Trabalhadores/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
 
-            var trabalhadorViewModel = await _context.TrabalhadorViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (trabalhadorViewModel == null)
             {
                 return NotFound();
@@ -136,20 +90,26 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
         }
 
-        // POST: Trabalhadores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var trabalhadorViewModel = await _context.TrabalhadorViewModel.FindAsync(id);
-            _context.TrabalhadorViewModel.Remove(trabalhadorViewModel);
-            await _context.SaveChangesAsync();
+            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
+
+            if (trabalhadorViewModel == null) return NotFound();
+
+            await _trabalhadorRepository.Remover(id);
+
             return RedirectToAction(nameof(Index));
         }
-
-        private bool TrabalhadorViewModelExists(Guid id)
+        private async Task<TrabalhadorViewModel> ObterTrabalhadorEndereco(Guid id)
         {
-            return _context.TrabalhadorViewModel.Any(e => e.Id == id);
+            return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEndereco(id));
+        }
+
+        private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoEServico(Guid id)
+        {
+            return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoEServico(id));
         }
     }
 }
