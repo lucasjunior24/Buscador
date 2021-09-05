@@ -1,0 +1,14 @@
+﻿@using Buscador
+
+<div class="mb-3">
+    <spam>Olá, </spam>
+    @*<spam>@User.NomeCompleto()</spam>*@
+</div>
+<div class="row">
+    <div class="list-group main-menu">
+        <a asp-action="Index" asp-controller="MinhasInformacoes" class="list-group-item list-group-item-action"><em class="mdi mdi-account icons-raised"></em>Minhas Informações</a>
+    </div>
+    <div class="list-group main-menu">
+        <a asp-action="Logout" asp-controller="Autenticacao" class="list-group-item list-group-item-action"><em class="mdi mdi-account icons-raised"></em>Sair</a>
+    </div>
+</div>

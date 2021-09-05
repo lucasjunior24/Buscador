@@ -1,0 +1,158 @@
+﻿/* introduction swiper slider css */
+.demo-swiper,
+.swiper-init {
+    height: 450px;
+    margin-top: 30px;
+}
+
+.demo-swiper .swiper-slide,
+.swiper-init .swiper-slide {
+    background-color: #ffffff;
+    background-size: cover;
+}
+
+.demo-swiper-gallery-top {
+    height: 350px;
+    margin-top: 30px;
+}
+
+.demo-swiper-gallery-top .swiper-slide {
+    background-size: cover
+}
+
+.demo-swiper-gallery-thumbs {
+    height: 80px;
+}
+
+.demo-swiper-gallery-thumbs .swiper-slide > div {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #000000;
+}
+
+.introduction.swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0px;
+}
+
+.introduction .swiper-slide {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-bottom);
+}
+
+.bottom-button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+}
+
+/* siders */
+
+.small-slide {
+    height: 150px;
+}
+
+.small-slide .swiper-slide {
+    width: 165px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+}
+
+.small-slide .swiper-slide .card {
+    border-radius: 15px;
+    margin-left: 15px;
+    height: 100%;
+    width: 92%;
+}
+
+.small-slide .swiper-slide .card-body {
+    position: relative
+}
+
+.small-slide .swiper-slide .small-slide-right {
+    max-height: 100%;
+    margin-right: -45px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.badge {
+    border-radius: 30px;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+
+.two-slide {
+    height: 120px;
+}
+
+.two-slide .swiper-slide {
+    padding: 0 15px;
+}
+
+.two-slide .swiper-slide p small {
+    width: 100%;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.icon-slide {
+    height: 85px;
+}
+
+.icon-slide .swiper-slide {
+    padding: 0 15px;
+    width: auto;
+}
+
+.offer-slide {
+    height: auto;
+    margin-bottom: -15px;
+}
+
+.offer-slide .swiper-slide {
+    padding: 0 15px;
+    width: 310px;
+}
+
+.offer-slide .swiper-slide > .card {
+    margin-bottom: 15px;
+}
+
+.icon-slide .swiper-slide p,
+.icon-slide .swiper-slide:hover p,
+.icon-slide .swiper-slide:focus p {
+    color: #000000;
+    text-decoration: none
+}
+
+.news-slide {
+    height: 180px;
+    padding-bottom: 20px;
+}
+
+.news-slide .swiper-slide {
+    padding: 0 15px 10px 15px;
+}
+
+.news-slide .swiper-slide .card {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+}
+
+.news-slide.swiper-container-horizontal > .swiper-pagination-bullets {
+    margin-bottom: -10px;
+}

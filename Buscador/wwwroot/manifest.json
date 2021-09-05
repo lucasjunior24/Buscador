@@ -1,0 +1,46 @@
+{
+  "name": "Portal do Cidadao - RO",
+  "short_name": "Portal do Cidadao",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00c177",
+  "icons": [
+    {
+      "src": "images/icons/ic_launcher_48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "images/icons/ic_launcher_72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "images/icons/ic_launcher_96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/icons/ic_launcher_144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "images/icons/ic_launcher_180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "images/icons/ic_launcher_192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icons/ic_launcher_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
