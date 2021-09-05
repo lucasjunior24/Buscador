@@ -1,60 +1,64 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h1>Details</h1>
-
-<div>
-    <h4>TrabalhadorViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Documento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Documento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoDeTrabalhador)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoDeTrabalhador)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profissao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Profissao)
-        </dd>
-    </dl>
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Minhas Informações</li>
+        </ol>
+    </nav>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Início</a>
+</div>
+<hr />
+
+<div class="row">
+    <div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
+    </div>
+
+
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
+        <h6>@Model.Nome</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
+        <h6>@Model.Foto</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
+        <h6>@Model.Documento</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
+        <h6>@Model.Email</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
+        <h6>@Model.Telefone</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
+        <h6>@Model.TipoDeTrabalhador</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
+        <h6>@Model.Profissao</h6>
+    </div>
+</div>
+
+
+<div class="row mt-4">
+    <div class="col-md-10">
+        <h2>Mantenha suas informações atualizadas</h2>
+        <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
+    </div>
+    <div class="col-md-2">
+        <div class="d-grid mx-auto">
+            <a asp-action="Atualizar" asp-controller="MinhasInformacoes" class="btn-lg btn-rounded-solicitar bg-theme text-white text-center">Atualizar</a>
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        </div>
+    </div>
 </div>

@@ -6,11 +6,12 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>
+<p supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir">
     <a asp-action="Create">Adicionar Trabalhador</a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -28,44 +29,42 @@
                 @Html.DisplayNameFor(model => model.Documento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoDeTrabalhador)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Profissao)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Documento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoDeTrabalhador)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profissao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Foto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Documento)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profissao)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details h3" aria-label="Ícone Detalhes"></em></a>
+                    <a class="btn btn-warning" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h3" aria-label="Ícone Editar"></em></a>
+                    <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h3" aria-label="Ícone Excluir"></em></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
