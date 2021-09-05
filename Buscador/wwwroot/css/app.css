@@ -22,7 +22,7 @@
 /* Basic */
 
 :root {
-    --colortheme: #117ba3;
+    --colortheme: rgb(46, 206, 224);
     --colorthemedark: #35851B;
     --background-color: #f6f6f6;
 }
