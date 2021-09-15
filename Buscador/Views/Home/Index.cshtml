@@ -1,4 +1,4 @@
-﻿@*@model PortalDoCidadao.Models.ViewModels.Home.HomeViewModel*@
+﻿@model Buscador.ViewModels.TrabalhadorViewModel
 
 @{
     ViewData["Title"] = "Início";
@@ -316,10 +316,10 @@
     </div>
 </div>
 
-<h3 class="text-center color-theme-dark p-4 mt-5"><strong>Navegue por Categorias</strong></h3>
+<h3 class="text-center color-theme-dark p-4 mt-5"><strong>Ache o Profissional que voçê está procurando</strong></h3>
 
 <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
-    @*@foreach (var categoria in Model.Categoria)
+    @*@foreach (var categoria in Model.TipoDeServico)
     {
         <div class="col p-2">
             <a asp-action="ServicosDaCategoria" asp-controller="Servico" asp-route-id="@categoria.Id">

@@ -8,68 +8,57 @@ using Microsoft.EntityFrameworkCore;
 using Buscador.Data.Context;
 using Buscador.ViewModels;
 using Buscador.Interfaces;
+using AutoMapper;
+using Buscador.Models;
 
 namespace Buscador.Controllers
 {
     public class TiposDeServicosController : BaseController
     {
         private readonly ITipoDeServicoRepository _tipoDeServicoRepository;
+        private readonly IMapper _mapper;
 
-        public TiposDeServicosController(ITipoDeServicoRepository tipoDeServicoRepository)
+        public TiposDeServicosController(ITipoDeServicoRepository tipoDeServicoRepository, 
+                                         IMapper mapper)
         {
             _tipoDeServicoRepository = tipoDeServicoRepository;
+            _mapper = mapper;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var buscadorContext = _context.TipoDeServicoViewModel.Include(t => t.Trabalhador);
-        //    return View(await buscadorContext.ToListAsync());
-        //}
+        public async Task<IActionResult> Index()
+        {
+            return View(_mapper.Map<IEnumerable<TipoDeServicoViewModel>>(await _tipoDeServicoRepository.ObterTodos()));
+        }
 
-        //public async Task<IActionResult> Details(Guid? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var tipoDeServicoViewModel = await ObterTipoDeServicoTrabalhador(id);
+            if (tipoDeServicoViewModel == null)
+            {
+                return NotFound();
+            }
 
-        //    var tipoDeServicoViewModel = await _context.TipoDeServicoViewModel
-        //        .Include(t => t.Trabalhador)
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (tipoDeServicoViewModel == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return View(tipoDeServicoViewModel);
+        
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //    return View(tipoDeServicoViewModel);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TipoDeServicoViewModel tipoDeServicoViewModel)
+        {
+            if (!ModelState.IsValid) return View(tipoDeServicoViewModel);
 
-        //// GET: TiposDeServicos/Create
-        //public IActionResult Create()
-        //{
-        //    ViewData["TrabalhadorId"] = new SelectList(_context.Set<TrabalhadorViewModel>(), "Id", "Id");
-        //    return View();
-        //}
+            var trabalhador = _mapper.Map<TipoDeServico>(tipoDeServicoViewModel);
+            await _tipoDeServicoRepository.Adicionar(trabalhador);
 
-        //// POST: TiposDeServicos/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,TrabalhadorId,NomeDoServico,Descricao,Imagem,AreaProfissional")] TipoDeServicoViewModel tipoDeServicoViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        tipoDeServicoViewModel.Id = Guid.NewGuid();
-        //        _context.Add(tipoDeServicoViewModel);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["TrabalhadorId"] = new SelectList(_context.Set<TrabalhadorViewModel>(), "Id", "Id", tipoDeServicoViewModel.TrabalhadorId);
-        //    return View(tipoDeServicoViewModel);
-        //}
+            return RedirectToAction(nameof(Index));
+        }
+       
 
-        //// GET: TiposDeServicos/Edit/5
         //public async Task<IActionResult> Edit(Guid? id)
         //{
         //    if (id == null)
@@ -151,6 +140,11 @@ namespace Buscador.Controllers
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
+
+        private async Task<TipoDeServicoViewModel> ObterTipoDeServicoTrabalhador(Guid id)
+        {
+            return _mapper.Map<TipoDeServicoViewModel>(await _tipoDeServicoRepository.ObterTipoDeServicoTrabalhador(id));
+        }
 
     }
 }

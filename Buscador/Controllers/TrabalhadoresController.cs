@@ -6,6 +6,7 @@ using Buscador.ViewModels;
 using Buscador.Interfaces;
 using AutoMapper;
 using Buscador.Models;
+using Buscador.Models.Dto;
 
 namespace Buscador.Controllers
 {
@@ -13,9 +14,11 @@ namespace Buscador.Controllers
     {
         private readonly ITrabalhadorRepository _trabalhadorRepository;
         private readonly IMapper _mapper;
+        //private readonly IViaCepClient viaCepClient;
+
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository, 
-                                       IMapper mapper = null)
+                                       IMapper mapper)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
@@ -102,6 +105,27 @@ namespace Buscador.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        //public async Task<JsonResult> BuscarCep(string cep)
+        //{
+        //    var dados = await viaCepClient.BuscarCep(cep);
+        //    if (typeof(RetornoViaCepDto).GetProperties().All(a => a.GetValue(dados) != null))
+        //        return Json(new { dados, type = "success" });
+        //    else
+        //    {
+        //        return Json(new { dados, type = "fail" });
+        //    }
+        //}        //public async Task<JsonResult> BuscarCep(string cep)
+        //{
+        //    var dados = await viaCepClient.BuscarCep(cep);
+        //    if (typeof(RetornoViaCepDto).GetProperties().All(a => a.GetValue(dados) != null))
+        //        return Json(new { dados, type = "success" });
+        //    else
+        //    {
+        //        return Json(new { dados, type = "fail" });
+        //    }
+        //}
+
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEndereco(Guid id)
         {
             return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEndereco(id));
