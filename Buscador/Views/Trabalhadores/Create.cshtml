@@ -1,284 +1,87 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
 
 @{
-    ViewData["Title"] = "Novo Trabalhador";
+    ViewData["Title"] = "Realizar Cadastro";
 }
 
-@*<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Trabalhadores" class="color-theme">Lista de Trabalhadores</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Início</a>
+</div>
+<hr />
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" class="form-horizontal row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Foto" class="control-label"></label>
                 <input asp-for="Foto" class="form-control" />
                 <span asp-validation-for="Foto" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Telefone" class="control-label"></label>
                 <input asp-for="Telefone" class="form-control" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Documento" class="control-label"></label>
                 <input asp-for="Documento" class="form-control" />
                 <span asp-validation-for="Documento" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="TipoDeTrabalhador" class="control-label"></label>
                 <input asp-for="TipoDeTrabalhador" class="form-control" />
                 <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Profissao" class="control-label"></label>
                 <input asp-for="Profissao" class="form-control" />
                 <span asp-validation-for="Profissao" class="text-danger"></span>
             </div>
 
-            <hr />*@
-            @*<input type="hidden" asp-for="EnderecoId" />*@
+            @*<input type="hidden" asp-for="EnderecoId" />
 
-            @*<div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
-            </div>
-            <span asp-validation-for="Cep" class="text-danger"></span>
-            <div class="collapse" id="Endereco">
-                <h4>Endereço</h4>
-                <hr />
-
-                <partial name="_EnderecoTrabalhadores" />
-            </div>*@@*<div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
-            </div>
-            <span asp-validation-for="Cep" class="text-danger"></span>
-            <div class="collapse" id="Endereco">
-                <h4>Endereço</h4>
-                <hr />
-
-                <partial name="_EnderecoTrabalhadores" />
+            <div class="form-group">
+            <label asp-for="Cep" class="control-label"></label>
+            <div class="input-group">
+                <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
+                <button id="btnBuscarCep" href="#" class="btn-buscar">
+                    <em class="mdi mdi-magnify"></em>
+                </button>
             </div>*@
+            @*<span asp-validation-for="Cep" class="text-danger"></span>
 
-            @*<div class="form-group">
-                <button class="btn btn-default btn-lg" type="submit">Salvar</button>
-            </div>
+            <div class="collapse" id="Endereco">*@
+                <h4>Endereço</h4>
+                <hr />
 
+                <partial name="_EnderecoTrabalhadores" />
+            @*</div>*@
+            
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
                 <a class="btn btn-secondary" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>*@
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-
-
-
-
-<div class="d-none d-sm-block">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
-            <li class="breadcrumb-item"><a asp-action="MinhasInformacoes" asp-controller="MinhasInformacoes" class="color-theme">Minhas Informações</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dados Básicos</li>
-        </ol>
-    </nav>
 </div>
-
-<div class="d-sm-none">
-    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Início</a>
-</div>
-<hr />
-
-<div class="card">
-    <div class="card-body">
-        <form asp-action="Create"  class="form-horizontal">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                <span asp-validation-for="Documento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoDeTrabalhador" class="control-label"></label>
-                <input asp-for="TipoDeTrabalhador" class="form-control" />
-                <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Profissao" class="control-label"></label>
-                <input asp-for="Profissao" class="form-control" />
-                <span asp-validation-for="Profissao" class="text-danger"></span>
-            </div>
-         </form>
-        @*<form asp-action="Atualizar" class="form-horizontal" method="post">
-            
-            <hr />
-            <input type="hidden" asp-for="EnderecoId" />
-
-            <div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
-            </div>
-            <span asp-validation-for="Cep" class="text-danger"></span>
-            <div class="collapse" id="Endereco">
-                
-            </div>
-                
-            <div class="form-group">
-                <button class="btn btn-default btn-lg" type="submit">Salvar</button>
-            </div>
-        </form>*@
-    </div>
-</div>
-@*<div class="d-none d-sm-block">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
-            <li class="breadcrumb-item"><a asp-action="MinhasInformacoes" asp-controller="MinhasInformacoes" class="color-theme">Minhas Informações</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dados Básicos</li>
-        </ol>
-    </nav>
-</div>
-
-<div class="d-sm-none">
-    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Início</a>
-</div>
-<hr />
-
-<div class="card">
-    <div class="card-body">
-        <form asp-action="Create"  class="form-horizontal">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                <span asp-validation-for="Documento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoDeTrabalhador" class="control-label"></label>
-                <input asp-for="TipoDeTrabalhador" class="form-control" />
-                <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Profissao" class="control-label"></label>
-                <input asp-for="Profissao" class="form-control" />
-                <span asp-validation-for="Profissao" class="text-danger"></span>
-            </div>
-         </form>*@
-        @*<form asp-action="Atualizar" class="form-horizontal" method="post">
-            
-            <hr />
-            <input type="hidden" asp-for="EnderecoId" />
-
-            <div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
-            </div>
-            <span asp-validation-for="Cep" class="text-danger"></span>
-            <div class="collapse" id="Endereco">
-                
-            </div>
-                
-            <div class="form-group">
-                <button class="btn btn-default btn-lg" type="submit">Salvar</button>
-            </div>
-        </form>*@ @*<form asp-action="Atualizar" class="form-horizontal" method="post">
-            
-            <hr />
-            <input type="hidden" asp-for="EnderecoId" />
-
-            <div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
-            </div>
-            <span asp-validation-for="Cep" class="text-danger"></span>
-            <div class="collapse" id="Endereco">
-                
-            </div>
-                
-            <div class="form-group">
-                <button class="btn btn-default btn-lg" type="submit">Salvar</button>
-            </div>
-        </form>*@
-    @*</div>
-</div>*@

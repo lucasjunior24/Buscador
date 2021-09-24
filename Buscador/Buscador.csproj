@@ -82,4 +82,11 @@
     <PackageReference Include="Refit" Version="6.0.94" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Trabalhadores\Create.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
