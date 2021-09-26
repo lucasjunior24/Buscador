@@ -7,6 +7,8 @@ using Buscador.Interfaces;
 using AutoMapper;
 using Buscador.Models;
 using Buscador.Models.Dto;
+using Buscador.Utils.ApiClient;
+using System.Linq;
 
 namespace Buscador.Controllers
 {
@@ -14,14 +16,16 @@ namespace Buscador.Controllers
     {
         private readonly ITrabalhadorRepository _trabalhadorRepository;
         private readonly IMapper _mapper;
-        //private readonly IViaCepClient viaCepClient;
+        private readonly IViaCepClient viaCepClient;
 
 
-        public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository, 
-                                       IMapper mapper)
+        public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
+                                       IMapper mapper, 
+                                       IViaCepClient viaCepClient)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
+            this.viaCepClient = viaCepClient;
         }
 
         public async Task<IActionResult> Index()
@@ -106,25 +110,16 @@ namespace Buscador.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //public async Task<JsonResult> BuscarCep(string cep)
-        //{
-        //    var dados = await viaCepClient.BuscarCep(cep);
-        //    if (typeof(RetornoViaCepDto).GetProperties().All(a => a.GetValue(dados) != null))
-        //        return Json(new { dados, type = "success" });
-        //    else
-        //    {
-        //        return Json(new { dados, type = "fail" });
-        //    }
-        //}        //public async Task<JsonResult> BuscarCep(string cep)
-        //{
-        //    var dados = await viaCepClient.BuscarCep(cep);
-        //    if (typeof(RetornoViaCepDto).GetProperties().All(a => a.GetValue(dados) != null))
-        //        return Json(new { dados, type = "success" });
-        //    else
-        //    {
-        //        return Json(new { dados, type = "fail" });
-        //    }
-        //}
+        public async Task<JsonResult> BuscarCep(string cep)
+        {
+            var dados = await viaCepClient.BuscarCep(cep);
+            if (typeof(RetornoViaCepDto).GetProperties().All(a => a.GetValue(dados) != null))
+                return Json(new { dados, type = "success" });
+            else
+            {
+                return Json(new { dados, type = "fail" });
+            }
+        }  
 
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEndereco(Guid id)
         {

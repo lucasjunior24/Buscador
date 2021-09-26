@@ -21,7 +21,7 @@ function buscarCep(el) {
         //Valida o formato do CEP.
         if (validacep.test(cep)) {
             //Consulta o webservice viacep.com.br/
-            $.getJSON("/MinhasInformacoes/BuscarCep", { cep },
+            $.getJSON("/Trabalhadores/BuscarCep", { cep },
                 function (resultado) {
                     if (resultado.type == "success") {
                         //Atualiza os campos com os valores da consulta.

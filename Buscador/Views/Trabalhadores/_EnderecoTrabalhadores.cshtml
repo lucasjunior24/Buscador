@@ -1,13 +1,8 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
 
 <div class="form-group col-md-4">
-    <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>
-    <input asp-for="EnderecoTrabalhador.Cep" class="form-control" />
-    <span asp-validation-for="EnderecoTrabalhador.Cep" class="text-danger"></span>
-</div>
-<div class="form-group col-md-4">
     <label asp-for="EnderecoTrabalhador.Logradouro" class="control-label"></label>
-    <input asp-for="EnderecoTrabalhador.Logradouro" class="form-control" />
+    <input asp-for="EnderecoTrabalhador.Logradouro" class="form-control Rua" />
     <span asp-validation-for="EnderecoTrabalhador.Logradouro" class="text-danger"></span>
 </div>
 <div class="form-group col-md-4">
@@ -22,17 +17,17 @@
 </div>
 <div class="form-group col-md-4">
     <label asp-for="EnderecoTrabalhador.Bairro" class="control-label"></label>
-    <input asp-for="EnderecoTrabalhador.Bairro" class="form-control" />
+    <input asp-for="EnderecoTrabalhador.Bairro" class="form-control Bairro" />
     <span asp-validation-for="EnderecoTrabalhador.Bairro" class="text-danger"></span>
 </div>
 <div class="form-group col-md-4">
     <label asp-for="EnderecoTrabalhador.Cidade" class="control-label"></label>
-    <input asp-for="EnderecoTrabalhador.Cidade" class="form-control" />
+    <input asp-for="EnderecoTrabalhador.Cidade" class="form-control Municipio" />
     <span asp-validation-for="EnderecoTrabalhador.Cidade" class="text-danger"></span>
 </div>
 <div class="form-group col-md-4">
     <label asp-for="EnderecoTrabalhador.Estado" class="control-label"></label>
-    <input asp-for="EnderecoTrabalhador.Estado" class="form-control" />
+    <input asp-for="EnderecoTrabalhador.Estado" class="form-control Uf" />
     <span asp-validation-for="EnderecoTrabalhador.Estado" class="text-danger"></span>
 </div>
            

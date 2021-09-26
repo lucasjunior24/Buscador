@@ -1,8 +1,10 @@
 using Buscador.Data;
 using Buscador.Data.Context;
+using Buscador.Extensions;
 using Buscador.Interfaces;
 using Buscador.Repository;
 using Microsoft.AspNetCore.Builder;
+using Refit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,8 @@ namespace Buscador
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddApiClients(Configuration);
 
             services.AddControllersWithViews();
             services.AddRazorPages();
