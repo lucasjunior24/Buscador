@@ -55,7 +55,7 @@ namespace Buscador.Repository
             await SaveChanges();
         }
 
-        public async  Task<int> SaveChanges()
+        public async Task<int> SaveChanges()
         {
             return await Db.SaveChangesAsync();
         }

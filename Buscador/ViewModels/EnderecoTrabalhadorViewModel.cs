@@ -18,8 +18,6 @@ namespace Buscador.ViewModels
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
-
-        [HiddenInput]
         public Guid TrabalhadorId { get; set; }
     }
 }

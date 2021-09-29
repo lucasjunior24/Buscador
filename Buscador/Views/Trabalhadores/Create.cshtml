@@ -15,7 +15,7 @@
 </div>
 
 <div class="d-sm-none">
-    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Início</a>
+    <a asp-action="Index" asp-controller="Trabalhadores" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Lista de Trabalhadores</a>
 </div>
 <hr />
 
@@ -58,8 +58,13 @@
                 <input asp-for="Profissao" class="form-control" />
                 <span asp-validation-for="Profissao" class="text-danger"></span>
             </div>
-
-            <input type="hidden" asp-for="EnderecoTrabalhador.Id" />
+            <hr />
+            @*<h4>Tipo de Servico</h4>
+            <hr />
+            <div class="row" id="TipoDeServico">
+                <partial name="_TipoDeServico" />
+            </div>
+            <hr />*@
 
             <div class="form-group">
                 <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>
