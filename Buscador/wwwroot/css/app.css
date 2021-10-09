@@ -22,7 +22,7 @@
 /* Basic */
 
 :root {
-    --colortheme: #430458;
+    --colortheme: #76079b;
     --colorthemedark: #35851B;
     --background-color: #f6f6f6;
 }
@@ -1237,4 +1237,11 @@ a{
 ::-webkit-scrollbar-track {
     border-radius: 5px;
     background: rgba(230, 230, 230, 0.4);
+}
+
+.border-bottom-theme {
+    border-bottom: solid var(--colortheme);
+}
+.border-left-theme {
+    border-left: solid var(--colortheme);
 }

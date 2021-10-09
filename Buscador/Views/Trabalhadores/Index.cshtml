@@ -1,70 +1,87 @@
 ﻿@model IEnumerable<Buscador.ViewModels.TrabalhadorViewModel>
 
 @{
-    ViewData["Title"] = "Trabalhadores";
+    ViewData["Title"] = "Lista de Trabalhadores";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme"><em class="mdi mdi-home"></em> Início</a></li>
+            <li class="breadcrumb-item active color-theme" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início" class="breadcrumb-inicio color-theme"><em class="mdi mdi-chevron-left"></em> Início</a>
+</div>
+<hr />
 
-<p supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir">
-    <a asp-action="Create">Adicionar Trabalhador</a>
-</p>
+@*<div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@User.NomeCompleto()</strong></span>
+    </div>*@
 
-<table class="table table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Documento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Profissao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Foto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Documento)
-                </td>
+<div class="d-flex justify-content-between">
+    <h3>@ViewData["Title"]</h3>
+    <p supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" class="float-right">
+        <a asp-action="Create" class="btn btn-primary">Adicionar</a>
+    </p>
+</div>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Profissao)
-                </td>
-                <td class="text-right">
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details h3" aria-label="Ícone Detalhes"></em></a>
-                    <a class="btn btn-warning" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h3" aria-label="Ícone Editar"></em></a>
-                    <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h3" aria-label="Ícone Excluir"></em></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 border-left-theme border-3">
+                        <div class="border-bottom-theme border-1">
+                            <small class="text-muted">Nome</small>
+                            <h5 class="">@item.Nome</h5>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => model.Foto)</small>
+                        <h6>@item.Foto</h6>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">E-mail</small>
+                        <h6>@item.Email</h6>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">Telefone</small>
+                        <h6 class="">@item.Telefone</h6>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">Documento</small>
+                        <h6>@item.Documento</h6>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">Profissão</small>
+                        <h6>@item.Profissao</h6>
+                    </div>
+                    <div class="col-xl-2 col-md-6 pt-2">
+                        <a class="btn btn-info mr-3" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h3" aria-label="Ícone Detalhes"></em></a>
+                        <a class="btn btn-warning mr-3" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h3" aria-label="Ícone Editar"></em></a>
+                        <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h3" aria-label="Ícone Excluir"></em></a>
+                    </div>
 
+                </div>
 
+            </div>
+        </div>
+    }
+}
+    else
+    {
+        <div class="row mt-3">
+            <div class="col-md col-sm-12 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Você não fez nenhuma Solicitação.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
