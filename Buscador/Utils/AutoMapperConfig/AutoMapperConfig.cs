@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Buscador.Models;
 using Buscador.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Buscador.Utils.AutoMapperConfig
 {
