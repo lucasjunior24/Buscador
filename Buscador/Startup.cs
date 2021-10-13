@@ -43,6 +43,8 @@ namespace Buscador
             services.AddScoped<ITipoDeServicoRepository, TipoDeServicoRepository>();
             services.AddScoped<IEnderecoTrabalhadorRepository, EnderecoTrabalhadorRepository>();
             services.AddScoped<IEnderecoClienteRepository, EnderecoClienteRepository>();
+
+            services.AddScoped<ISolicitacaoRepository, SolicitacaoRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
