@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Buscador.ViewModels.TrabalhadorViewModel>
+﻿
+@model IEnumerable<Buscador.ViewModels.SolicitacaoViewModel>
 
 @{
-    ViewData["Title"] = "Lista de Trabalhadores";
+    ViewData["Title"] = "Minhas Solicitacoes";
 }
 
 <div class="d-none d-sm-block">
@@ -17,9 +18,9 @@
 </div>
 <hr />
 
-@*<div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@User.NomeCompleto()</strong></span>
-    </div>*@
+<div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>
+    </div>
 
 <div class="d-flex justify-content-between">
     <h3>@ViewData["Title"]</h3>
@@ -37,11 +38,11 @@
                 <div class="row">
                     <div class="col-12 border-left-theme border-3">
                         <div class="border-bottom-theme border-1">
-                            <small class="text-muted">Nome</small>
-                            <h5 class="">@item.Nome</h5>
+                            <small class="text-muted">Solicitado</small>
+                            <h5 class="">@item.Trabalhador.Profissao</h5>
                         </div>
                     </div>
-                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                    @*<div class="col-12 col-xl-2 col-md-6 pt-1">
                         <small class="text-muted">@Html.DisplayNameFor(model => model.Foto)</small>
                         <h6>@item.Foto</h6>
                     </div>
@@ -65,9 +66,7 @@
                         <a class="btn btn-info mr-3" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h3" aria-label="Ícone Detalhes"></em></a>
                         <a class="btn btn-warning mr-3" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h3" aria-label="Ícone Editar"></em></a>
                         <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h3" aria-label="Ícone Excluir"></em></a>
-                        @*<a class="btn btn-outline-primary"  asp-action="SolicitarTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-chevron-right h3" aria-label="Ícone Solicitar Trabalhador"></em></a>*@
-                        <a class="btn btn-outline-primary" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@item.Id"><em class="mdi mdi-chevron-right h3" aria-label="Ícone Solicitar Trabalhador"></em></a>
-                    </div>
+                    </div>*@
 
                 </div>
 
@@ -75,15 +74,15 @@
         </div>
     }
 }
-    else
-    {
-        <div class="row mt-3">
-            <div class="col-md col-sm-12 mb-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Você não fez nenhuma Solicitação.</h4>
-                    </div>
+else
+{
+    <div class="row mt-3">
+        <div class="col-md col-sm-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Você não fez nenhuma Solicitação.</h4>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}

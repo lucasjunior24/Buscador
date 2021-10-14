@@ -13,6 +13,8 @@ namespace Buscador.Utils.AutoMapperConfig
             CreateMap<EnderecoTrabalhador, EnderecoTrabalhadorViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
             CreateMap<TipoDeServico, TipoDeServicoViewModel>().ReverseMap();
+
+            CreateMap<Solicitacao, SolicitacaoViewModel>().ReverseMap();
         }
     }
 }

@@ -7,6 +7,12 @@
         public TipoDeServico TipoDeServico { get; set; }
         public EnderecoTrabalhador EnderecoTrabalhador { get; set; }
         public string Profissao { get; set; }
-        public bool Solicitado { get; set; }
+        public bool Solicitado { get; private set; }
+
+        public void SolicitarTrabalhador()
+        {
+            Solicitado = true;
+        }
+
     }
 }

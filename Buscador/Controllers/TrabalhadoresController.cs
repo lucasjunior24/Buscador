@@ -71,7 +71,7 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, TrabalhadorViewModel trabalhadorViewModel)
         {
@@ -84,6 +84,20 @@ namespace Buscador.Controllers
             
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> SolicitarTrabalhador(Guid id)
+        {
+            if (id == null) return NotFound();
+            var trabalhadorViewModel = await _trabalhadorRepository.ObterPorId(id);
+            var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
+            trabalhador.SolicitarTrabalhador();
+
+            await _trabalhadorRepository.Atualizar(trabalhador);
+
+            return RedirectToAction("Index");
+            //return RedirectToAction("Solicitacao", "Create", new { servicoId = servicoId });
+        }
+        
 
         public async Task<IActionResult> Delete(Guid id)
         {
