@@ -62,11 +62,11 @@
                         <h6>@item.Profissao</h6>
                     </div>
                     <div class="col-xl-2 col-md-6 pt-2">
-                        <a class="btn btn-info mr-3" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h3" aria-label="Ícone Detalhes"></em></a>
-                        <a class="btn btn-warning mr-3" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h3" aria-label="Ícone Editar"></em></a>
-                        <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h3" aria-label="Ícone Excluir"></em></a>
+                        <a class="btn btn-info mr-2" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em></a>
+                        <a class="btn btn-warning mr-2" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em></a>
+                        <a class="btn btn-danger mr-2" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em></a>
                         @*<a class="btn btn-outline-primary"  asp-action="SolicitarTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-chevron-right h3" aria-label="Ícone Solicitar Trabalhador"></em></a>*@
-                        <a class="btn btn-outline-primary" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@item.Id"><em class="mdi mdi-chevron-right h3" aria-label="Ícone Solicitar Trabalhador"></em></a>
+                        <a class="btn btn-outline-primary" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@item.Id"><em class="mdi mdi-chevron-right h5" aria-label="Ícone Solicitar Trabalhador"></em></a>
                     </div>
 
                 </div>

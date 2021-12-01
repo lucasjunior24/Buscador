@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="Views\Shared\Components\Sidebar\Login.cshtml" />
     <None Include="Views\Shared\Components\Sidebar\Logout.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />

@@ -55,15 +55,23 @@ namespace Buscador.Controllers
         {
             var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
             var solicitacaoViewModel = new SolicitacaoViewModel();
-            //if (!ModelState.IsValid) return View(solicitacaoViewModel);
+            if (!ModelState.IsValid) return View(solicitacaoViewModel);
 
             var solicitacao = _mapper.Map<Solicitacao>(solicitacaoViewModel);
             solicitacao.Trabalhador = trabalhador;
-            var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
+            solicitacao.NomeSolicitante = trabalhador.Nome;
+            solicitacao.TrabalhadorId = trabalhador.Id;
+            solicitacao.DocumentoSolicitante = trabalhador.Documento;
+            solicitacao.DataDaSolicitacao = solicitacao.GravarDataDaSolicitacao();
+
             await _solicitacaoRepository.Adicionar(solicitacao);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Trabalhadores", "Index");
         }
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
     }
 
