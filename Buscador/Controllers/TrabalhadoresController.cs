@@ -30,7 +30,10 @@ namespace Buscador.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<TrabalhadorViewModel>>(await _trabalhadorRepository.ObterTodos()));
+            var trabalhadores = await _trabalhadorRepository.ObterTodos();
+            var trabalhadoresViewModel = _mapper.Map<IEnumerable<TrabalhadorViewModel>>(trabalhadores);
+            trabalhadoresViewModel.Select(t => t.Solicitado ? t.SolicitadoMap = "Sim" : t.SolicitadoMap = "Não");
+            return View(trabalhadoresViewModel);
         }
 
         public async Task<IActionResult> Details(Guid id)

@@ -8,7 +8,7 @@ namespace Buscador.Interfaces
 {
     public interface ISolicitacaoRepository : IRepository<Solicitacao>
     {
-        Task<List<Solicitacao>> ObterMinhasSolicitacoes(Guid clienteId);
+        Task<List<Solicitacao>> ObteSolicitacoesDoCliente(Guid clienteId);
         Task<Solicitacao> ObterSolicitacaoPorId(Guid id);
     }
 }

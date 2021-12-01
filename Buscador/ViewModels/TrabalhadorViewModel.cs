@@ -13,6 +13,8 @@ namespace Buscador.ViewModels
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string Documento { get; set; }
+        public bool Solicitado { get; set; }
+        public string SolicitadoMap { get; set; }
         public int TipoDeTrabalhador { get; set; }
         public TipoDeServicoViewModel TipoDeServico { get; set; }
         public EnderecoTrabalhadorViewModel EnderecoTrabalhador { get; set; }

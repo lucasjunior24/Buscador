@@ -62,7 +62,7 @@ namespace Buscador.Controllers
             solicitacao.NomeSolicitante = trabalhador.Nome;
             solicitacao.TrabalhadorId = trabalhador.Id;
             solicitacao.DocumentoSolicitante = trabalhador.Documento;
-            solicitacao.DataDaSolicitacao = solicitacao.GravarDataDaSolicitacao();
+            solicitacao.GravarDataDaSolicitacao();
 
             await _solicitacaoRepository.Adicionar(solicitacao);
 

@@ -15,10 +15,11 @@ namespace Buscador.Repository
         {
         }
 
-        public async Task<List<Solicitacao>> ObterMinhasSolicitacoes(Guid clienteId)
+        public async Task<List<Solicitacao>> ObteSolicitacoesDoCliente(Guid clienteId)
         {
             var solicitacoes = await Db.Solicitacao.AsNoTracking()
-                .Include(s => s.Cliente).Where(s => s.ClienteId == clienteId).ToListAsync();
+                .Include(s => s.Cliente)
+                .Where(s => s.ClienteId == clienteId).ToListAsync();
 
             return solicitacoes;
         }

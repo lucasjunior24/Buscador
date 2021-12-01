@@ -29,6 +29,9 @@ namespace Buscador.Mappings
             builder.HasOne(navigationExpression: c => c.EnderecoCliente)
                 .WithOne(navigationExpression: e => e.Cliente);
 
+            builder.HasMany(navigationExpression: c => c.Solicitacao)
+                .WithOne(navigationExpression: s => s.Cliente)
+                .HasForeignKey(s => s.ClienteId);
 
             builder.ToTable("Clientes");
 

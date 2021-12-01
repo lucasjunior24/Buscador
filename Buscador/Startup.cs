@@ -38,6 +38,7 @@ namespace Buscador
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<BuscadorContext>();
+
             services.AddScoped<ITrabalhadorRepository, TrabalhadorRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ITipoDeServicoRepository, TipoDeServicoRepository>();
