@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Buscador.ViewModels
 {
@@ -18,8 +14,6 @@ namespace Buscador.ViewModels
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
-
-        [HiddenInput]
         public Guid ClienteId { get; set; }
     }
 }

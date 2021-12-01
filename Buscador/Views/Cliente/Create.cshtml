@@ -1,0 +1,85 @@
+﻿@model Buscador.ViewModels.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Realizar Cadastro";
+}
+
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Cliente" class="color-theme">Lista de Clientes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Cliente" aria-label="Lista de Clientes"><em class="mdi mdi-chevron-left h1"></em> Lista de Clientes</a>
+</div>
+<hr />
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" class="form-horizontal row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" class="form-control" />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Documento" class="control-label"></label>
+                <input asp-for="Documento" class="form-control" />
+                <span asp-validation-for="Documento" class="text-danger"></span>
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <label asp-for="EnderecoCliente.Cep" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="EnderecoCliente.Cep" class="form-control mask-cep Cep" maxlength="7" />
+                    <button id="btnBuscarCep" href="#" class="btn-buscar">
+                        <em class="mdi mdi-magnify"></em>
+                    </button>
+                </div>
+            </div>
+            <span asp-validation-for="EnderecoCliente.Cep" class="text-danger"></span>
+
+            <div class="collapse row" id="Endereco">
+                <h4>Endereço</h4>
+                <hr />
+
+                <partial name="_EnderecoCliente" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="https://cdn.sistemas.ro.gov.br/vendors/jquerymask/jquery.mask.min.js" integrity="sha384-Oi37e7LmpRb9jNYAht/B08xyeBKI19ErNaJ1sR6z52Mrkb3Qxdpgyz5/IZOyh3HP" crossorigin="anonymous"></script>
+    <script src="~/js/minhasInformacoes/dadosBasicos.js"></script>
+    <script src="~/js/cliente/BuscaCepHelper.js"></script>
+}

@@ -1,0 +1,60 @@
+﻿@model Buscador.ViewModels.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Minhas Informações";
+}
+
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Cliente" class="color-theme">Lista de Clientes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Trabalhadores" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Lista de Trabalhadores</a>
+</div>
+<hr />
+
+<div class="row">
+    <div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
+    </div>
+
+
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
+        <h6>@Model.Nome</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
+        <h6>@Model.Foto</h6>
+    </div>
+    <div class="col-md-4 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
+        <h6>@Model.Documento</h6>
+    </div>
+    <div class="col-md-6 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
+        <h6>@Model.Email</h6>
+    </div>
+    <div class="col-md-6 mt-0">
+        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
+        <h6>@Model.Telefone</h6>
+    </div>
+</div>
+
+
+<div class="row mt-4">
+    <div class="col-md-10">
+        <h2>Mantenha suas informações atualizadas</h2>
+        <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
+    </div>
+    <div class="col-md-2">
+        <div class="d-grid mx-auto">
+            <a asp-action="Atualizar" asp-controller="MinhasInformacoes" class="btn-lg btn-rounded-solicitar bg-theme text-white text-center">Atualizar</a>
+            <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</div>

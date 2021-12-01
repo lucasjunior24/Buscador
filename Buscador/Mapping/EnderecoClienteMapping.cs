@@ -20,7 +20,7 @@ namespace Buscador.Mappings
 
             builder.Property(p => p.Cep)
                 .IsRequired()
-                .HasColumnType("varchar(8)");
+                .HasColumnType("varchar(11)");
 
             builder.Property(p => p.Complemento)
                 .IsRequired()
