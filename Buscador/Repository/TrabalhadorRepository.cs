@@ -13,6 +13,14 @@ namespace Buscador.Repository
         {
         }
 
+        public async Task<Trabalhador> ObterTrabalhadorEnderecoPorUserId(Guid userId)
+        {
+            var trabalhador = await Db.Trabalhadores.AsNoTracking()
+                .Include(t => t.EnderecoTrabalhador).FirstOrDefaultAsync(t => t.UserId == userId);
+
+            return trabalhador;
+        }
+
         public async Task<Trabalhador> ObterTrabalhadorEndereco(Guid id)
         {
             var trabalhador = await Db.Trabalhadores.AsNoTracking()

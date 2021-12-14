@@ -1,4 +1,8 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Início";
@@ -26,16 +30,16 @@
 <h3 class="text-center color-theme-dark p-4 mt-5"><strong>Ache o Profissional que voçê está procurando</strong></h3>
 
 @*<div class="row">
-    <div class="col">
-            <h1>Vizualise a nossa lista de Trabalhadores disponiveis</h1>
-            <a asp-controller="Trabalhadores" asp-action="Index" class="btn btn-default">
-                <em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores
-            </a>
-            <a asp-controller="Cliente" asp-action="Index" class="btn btn-primary">
-                <em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Cliente
-            </a>
-    </div>
-</div>*@
+        <div class="col">
+                <h1>Vizualise a nossa lista de Trabalhadores disponiveis</h1>
+                <a asp-controller="Trabalhadores" asp-action="Index" class="btn btn-default">
+                    <em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores
+                </a>
+                <a asp-controller="Cliente" asp-action="Index" class="btn btn-primary">
+                    <em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Cliente
+                </a>
+        </div>
+    </div>*@
 
 <div class="card card-body">
     <div class="row">
@@ -43,7 +47,7 @@
             <h1>Cadastre seus dados, de acordo com o perfil que você deseja</h1>
             <div>
                 <h5>
-                    <strong>Perfil de Trabalhador</strong> é o de prestador de serviço, pessoa que deseja encontrar clientes e trablhar.
+                    <strong>Perfil de Trabalhador</strong> é o de prestador de serviço, pessoa que deseja encontrar clientes e trabalhar. @UserManager.GetUserId(User);
                 </h5>
                 <a asp-controller="Trabalhadores" asp-action="Create" class="btn btn-default">
                     <em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores

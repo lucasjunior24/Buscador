@@ -1,4 +1,6 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Realizar Cadastro";
@@ -23,6 +25,7 @@
     <div class="card-body">
         <form asp-action="Create" class="form-horizontal row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="UserId" class="form-control" value="@UserManager.GetUserId(User)" type="hidden" />
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -60,11 +63,11 @@
             </div>
             <hr />
             @*<h4>Tipo de Servico</h4>
-            <hr />
-            <div class="row" id="TipoDeServico">
-                <partial name="_TipoDeServico" />
-            </div>
-            <hr />*@
+                <hr />
+                <div class="row" id="TipoDeServico">
+                    <partial name="_TipoDeServico" />
+                </div>
+                <hr />*@
 
             <div class="form-group">
                 <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>

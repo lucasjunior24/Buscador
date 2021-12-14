@@ -36,6 +36,17 @@ namespace Buscador.Controllers
             return View(trabalhadoresViewModel);
         }
 
+        public async Task<IActionResult> ObterTrabalhador(Guid userId)
+        {
+            var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
+            if (trabalhadorViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(trabalhadorViewModel);
+        }
+
         public async Task<IActionResult> Details(Guid id)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);
@@ -137,6 +148,11 @@ namespace Buscador.Controllers
                 return Json(new { dados, type = "fail" });
             }
         }  
+
+        private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoPorUserId(Guid userId)
+        {
+            return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId));
+        }
 
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEndereco(Guid id)
         {
