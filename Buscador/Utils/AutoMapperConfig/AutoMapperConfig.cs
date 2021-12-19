@@ -14,6 +14,7 @@ namespace Buscador.Utils.AutoMapperConfig
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
             CreateMap<TipoDeServico, TipoDeServicoViewModel>().ReverseMap();
 
+            CreateMap<Perfil, PerfilViewModel>().ReverseMap();
             CreateMap<Solicitacao, SolicitacaoViewModel>().ReverseMap();
         }
     }
