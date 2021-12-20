@@ -20,12 +20,20 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>
-                <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil</a>
 
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 
                     <button id="logout" type="submit" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Logout</button>
                 </form>
+                @if (User.HasClaim(c => c.Type == "trabalhador"))
+                {
+                    <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil</a>
+                }
+
+                @if (User.HasClaim(c => c.Type == "cliente"))
+                {
+                    <a class="list-group-item list-group-item-action" asp-controller="Clientes" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil</a>
+                }
                 <a asp-controller="Solicitacoes" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Minhas Solicitacoes</a>
             }
             else

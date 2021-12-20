@@ -38,7 +38,7 @@ namespace Buscador.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
+        [Authorize(Policy = "Cliente")]
         public async Task<IActionResult> Index()
         {
             var trabalhadores = await _trabalhadorRepository.ObterTodos();
@@ -90,7 +90,7 @@ namespace Buscador.Controllers
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Adicionar(trabalhador);
             
-            await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("Trab", "trabalhador"));
+            await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("trabalhador", "trabalhador"));
             return RedirectToAction(nameof(Index));
         }
 
