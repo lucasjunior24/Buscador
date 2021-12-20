@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Buscador.ViewModels
@@ -16,10 +17,12 @@ namespace Buscador.ViewModels
         public string Documento { get; set; }
         public bool Solicitado { get; set; }
         public string SolicitadoMap { get; set; }
-        public int TipoDeTrabalhador { get; set; }
+        public string TipoDeTrabalhador { get; set; }
         public TipoDeServicoViewModel TipoDeServico { get; set; }
         public EnderecoTrabalhadorViewModel EnderecoTrabalhador { get; set; }
         public string Profissao { get; set; }
+
+        public SelectList TiposDeTrabalhadores { get; set; }
 
     }
 }

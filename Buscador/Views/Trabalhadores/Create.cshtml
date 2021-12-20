@@ -51,9 +51,13 @@
                 <input asp-for="Documento" class="form-control" />
                 <span asp-validation-for="Documento" class="text-danger"></span>
             </div>
-            <div class="form-group col-md-6">
+
+            <div class="form-group col-md-6" id="">
                 <label asp-for="TipoDeTrabalhador" class="control-label"></label>
-                <input asp-for="TipoDeTrabalhador" class="form-control" />
+                <select class="form-control" asp-for="TipoDeTrabalhador" asp-items="@Model.TiposDeTrabalhadores">
+                    <option value="">Selecione...</option>
+                </select>
+
                 <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
@@ -63,11 +67,11 @@
             </div>
             <hr />
             @*<h4>Tipo de Servico</h4>
-                <hr />
-                <div class="row" id="TipoDeServico">
-                    <partial name="_TipoDeServico" />
-                </div>
-                <hr />*@
+        <hr />
+        <div class="row" id="TipoDeServico">
+            <partial name="_TipoDeServico" />
+        </div>
+        <hr />*@
 
             <div class="form-group">
                 <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>

@@ -30,6 +30,14 @@ namespace Buscador.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(140)");
 
+            builder.Property(x => x.TipoDeTrabalhador)
+              .IsRequired()
+              .HasColumnType("varchar(50)")
+              .HasConversion(
+                  a => a.ToString(),
+                  a => (TipoDeTrabalhador)System.Enum.Parse(typeof(TipoDeTrabalhador), a));
+
+
             // 1 : 1 => Trabalhador : Endereco
             builder.HasOne(navigationExpression: t => t.EnderecoTrabalhador)
                 .WithOne(navigationExpression: e => e.Trabalhador);

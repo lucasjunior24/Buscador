@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Buscador.Extensions;
 using Buscador.Interfaces;
 using Buscador.Models;
 using Buscador.Models.Dto;
@@ -60,7 +61,11 @@ namespace Buscador.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var trabalhador = new TrabalhadorViewModel()
+            {
+                TiposDeTrabalhadores = EnumHelper.CriarListaDeEnum<TipoDeTrabalhador>()
+            };
+            return View(trabalhador);
         }
 
         [HttpPost]
@@ -68,6 +73,8 @@ namespace Buscador.Controllers
         public async Task<IActionResult> Create(TrabalhadorViewModel trabalhadorViewModel)
         {
             if (!ModelState.IsValid) return View(trabalhadorViewModel);
+
+            //var trabalhador = new Trabalhador();
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Adicionar(trabalhador);
@@ -101,7 +108,7 @@ namespace Buscador.Controllers
 
         public async Task<IActionResult> SolicitarTrabalhador(Guid id)
         {
-            if (id == null) return NotFound();
+            if (id == Guid.Empty) return NotFound();
             var trabalhadorViewModel = await _trabalhadorRepository.ObterPorId(id);
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             trabalhador.SolicitarTrabalhador();

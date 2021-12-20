@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Buscador.Models
 {
     public enum TipoDeTrabalhador
     {
-        PessoaFisica = 0,
-        PessoaJuridica = 1
+        [Description("Pessoa Fisica")]
+        PessoaFisica,
+        [Description("Pessoa Juridica")]
+        PessoaJuridica
     }
 }

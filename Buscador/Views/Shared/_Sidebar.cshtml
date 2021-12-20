@@ -20,13 +20,13 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>
-                <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised"  aria-label="Ícone Detalhes"></em>Meu Perfil</a>
+                <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil</a>
 
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 
                     <button id="logout" type="submit" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Logout</button>
                 </form>
-
+                <a asp-controller="Solicitacoes" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Minhas Solicitacoes</a>
             }
             else
             {
@@ -35,10 +35,10 @@
             }
             <br />
             <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised" aria-label="Ícone Início"></em>Início</a>
-            @*<a asp-controller="Servico" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Serviços</a>*@
-            <a asp-controller="Servico" asp-action="Acompanhar" class="list-group-item list-group-item-action"><em class="mdi mdi-animation icons-raised" aria-label="Ícone Acompanhamentos"></em>Acompanhamentos</a>
-            <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
-            <a asp-controller="TiposDeServicos" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Tipo de Serviços</a>
+            <a asp-controller="Servico" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Serviços</a>
+            @*<a asp-controller="Servico" asp-action="Acompanhar" class="list-group-item list-group-item-action"><em class="mdi mdi-animation icons-raised" aria-label="Ícone Acompanhamentos"></em>Acompanhamentos</a>
+        <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
+        <a asp-controller="TiposDeServicos" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Tipo de Serviços</a>*@
         </div>
     </div>
 </div>

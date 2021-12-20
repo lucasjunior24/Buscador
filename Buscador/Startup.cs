@@ -4,7 +4,6 @@ using Buscador.Extensions;
 using Buscador.Interfaces;
 using Buscador.Repository;
 using Microsoft.AspNetCore.Builder;
-using Refit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
