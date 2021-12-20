@@ -1,4 +1,5 @@
 ﻿using Buscador.Models;
+using Buscador.Utils.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,21 @@ namespace Buscador.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IPerfilService _perfilService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IPerfilService perfilService)
         {
             _logger = logger;
+            _perfilService = perfilService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(Guid userId)
         {
+            if (userId != Guid.Empty)
+            {
+                var perfil = await _perfilService.ObterPerfilUserId(userId);
+                return View(perfil);
+            }
             return View();
         }
 

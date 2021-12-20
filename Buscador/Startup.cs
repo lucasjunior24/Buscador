@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Buscador.Utils.Service;
 
 namespace Buscador
 {
@@ -46,6 +47,7 @@ namespace Buscador
             services.AddScoped<IEnderecoClienteRepository, EnderecoClienteRepository>();
 
             services.AddScoped<ISolicitacaoRepository, SolicitacaoRepository>();
+            services.AddScoped<IPerfilService, PerfilService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
