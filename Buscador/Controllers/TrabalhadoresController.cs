@@ -5,28 +5,38 @@ using Buscador.Models;
 using Buscador.Models.Dto;
 using Buscador.Utils.ApiClient;
 using Buscador.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers
 {
+    [Authorize]
     public class TrabalhadoresController : BaseController
     {
         private readonly ITrabalhadorRepository _trabalhadorRepository;
         private readonly IMapper _mapper;
         private readonly IViaCepClient viaCepClient;
+        UserManager<IdentityUser> userManager;
+        SignInManager<IdentityUser> signInManager;
 
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
-                                       IMapper mapper, 
-                                       IViaCepClient viaCepClient)
+                                       IMapper mapper,
+                                       IViaCepClient viaCepClient, 
+                                       UserManager<IdentityUser> userManager, 
+                                       SignInManager<IdentityUser> signInManager)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
             this.viaCepClient = viaCepClient;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index()
@@ -37,6 +47,7 @@ namespace Buscador.Controllers
             return View(trabalhadoresViewModel);
         }
 
+        [Authorize(Policy = "trabalhador")]
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
@@ -78,7 +89,8 @@ namespace Buscador.Controllers
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Adicionar(trabalhador);
-       
+            
+            await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("Trab", "trabalhador"));
             return RedirectToAction(nameof(Index));
         }
 

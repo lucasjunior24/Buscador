@@ -4,6 +4,7 @@ using Buscador.Models;
 using Buscador.Models.Dto;
 using Buscador.Utils.ApiClient;
 using Buscador.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Buscador.Controllers
 {
+    [Authorize]
     public class ClienteController : BaseController
     {
         private readonly IClienteRepository clienteRepository;

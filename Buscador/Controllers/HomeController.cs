@@ -1,4 +1,5 @@
 ﻿using Buscador.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,7 +24,8 @@ namespace Buscador.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Authorize]
+        public IActionResult SelecionarPerfil()
         {
             return View();
         }

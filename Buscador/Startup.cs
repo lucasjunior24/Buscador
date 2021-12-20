@@ -30,6 +30,12 @@ namespace Buscador
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("trabalhador", policy => policy.RequireClaim("trabalhador"));
+            });
+
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddApiClients(Configuration);
