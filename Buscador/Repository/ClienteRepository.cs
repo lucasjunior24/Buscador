@@ -20,5 +20,13 @@ namespace Buscador.Repository
 
             return cliente;
         }
+        public async Task<Cliente> ObterClienteEnderecoPorUserId(Guid userId)
+        {
+            var cliente = await Db.Clientes.AsNoTracking()
+                .Include(c => c.EnderecoCliente).FirstOrDefaultAsync(c => c.UserId == userId);
+
+            return cliente;
+        }
+
     }
 }

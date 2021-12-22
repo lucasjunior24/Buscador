@@ -38,6 +38,18 @@ namespace Buscador.Controllers
             return View(clienteViewModel);
         }
 
+        [Authorize(Policy = "cliente")]
+        public async Task<IActionResult> ObterTrabalhador(Guid userId)
+        {
+            var clienteViewModel = await ObterClienteEnderecoPorUserId(userId);
+            if (clienteViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(clienteViewModel);
+        }
+
         public async Task<IActionResult> Details(Guid id)
         {
             var clienteViewModel = await ObterClienteEndereco(id);
@@ -75,6 +87,11 @@ namespace Buscador.Controllers
             {
                 return Json(new { dados, type = "fail" });
             }
+        }
+
+        private async Task<ClienteViewModel> ObterClienteEnderecoPorUserId(Guid userId)
+        {
+            return mapper.Map<ClienteViewModel>(await clienteRepository.ObterClienteEnderecoPorUserId(userId));
         }
 
         private async Task<ClienteViewModel> ObterClienteEndereco(Guid id)

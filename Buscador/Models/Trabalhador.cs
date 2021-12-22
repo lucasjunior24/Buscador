@@ -5,7 +5,6 @@ namespace Buscador.Models
     public class Trabalhador : Usuario
     {
         public string Documento { get; set; }
-        public Guid UserId { get; set; }
         public TipoDeTrabalhador TipoDeTrabalhador { get; set; }
         public TipoDeServico TipoDeServico { get; set; }
         public EnderecoTrabalhador EnderecoTrabalhador { get; set; }
