@@ -32,9 +32,13 @@
 
                 else if (User.HasClaim(c => c.Type == "cliente"))
                 {
-                    <a class="list-group-item list-group-item-action" asp-controller="Clientes" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
+                    <a class="list-group-item list-group-item-action" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
                 }
-                <a asp-controller="Solicitacoes" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Minhas Solicitacoes</a>
+                else
+                {
+                    <a asp-controller="Home" asp-action="SelecionarPerfil" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Definir perfil</a>
+                }
+               
             }
             else
             {

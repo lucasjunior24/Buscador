@@ -33,8 +33,8 @@ namespace Buscador
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("trabalhador", policy => policy.RequireClaim("trabalhador"));
-                options.AddPolicy("Cliente", policy => policy.RequireClaim("Cliente"));
-                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("cliente", policy => policy.RequireClaim("cliente"));
+                options.AddPolicy("admin", policy => policy.RequireClaim("admin"));
             });
 
 

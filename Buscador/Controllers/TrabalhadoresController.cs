@@ -38,7 +38,7 @@ namespace Buscador.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        [Authorize(Policy = "Cliente")]
+        [Authorize(Policy = "cliente")]
         public async Task<IActionResult> Index()
         {
             var trabalhadores = await _trabalhadorRepository.ObterTodos();
