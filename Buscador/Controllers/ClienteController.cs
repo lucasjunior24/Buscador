@@ -39,7 +39,7 @@ namespace Buscador.Controllers
         }
 
         [Authorize(Policy = "cliente")]
-        public async Task<IActionResult> ObterTrabalhador(Guid userId)
+        public async Task<IActionResult> ObterCliente(Guid userId)
         {
             var clienteViewModel = await ObterClienteEnderecoPorUserId(userId);
             if (clienteViewModel == null)

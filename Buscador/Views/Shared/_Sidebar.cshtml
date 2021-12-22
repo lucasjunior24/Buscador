@@ -30,7 +30,7 @@
                     <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Trabalhador</a>
                 }
 
-                @if (User.HasClaim(c => c.Type == "cliente"))
+                else if (User.HasClaim(c => c.Type == "cliente"))
                 {
                     <a class="list-group-item list-group-item-action" asp-controller="Clientes" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
                 }

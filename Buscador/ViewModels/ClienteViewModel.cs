@@ -8,6 +8,7 @@ namespace Buscador.ViewModels
     {
         [Key]
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         //public IFormFile FotoCliente { get; set; }
         public string Nome { get; set; }
         public string Foto { get; set; }
