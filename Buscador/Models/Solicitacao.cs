@@ -5,8 +5,9 @@ namespace Buscador.Models
     public class Solicitacao : Entity
     {
         public DateTime DataDaSolicitacao { get; set; }
-        public string NomeSolicitante { get; set; }
-        public string DocumentoSolicitante { get; set; }
+        public string NomeDoTrabalhador { get; set; }
+        public string ProfissaoDoTrabalhador { get; set; }
+        public string NomeDoCliente { get; set; }
 
         //Relacionamento
         public Guid TrabalhadorId { get; set; }

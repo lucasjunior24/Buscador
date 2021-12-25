@@ -151,13 +151,16 @@ namespace Buscador.Migrations
                     b.Property<DateTime>("DataDaSolicitacao")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("DocumentoSolicitante")
+                    b.Property<string>("NomeDoCliente")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NomeDoTrabalhador")
                         .IsRequired()
                         .HasColumnType("varchar(14)");
 
-                    b.Property<string>("NomeSolicitante")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
+                    b.Property<string>("ProfissaoDoTrabalhador")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("TrabalhadorId")
                         .HasColumnType("uuid");

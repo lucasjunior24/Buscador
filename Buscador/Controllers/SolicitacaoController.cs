@@ -50,8 +50,9 @@ namespace Buscador.Controllers
 
             var solicitacaoViewModel = new SolicitacaoViewModel();
 
-            solicitacaoViewModel.NomeSolicitante = trabalhador.Nome;
-            solicitacaoViewModel.Trabalhador = trabalhador;
+            solicitacaoViewModel.NomeDoTrabalhador = trabalhador.Nome;
+            solicitacaoViewModel.ProfissaoDoTrabalhador = trabalhador.Profissao;
+            solicitacaoViewModel.TrabalhadorId = trabalhador.Id;
             return View(solicitacaoViewModel);
         }
 

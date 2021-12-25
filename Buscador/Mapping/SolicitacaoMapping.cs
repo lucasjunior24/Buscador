@@ -10,11 +10,11 @@ namespace Buscador.Mapping
         {
             builder.HasKey(keyExpression: s => s.Id);
 
-            builder.Property(s => s.NomeSolicitante)
+            builder.Property(s => s.NomeDoCliente)
                 .IsRequired()
                 .HasColumnType("varchar(200)");
 
-            builder.Property(s => s.DocumentoSolicitante)
+            builder.Property(s => s.NomeDoTrabalhador)
                 .IsRequired()
                 .HasColumnType("varchar(14)");
 
