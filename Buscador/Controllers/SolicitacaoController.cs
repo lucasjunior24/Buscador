@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace Buscador.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class SolicitacaoController : BaseController
     {
         private readonly ISolicitacaoRepository _solicitacaoRepository;
@@ -45,23 +43,27 @@ namespace Buscador.Controllers
 
         //    return View(solicitacaoViewModel);
         //}
-
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
+        
         public async Task<IActionResult> Create(Guid trabalhadorId)
         {
             var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
+
             var solicitacaoViewModel = new SolicitacaoViewModel();
+
+            solicitacaoViewModel.NomeSolicitante = trabalhador.Nome;
+            solicitacaoViewModel.Trabalhador = trabalhador;
+            return View(solicitacaoViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(SolicitacaoViewModel solicitacaoViewModel)
+        {
+
             if (!ModelState.IsValid) return View(solicitacaoViewModel);
 
             var solicitacao = _mapper.Map<Solicitacao>(solicitacaoViewModel);
-            solicitacao.Trabalhador = trabalhador;
-            solicitacao.NomeSolicitante = trabalhador.Nome;
-            solicitacao.TrabalhadorId = trabalhador.Id;
-            solicitacao.DocumentoSolicitante = trabalhador.Documento;
+
             solicitacao.GravarDataDaSolicitacao();
 
             await _solicitacaoRepository.Adicionar(solicitacao);

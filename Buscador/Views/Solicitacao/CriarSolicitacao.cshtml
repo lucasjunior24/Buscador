@@ -1,4 +1,5 @@
-﻿@model Buscador.ViewModels.SolicitacaoViewModel
+﻿
+@model Buscador.ViewModels.SolicitacaoViewModel
 
 @{
     ViewData["Title"] = "Minhas Solicitacoes";
@@ -18,7 +19,7 @@
 <hr />
 
 <div class="mb-3">
-    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@*@Model.FirstOrDefault().Cliente.Nome*@</strong></span>
+    @*<span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>*@
 </div>
 
 <div class="d-flex justify-content-between">

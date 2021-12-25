@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Buscador.Models;
+using System;
 
 namespace Buscador.ViewModels
 {
@@ -9,7 +10,7 @@ namespace Buscador.ViewModels
         public string DocumentoSolicitante { get; set; }
 
         //Relacionamento
-        public TrabalhadorViewModel Trabalhador { get; set; }
+        public Trabalhador Trabalhador { get; set; }
         public ClienteViewModel Cliente { get; set; }
     }
 }
