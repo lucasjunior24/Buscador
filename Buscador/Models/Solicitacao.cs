@@ -6,7 +6,8 @@ namespace Buscador.Models
     {
         public DateTime DataDaSolicitacao { get; set; }
         public string NomeSolicitante { get; set; }
-        public string DocumentoSolicitante { get; set; }
+        public string NomeTrabalhador { get; set; }
+        public string ProfisssaoDoTrabalhador { get; set; }
 
         //Relacionamento
         public Guid TrabalhadorId { get; set; }

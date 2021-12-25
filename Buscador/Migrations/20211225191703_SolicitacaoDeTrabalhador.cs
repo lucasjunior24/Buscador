@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Buscador.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class SolicitacaoDeTrabalhador : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,6 +12,7 @@ namespace Buscador.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     Foto = table.Column<string>(type: "varchar(200)", nullable: false),
                     Telefone = table.Column<string>(type: "varchar(20)", nullable: false),
@@ -28,8 +29,10 @@ namespace Buscador.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Documento = table.Column<string>(type: "varchar(14)", nullable: false),
-                    TipoDeTrabalhador = table.Column<int>(type: "integer", nullable: false),
+                    TipoDeTrabalhador = table.Column<string>(type: "varchar(50)", nullable: false),
                     Profissao = table.Column<string>(type: "varchar(140)", nullable: false),
+                    Solicitado = table.Column<bool>(type: "boolean", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     Foto = table.Column<string>(type: "varchar(200)", nullable: false),
                     Telefone = table.Column<string>(type: "text", nullable: true),
@@ -41,7 +44,7 @@ namespace Buscador.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnderecosDosTrabalhadores",
+                name: "EnderecoDosClientes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -49,16 +52,16 @@ namespace Buscador.Migrations
                     Logradouro = table.Column<string>(type: "varchar(200)", nullable: false),
                     Numero = table.Column<string>(type: "varchar(50)", nullable: false),
                     Complemento = table.Column<string>(type: "varchar(250)", nullable: false),
-                    Cep = table.Column<string>(type: "varchar(8)", nullable: false),
+                    Cep = table.Column<string>(type: "varchar(11)", nullable: false),
                     Bairro = table.Column<string>(type: "varchar(100)", nullable: false),
                     Cidade = table.Column<string>(type: "varchar(100)", nullable: false),
                     Estado = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnderecosDosTrabalhadores", x => x.Id);
+                    table.PrimaryKey("PK_EnderecoDosClientes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EnderecosDosTrabalhadores_Clientes_ClienteId",
+                        name: "FK_EnderecoDosClientes_Clientes_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
@@ -71,19 +74,48 @@ namespace Buscador.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     TrabalhadorId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Logradouro = table.Column<string>(type: "text", nullable: true),
-                    Numero = table.Column<string>(type: "text", nullable: true),
-                    Complemento = table.Column<string>(type: "text", nullable: true),
-                    Cep = table.Column<string>(type: "text", nullable: true),
-                    Bairro = table.Column<string>(type: "text", nullable: true),
-                    Cidade = table.Column<string>(type: "text", nullable: true),
-                    Estado = table.Column<string>(type: "text", nullable: true)
+                    Logradouro = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Numero = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Complemento = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Cep = table.Column<string>(type: "varchar(11)", nullable: false),
+                    Bairro = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Cidade = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Estado = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EnderecoDosTrabalhadores", x => x.Id);
                     table.ForeignKey(
                         name: "FK_EnderecoDosTrabalhadores_Trabalhadores_TrabalhadorId",
+                        column: x => x.TrabalhadorId,
+                        principalTable: "Trabalhadores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Solicitacoes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    DataDaSolicitacao = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    NomeSolicitante = table.Column<string>(type: "varchar(200)", nullable: false),
+                    NomeTrabalhador = table.Column<string>(type: "varchar(200)", nullable: false),
+                    ProfisssaoDoTrabalhador = table.Column<string>(type: "text", nullable: true),
+                    TrabalhadorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Solicitacoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Solicitacoes_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Solicitacoes_Trabalhadores_TrabalhadorId",
                         column: x => x.TrabalhadorId,
                         principalTable: "Trabalhadores",
                         principalColumn: "Id",
@@ -114,15 +146,26 @@ namespace Buscador.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_EnderecoDosClientes_ClienteId",
+                table: "EnderecoDosClientes",
+                column: "ClienteId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EnderecoDosTrabalhadores_TrabalhadorId",
                 table: "EnderecoDosTrabalhadores",
                 column: "TrabalhadorId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnderecosDosTrabalhadores_ClienteId",
-                table: "EnderecosDosTrabalhadores",
-                column: "ClienteId",
+                name: "IX_Solicitacoes_ClienteId",
+                table: "Solicitacoes",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Solicitacoes_TrabalhadorId",
+                table: "Solicitacoes",
+                column: "TrabalhadorId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -135,10 +178,13 @@ namespace Buscador.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "EnderecoDosClientes");
+
+            migrationBuilder.DropTable(
                 name: "EnderecoDosTrabalhadores");
 
             migrationBuilder.DropTable(
-                name: "EnderecosDosTrabalhadores");
+                name: "Solicitacoes");
 
             migrationBuilder.DropTable(
                 name: "TiposDeServicos");

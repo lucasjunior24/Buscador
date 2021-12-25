@@ -15,14 +15,17 @@ namespace Buscador.Controllers
         private readonly ISolicitacaoRepository _solicitacaoRepository;
         private readonly IMapper _mapper;
         private readonly ITrabalhadorRepository _trabalhadorRepository;
+        private readonly IClienteRepository _clienteRepository;
 
         public SolicitacaoController(ISolicitacaoRepository solicitacaoRepository,
                                        IMapper mapper,
-                                       ITrabalhadorRepository trabalhadorRepository)
+                                       ITrabalhadorRepository trabalhadorRepository, 
+                                       IClienteRepository clienteRepository)
         {
             _solicitacaoRepository = solicitacaoRepository;
             _mapper = mapper;
             _trabalhadorRepository = trabalhadorRepository;
+            _clienteRepository = clienteRepository;
         }
 
         //public async Task<IActionResult> Index()
@@ -46,22 +49,28 @@ namespace Buscador.Controllers
         //    return View(solicitacaoViewModel);
         //}
 
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        public async Task<IActionResult> Create(Guid trabalhadorId)
+        public async Task<IActionResult> CriarSolicitacao(Guid trabalhadorId)
         {
             var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
+
             var solicitacaoViewModel = new SolicitacaoViewModel();
-            if (!ModelState.IsValid) return View(solicitacaoViewModel);
+            solicitacaoViewModel.NomeTrabalhador = trabalhador.Nome;
+            solicitacaoViewModel.TrabalhadorId = trabalhador.Id;
+            solicitacaoViewModel.ProfisssaoDoTrabalhador = trabalhador.Profissao;
+
+
+            return View(solicitacaoViewModel);
+        }
+
+        public async Task<IActionResult> Create(SolicitacaoViewModel solicitacaoViewModel)
+        {
+            var cliente = await _clienteRepository.ObterClienteEnderecoPorUserId(solicitacaoViewModel.UserId);
+            //if (!ModelState.IsValid) return View(solicitacaoViewModel);
+            solicitacaoViewModel.NomeSolicitante = cliente.Nome;
+            solicitacaoViewModel.ClienteId = cliente.Id;
 
             var solicitacao = _mapper.Map<Solicitacao>(solicitacaoViewModel);
-            solicitacao.Trabalhador = trabalhador;
-            solicitacao.NomeSolicitante = trabalhador.Nome;
-            solicitacao.TrabalhadorId = trabalhador.Id;
-            solicitacao.DocumentoSolicitante = trabalhador.Documento;
+
             solicitacao.GravarDataDaSolicitacao();
 
             await _solicitacaoRepository.Adicionar(solicitacao);

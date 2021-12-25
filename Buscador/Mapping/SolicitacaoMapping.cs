@@ -1,10 +1,6 @@
 ﻿using Buscador.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Buscador.Mapping
 {
@@ -18,9 +14,9 @@ namespace Buscador.Mapping
                 .IsRequired()
                 .HasColumnType("varchar(200)");
 
-            builder.Property(s => s.DocumentoSolicitante)
+            builder.Property(s => s.NomeTrabalhador)
                 .IsRequired()
-                .HasColumnType("varchar(14)");
+                .HasColumnType("varchar(200)");
 
             builder.ToTable("Solicitacoes");
 
