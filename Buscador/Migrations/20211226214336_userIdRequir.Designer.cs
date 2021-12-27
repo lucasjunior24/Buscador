@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Buscador.Migrations
 {
     [DbContext(typeof(BuscadorContext))]
-    [Migration("20210929004729_ajusteCep")]
-    partial class ajusteCep
+    [Migration("20211226214336_userIdRequir")]
+    partial class userIdRequir
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("Buscador.Models.Cliente", b =>
@@ -43,6 +43,9 @@ namespace Buscador.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(20)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
@@ -60,7 +63,7 @@ namespace Buscador.Migrations
 
                     b.Property<string>("Cep")
                         .IsRequired()
-                        .HasColumnType("varchar(8)");
+                        .HasColumnType("varchar(11)");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
@@ -138,6 +141,42 @@ namespace Buscador.Migrations
                     b.ToTable("EnderecoDosTrabalhadores");
                 });
 
+            modelBuilder.Entity("Buscador.Models.Solicitacao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ClienteId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("DataDaSolicitacao")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("NomeDoCliente")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NomeDoTrabalhador")
+                        .IsRequired()
+                        .HasColumnType("varchar(14)");
+
+                    b.Property<string>("ProfissaoDoTrabalhador")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TrabalhadorId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("TrabalhadorId")
+                        .IsUnique();
+
+                    b.ToTable("Solicitacoes");
+                });
+
             modelBuilder.Entity("Buscador.Models.TipoDeServico", b =>
                 {
                     b.Property<Guid>("Id")
@@ -199,11 +238,18 @@ namespace Buscador.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(140)");
 
+                    b.Property<bool>("Solicitado")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Telefone")
                         .HasColumnType("text");
 
-                    b.Property<int>("TipoDeTrabalhador")
-                        .HasColumnType("integer");
+                    b.Property<string>("TipoDeTrabalhador")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -232,6 +278,25 @@ namespace Buscador.Migrations
                     b.Navigation("Trabalhador");
                 });
 
+            modelBuilder.Entity("Buscador.Models.Solicitacao", b =>
+                {
+                    b.HasOne("Buscador.Models.Cliente", "Cliente")
+                        .WithMany("Solicitacao")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Buscador.Models.Trabalhador", "Trabalhador")
+                        .WithOne("Solicitacao")
+                        .HasForeignKey("Buscador.Models.Solicitacao", "TrabalhadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Trabalhador");
+                });
+
             modelBuilder.Entity("Buscador.Models.TipoDeServico", b =>
                 {
                     b.HasOne("Buscador.Models.Trabalhador", "Trabalhador")
@@ -246,11 +311,15 @@ namespace Buscador.Migrations
             modelBuilder.Entity("Buscador.Models.Cliente", b =>
                 {
                     b.Navigation("EnderecoCliente");
+
+                    b.Navigation("Solicitacao");
                 });
 
             modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
                 {
                     b.Navigation("EnderecoTrabalhador");
+
+                    b.Navigation("Solicitacao");
 
                     b.Navigation("TipoDeServico");
                 });

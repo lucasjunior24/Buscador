@@ -14,6 +14,9 @@ namespace Buscador.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(200)");
 
+            builder.Property(t => t.UserId)
+                .IsRequired();
+
             builder.Property(t => t.Documento)
                 .IsRequired()
                 .HasColumnType("varchar(14)");
