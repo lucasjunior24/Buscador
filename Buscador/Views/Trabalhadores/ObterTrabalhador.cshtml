@@ -1,5 +1,11 @@
 ﻿@model Buscador.ViewModels.TrabalhadorViewModel
 
+
+@{
+    ViewData["Title"] = "Minhas Informações";
+}
+
+
 <div class="d-none d-sm-block">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -13,52 +19,77 @@
 </div>
 <hr />
 
-<div class="row">
-    <div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
-    </div>
+<div class="row mt-3">
 
-
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
-        <h6>@Model.Nome</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
-        <h6>@Model.Foto</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
-        <h6>@Model.Documento</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
-        <h6>@Model.Email</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
-        <h6>@Model.Telefone</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
-        <h6>@Model.TipoDeTrabalhador</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
-        <h6>@Model.Profissao</h6>
+    <div class="col-3 ">
+        <div class="">
+            <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        </div>
     </div>
 </div>
 
+<div class="card mb-2 pt-2">
+    <div class="card-body">
 
-<div class="row mt-4">
-    <div class="col-md-10">
-        <h2>Mantenha suas informações atualizadas</h2>
-        <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
-    </div>
-    <div class="col-md-2">
-        <div class="d-grid mx-auto">
-            <a asp-action="Atualizar" asp-controller="MinhasInformacoes" class="btn-lg btn-rounded-solicitar bg-theme text-white text-center">Atualizar</a>
-                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        <div class="row">
+            <div class="mb-3">
+                <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
+            </div>
+
+
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
+                <h6>@Model.Nome</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
+                <h6>@Model.Foto</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
+                <h6>@Model.Documento</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
+                <h6>@Model.Email</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
+                <h6>@Model.Telefone</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
+                <h6>@Model.TipoDeTrabalhador</h6>
+            </div>
+            <div class="col-md-4 mt-0">
+                <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
+                <h6>@Model.Profissao</h6>
+            </div>
         </div>
+
+        <div class="row mt-3">
+            <div class="col-12 col-xl-10 col-md-9 pt-1">
+                <h2>Caso queira atualizadar ou remover seu perfil</h2>
+                <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
+            </div>
+            <div class="col-12 col-xl-2 pt-1 col-md-3 ">
+                <div class="d-grid justify-content-end">
+                    <a class="btn btn-warning mb-1" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@Model.Id"><em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar</a>
+                    <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@Model.Id"><em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 col-xl-10 col-md-9 pt-1">
+                <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
+            </div>
+            <div class="col-12 col-xl-2 pt-1 col-md-3 ">
+                <div class="d-grid justify-content-end">
+                    <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
