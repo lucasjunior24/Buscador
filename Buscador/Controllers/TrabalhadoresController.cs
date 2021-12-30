@@ -166,8 +166,17 @@ namespace Buscador.Controllers
             {
                 return Json(new { dados, type = "fail" });
             }
-        }  
+        }
 
+        public async Task<IActionResult> AtualizarEndereco(Guid id)
+        {
+            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
+            if (trabalhadorViewModel == null)
+            {
+                return NotFound();
+            }
+            return PartialView( viewName:"_AtualizarEndereco", new TrabalhadorViewModel { EnderecoTrabalhador = trabalhadorViewModel.EnderecoTrabalhador });
+        }
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoPorUserId(Guid userId)
         {
             return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId));
