@@ -106,9 +106,12 @@
             </div>
             <div class="col-12 col-xl-2 pt-1 col-md-">
                 <div class="d-grid justify-content-end">
-                    <a class="btn btn-warning mb-1" data-modal="" asp-action="AtualizarEndereco" asp-route-id="@Model.Id">
+                    <a class="btn btn-warning mb-1" data-modal="" data-bs-toggle="modal" data-bs-target="#exemplo">
                         <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
                     </a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Launch demo modal
+                    </button>
                 </div>
             </div>
         </div>
@@ -116,13 +119,54 @@
     </div>
 </div>
 
-<div id="myModal" class="modal fade in">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div id="myModalContent"></div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="exemplo" tabindex="1" aria-labelledby="exemploModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exemploModal">@ViewData["Title"]</h4>
+                <button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true" x></span><span class="sr-only">Fechar</span>
+                </button>
+            </div>
+
+            <form asp-action="AtualizarEndereco">
+                <div class="modal-body">
+                    <input type="hidden" asp-for="EnderecoTrabalhador.TrabalhadorId" />
+                    <input type="hidden" asp-for="EnderecoTrabalhador.Id" />
+
+                    <partial name="_EnderecoTrabalhadores" />
+
+                    <div class="modal-footer">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Atualizar Endereço" class="btn btn-success" />
+                            <input type="button" value="Fechar" class="btn btn-info" data-dismiss="modal" />
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 @section Scripts {
