@@ -109,8 +109,8 @@
                     @*<a class="btn btn-warning mb-1" onclick="MostrarModal()">
                         <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
                     </a>*@
-                    <button type="button" class="btn btn-primary" onclick="mostrarModal()">
-                        Launch demo modal
+                    <button type="button" class="btn btn-warning mb-1" onclick="mostrarModal()">
+                        <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar Endereço
                     </button>
                 </div>
             </div>
@@ -119,7 +119,7 @@
     </div>
 </div>
 
-<div class="modal" id="exampleModal" tabindex="-1" data-bs-backdrop="static">
+@*<div class="modal" id="exampleModal" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -135,16 +135,19 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
-@*<div class="modal fade" id="exemplo" tabindex="1" aria-labelledby="exemploModal" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="1" aria-labelledby="exemploModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exemploModal">@ViewData["Title"]</h4>
-                <button class="close" type="button" data-dismiss="modal">
-                    <span aria-hidden="true" x></span><span class="sr-only">Fechar</span>
+                <h4 class="modal-title" id="exemploModal">Atualizar endereço</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" x></span>
                 </button>
+                @*<button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true" x></span><span class="sr-only">Fechar</span>
+                </button>*@
             </div>
 
             <form asp-action="AtualizarEndereco">
@@ -157,7 +160,8 @@
                     <div class="modal-footer">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Atualizar Endereço" class="btn btn-success" />
-                            <input type="button" value="Fechar" class="btn btn-info" data-dismiss="modal" />
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </div>
 
@@ -165,7 +169,7 @@
             </form>
         </div>
     </div>
-</div>*@
+</div>
 
 
 
