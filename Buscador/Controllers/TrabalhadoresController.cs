@@ -22,19 +22,22 @@ namespace Buscador.Controllers
         private readonly ITrabalhadorRepository _trabalhadorRepository;
         private readonly IMapper _mapper;
         private readonly IViaCepClient viaCepClient;
-        UserManager<IdentityUser> userManager;
-        SignInManager<IdentityUser> signInManager;
+        private readonly IEnderecoTrabalhadorRepository enderecoTrabalhadorRepository;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
                                        IMapper mapper,
-                                       IViaCepClient viaCepClient, 
-                                       UserManager<IdentityUser> userManager, 
+                                       IViaCepClient viaCepClient,
+                                       IEnderecoTrabalhadorRepository enderecoTrabalhadorRepository,
+                                       UserManager<IdentityUser> userManager,
                                        SignInManager<IdentityUser> signInManager)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
             this.viaCepClient = viaCepClient;
+            this.enderecoTrabalhadorRepository = enderecoTrabalhadorRepository;
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
@@ -94,28 +97,16 @@ namespace Buscador.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
-            if (trabalhadorViewModel == null)
-            {
-                return NotFound();
-            }
-            return View(trabalhadorViewModel);
-        }
-
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, TrabalhadorViewModel trabalhadorViewModel)
+        public async Task<IActionResult> EditarDadosDoTrabalhador(TrabalhadorViewModel trabalhadorViewModel)
         {
-            if (id != trabalhadorViewModel.Id) return NotFound();
-
-            if (!ModelState.IsValid) return View(trabalhadorViewModel);
+            if (!ModelState.IsValid) return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId });
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Atualizar(trabalhador);
             
-            return RedirectToAction("Index");
+            return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId });
         }
 
         public async Task<IActionResult> SolicitarTrabalhador(Guid id)
@@ -131,22 +122,9 @@ namespace Buscador.Controllers
             //return RedirectToAction("Solicitacao", "Create", new { servicoId = servicoId });
         }
         
-
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
-
-            if (trabalhadorViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(trabalhadorViewModel);
-        }
-
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("ExcluirTrabalhador")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> ExcluirTrabalhador(Guid id)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
 
@@ -168,15 +146,18 @@ namespace Buscador.Controllers
             }
         }
 
-        public async Task<IActionResult> AtualizarEndereco(Guid id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AtualizarEndereco(TrabalhadorViewModel trabalhadorViewModel)
         {
-            var trabalhadorViewModel = await ObterTrabalhadorEnderecoEServico(id);
-            if (trabalhadorViewModel == null)
-            {
-                return NotFound();
-            }
-            return PartialView( viewName:"_AtualizarEndereco", new TrabalhadorViewModel { EnderecoTrabalhador = trabalhadorViewModel.EnderecoTrabalhador });
+
+            if (!ModelState.IsValid) return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId });
+
+            await enderecoTrabalhadorRepository.Atualizar(_mapper.Map<EnderecoTrabalhador>(trabalhadorViewModel.EnderecoTrabalhador));
+
+            return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId }); 
         }
+
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoPorUserId(Guid userId)
         {
             return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId));
