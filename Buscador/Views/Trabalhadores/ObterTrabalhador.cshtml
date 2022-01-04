@@ -71,7 +71,7 @@
                 <h4>Caso queira atualizadar ou remover seu perfil</h4>
                 <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
             </div>
-            <div class="col-12 col-xl-2 pt-1 col-md-3 ">
+            <div class="col-12 col-xl-2 pt-1 col-md-3">
                 <div class="d-grid justify-content-end">
                     <a class="btn btn-warning mb-1" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@Model.Id"><em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar</a>
                     <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@Model.Id"><em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir</a>
@@ -104,8 +104,8 @@
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Complemento)</small>
                 <h6>@Model.EnderecoTrabalhador.Complemento</h6>
             </div>
-            <div class="col-12 col-xl-2 pt-1 col-md-">
-                <div class="d-grid justify-content-end offset-3">
+            <div class="col-md-4">
+                <div class="d-grid justify-content-center">
                     @*<a class="btn btn-warning mb-1" onclick="MostrarModal()">
                         <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
                     </a>*@
