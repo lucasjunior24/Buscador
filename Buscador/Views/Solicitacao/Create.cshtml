@@ -35,6 +35,7 @@
                     <form asp-action="Create" class="form-horizontal row">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input asp-for="@Model.TrabalhadorId" class="form-control" type="hidden" />
+                        <input asp-for="@Model.ClienteId" class="form-control" type="hidden" />
                         <div class="form-group">
                             <label asp-for="@Model.NomeDoTrabalhador class=" control-label"></label>
                             <input asp-for="@Model.NomeDoTrabalhador" value="@Model.NomeDoTrabalhador" class="form-control" readonly />
@@ -46,11 +47,11 @@
                             <span asp-validation-for="@Model.ProfissaoDoTrabalhador" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="@Model.TrabalhadorId" class="control-label"></label>
-                            <input asp-for="@Model.TrabalhadorId" class="form-control" type="hidden" />
-                            <span asp-validation-for="@Model.TrabalhadorId" class="text-danger"></span>
+                            <label asp-for="@Model.NomeDoCliente" class="control-label"></label>
+                            <input asp-for="@Model.NomeDoCliente" class="form-control" />
+                            <span asp-validation-for="@Model.NomeDoCliente" class="text-danger"></span>
                         </div>
- 
+
                         <div class="form-group">
                             <a class="btn btn-outline-default" asp-action="Index" asp-controller="Trabalhadores" asp-route-Id="">Voltar</a>
                             <button type="submit" class="btn btn-default">Solicitar</button>

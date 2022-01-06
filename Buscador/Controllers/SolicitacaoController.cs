@@ -2,8 +2,10 @@
 using Buscador.Interfaces;
 using Buscador.Models;
 using Buscador.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers
@@ -13,14 +15,23 @@ namespace Buscador.Controllers
         private readonly ISolicitacaoRepository _solicitacaoRepository;
         private readonly IMapper _mapper;
         private readonly ITrabalhadorRepository _trabalhadorRepository;
+        private readonly IClienteRepository clienteRepository;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
         public SolicitacaoController(ISolicitacaoRepository solicitacaoRepository,
                                        IMapper mapper,
-                                       ITrabalhadorRepository trabalhadorRepository)
+                                       ITrabalhadorRepository trabalhadorRepository,
+                                       IClienteRepository clienteRepository, 
+                                       UserManager<IdentityUser> userManager, 
+                                       SignInManager<IdentityUser> signInManager)
         {
             _solicitacaoRepository = solicitacaoRepository;
             _mapper = mapper;
             _trabalhadorRepository = trabalhadorRepository;
+            this.clienteRepository = clienteRepository;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         //public async Task<IActionResult> Index()
@@ -33,26 +44,35 @@ namespace Buscador.Controllers
         //    return View(solicitacoesViewModel);
         //}
 
-        //public async Task<IActionResult> Details(Guid id)
-        //{
-        //    var solicitacaoViewModel = _mapper.Map<SolicitacaoViewModel>(await _solicitacaoRepository.ObterSolicitacaoPorId(id));
-        //    if (solicitacaoViewModel == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> MinhaSolicitacoes(Guid clienteId)
+        {
+            var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDoCliente(clienteId);
+            var listDeSolicitacaoVm = _mapper.Map<List<SolicitacaoViewModel>>(listaSoliciacao);
+            if (listDeSolicitacaoVm == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(solicitacaoViewModel);
-        //}
-        
+            return View(listDeSolicitacaoVm);
+        }
+
         public async Task<IActionResult> Create(Guid trabalhadorId)
         {
             var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
+            var id = userManager.GetUserId(User);
+
+            var userId = Guid.Parse(id);
+           var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
 
             var solicitacaoViewModel = new SolicitacaoViewModel();
 
             solicitacaoViewModel.NomeDoTrabalhador = trabalhador.Nome;
             solicitacaoViewModel.ProfissaoDoTrabalhador = trabalhador.Profissao;
             solicitacaoViewModel.TrabalhadorId = trabalhador.Id;
+
+            solicitacaoViewModel.ClienteId = cliente.Id;
+            solicitacaoViewModel.NomeDoCliente = cliente.Nome;
+
             return View(solicitacaoViewModel);
         }
 
@@ -69,7 +89,7 @@ namespace Buscador.Controllers
 
             await _solicitacaoRepository.Adicionar(solicitacao);
 
-            return RedirectToAction("Trabalhadores", "Index");
+            return RedirectToAction("Index", "Trabalhadores");
         }
         //public IActionResult Create()
         //{
