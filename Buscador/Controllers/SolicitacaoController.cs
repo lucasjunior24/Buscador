@@ -17,21 +17,18 @@ namespace Buscador.Controllers
         private readonly ITrabalhadorRepository _trabalhadorRepository;
         private readonly IClienteRepository clienteRepository;
         private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
 
         public SolicitacaoController(ISolicitacaoRepository solicitacaoRepository,
                                        IMapper mapper,
                                        ITrabalhadorRepository trabalhadorRepository,
                                        IClienteRepository clienteRepository, 
-                                       UserManager<IdentityUser> userManager, 
-                                       SignInManager<IdentityUser> signInManager)
+                                       UserManager<IdentityUser> userManager)
         {
             _solicitacaoRepository = solicitacaoRepository;
             _mapper = mapper;
             _trabalhadorRepository = trabalhadorRepository;
             this.clienteRepository = clienteRepository;
             this.userManager = userManager;
-            this.signInManager = signInManager;
         }
 
         //public async Task<IActionResult> Index()
@@ -59,8 +56,10 @@ namespace Buscador.Controllers
         public async Task<IActionResult> Create(Guid trabalhadorId)
         {
             var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
-            var id = userManager.GetUserId(User);
+            trabalhador.SolicitarTrabalhador();
+            await _trabalhadorRepository.Atualizar(trabalhador);
 
+            var id = userManager.GetUserId(User);
             var userId = Guid.Parse(id);
            var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
 
