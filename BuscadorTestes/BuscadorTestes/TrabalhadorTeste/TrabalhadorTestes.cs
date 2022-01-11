@@ -7,12 +7,12 @@ using Moq;
 
 namespace TestesDoBuscador.TrabalhadorTeste
 {
-    public class TrabalhadorTestes
+    public class ClienteTestes
     {
         //Mocks
         private readonly Mock<ITrabalhadorRepository> trabalhadorMock;
 
-        public TrabalhadorTestes()
+        public ClienteTestes()
         {
             this.trabalhadorMock = new Mock<ITrabalhadorRepository>();
         }
@@ -25,20 +25,33 @@ namespace TestesDoBuscador.TrabalhadorTeste
             var trabalhador = new Trabalhador()
             {
                 Id = id,
+                Nome = "Teste",
+                Telefone = "Teste",
                 Documento = "Descrição",
+                TipoDeServico = new TipoDeServico(),
                 TipoDeTrabalhador = TipoDeTrabalhador.PessoaFisica,
                 Email = "",
                 Profissao = "Doc",
                 UserId = Guid.NewGuid(),
                 EnderecoTrabalhador = new EnderecoTrabalhador()
+                {
+                    TrabalhadorId = id,
+                    Estado = "RO",
+                    Cidade = "TESTE",
+                    Bairro = "TESTE",
+                    Logradouro = "TESTE",
+                    Cep = "TESTE",
+                    Id = new Guid(),
+                    Complemento = "TESTE",
+                    Numero = "TESTE",
+                }
             };
 
-            //trabalhadorMock.Setup(x => x.ObterTrabalhadorEnderecoPorUserId(id)).ReturnsAsync(trabalhador);
             trabalhadorMock.Setup(x => x.ObterTrabalhadorEndereco(id)).ReturnsAsync(trabalhador);
             var re = trabalhadorMock.Object;
 
             var traba = await re.ObterTrabalhadorEndereco(id);
-            //var result = trabalhadorMock.Verify(x => x.ObterPorId(id).)
+
             Assert.IsType<Trabalhador>(traba);
         }
     }
