@@ -1,4 +1,10 @@
-﻿<div class="footer-mobile d-md-none">
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<div class="footer-mobile d-md-none">
     <div class="no-gutters">
         <div class="col-auto mx-auto">
             <div class="row no-gutters justify-content-center">
@@ -7,16 +13,44 @@
                         <em class="mdi mdi-reorder-horizontal h3" aria-label="Menu"></em>
                     </a>
                 </div>
+                @if (User.HasClaim(c => c.Type == "trabalhador"))
+                {
+                    <div class="col-auto">
+                        <a class="btn btn-link-default" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)">
+                            <em class="mdi mdi-cog h3" aria-label="Ícone Detalhes"></em>
+                        </a>
+                    </div>
+
+                }
+
+                else if (User.HasClaim(c => c.Type == "cliente"))
+                {
+                    <div class="col-auto">
+                        <a class="btn btn-link-default" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)">
+                            <em class="mdi mdi-cog h3" aria-label="Ícone Detalhes"></em>
+                        </a>
+                    </div>
+
+                    <div class="col-auto">
+                        <a class="btn btn-link-default" asp-controller="Trabalhadores" asp-action="Index">
+                            <em class="mdi mdi-cog h3" aria-label="Ícone Detalhes"></em>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-auto">
+                        <a class="btn btn-link-default" asp-controller="Home" asp-action="SelecionarPerfil" >
+                            <em class="mdi mdi-cog h3" aria-label="Ícone Detalhes"></em>
+                        </a>
+                    </div>    
+                }
                 <div class="col-auto">
                     <a asp-controller="Home" asp-action="Index" class="btn btn-link-default">
                         <em class="mdi mdi-home h3" aria-label="Início"></em>
                     </a>
                 </div>
-                <div class="col-auto">
-                    <a asp-controller="Servico" asp-action="Index" class="btn btn-link-default">
-                        <em class="mdi mdi-apps h3" aria-label="Servicos"></em>
-                    </a>
-                </div>
+
                 <div class="col-auto">
                     <a asp-controller="Trabalhadores" asp-action="Index" class="btn btn-link-default">
                         <em class="mdi mdi-cog h3" aria-label="Trabalhadores"></em>
