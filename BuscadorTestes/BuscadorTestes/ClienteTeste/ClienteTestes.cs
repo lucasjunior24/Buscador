@@ -20,6 +20,7 @@ namespace TestesDoBuscador.ClienteTeste
         [Fact]
         public async Task ObterCliienteEnderecoPorId()
         {
+            //Arrange
             var id = Guid.NewGuid();
 
             var cliente = new Cliente()
@@ -44,11 +45,13 @@ namespace TestesDoBuscador.ClienteTeste
             };
 
             clienteMock.Setup(x => x.ObterClienteEndereco(id)).ReturnsAsync(cliente);
-            var repo = clienteMock.Object;
+            var clienteRepo = clienteMock.Object;
 
-            var clienteRepo = await repo.ObterClienteEndereco(id);
+            //Act
+            var resultado = await clienteRepo.ObterClienteEndereco(id);
 
-            Assert.IsType<Cliente>(clienteRepo);
+            //Assert
+            Assert.IsType<Cliente>(resultado);
         }
     }
 }

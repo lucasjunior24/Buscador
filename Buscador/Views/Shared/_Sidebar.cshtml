@@ -28,11 +28,18 @@
                 @if (User.HasClaim(c => c.Type == "trabalhador"))
                 {
                     <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Trabalhador</a>
+
+                    <a asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)" class="btn btn-outline-default"><em class="mdi mdi-chevron-left"></em> Minha Solicitacoes</a>
+
+                    <hr />
                 }
 
                 else if (User.HasClaim(c => c.Type == "cliente"))
                 {
                     <a class="list-group-item list-group-item-action" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
+                    <a asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)" class="btn btn-outline-default"><em class="mdi mdi-chevron-left"></em> Minha Solicitacoes</a>
+
+                    <hr />
                     <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
                 }
                 else
@@ -49,9 +56,7 @@
             <br />
             <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised" aria-label="Ícone Início"></em>Início</a>
             <a asp-controller="Servico" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Serviços</a>
-            @*<a asp-controller="Servico" asp-action="Acompanhar" class="list-group-item list-group-item-action"><em class="mdi mdi-animation icons-raised" aria-label="Ícone Acompanhamentos"></em>Acompanhamentos</a>
-        <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
-        <a asp-controller="TiposDeServicos" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Tipo de Serviços</a>*@
+
         </div>
     </div>
 </div>

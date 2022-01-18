@@ -41,9 +41,9 @@ namespace Buscador.Controllers
         //    return View(solicitacoesViewModel);
         //}
 
-        public async Task<IActionResult> MinhaSolicitacoes(Guid clienteId)
+        public async Task<IActionResult> MinhaSolicitacoes(Guid userId)
         {
-            var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDoCliente(clienteId);
+            var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDoCliente(userId);
             var listDeSolicitacaoVm = _mapper.Map<List<SolicitacaoViewModel>>(listaSoliciacao);
             if (listDeSolicitacaoVm == null)
             {

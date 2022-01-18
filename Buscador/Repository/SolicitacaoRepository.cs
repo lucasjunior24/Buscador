@@ -24,11 +24,11 @@ namespace Buscador.Repository
             return solicitacoes;
         }
 
-        public async Task<List<Solicitacao>> ObteSolicitacoesDoCliente(Guid clienteId)
+        public async Task<List<Solicitacao>> ObteSolicitacoesDoCliente(Guid userId)
         {
             var solicitacoes = await Db.Solicitacao.AsNoTracking()
                 .Include(s => s.Cliente)
-                .Where(s => s.ClienteId == clienteId).ToListAsync();
+                .Where(s => s.Cliente.UserId == userId).ToListAsync();
 
             return solicitacoes;
         }
