@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Buscador.ViewModels.SolicitacaoViewModel>
+
+@{
+    ViewData["Title"] = "Minhas Solicitacoes";
+}
+
+<div class="d-none d-sm-block">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme"><em class="mdi mdi-home"></em> Início</a></li>
+            <li class="breadcrumb-item active color-theme" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+<div class="d-sm-none">
+    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início" class="breadcrumb-inicio color-theme"><em class="mdi mdi-chevron-left"></em> Início</a>
+</div>
+<hr />
+
+<div class="mb-3">
+    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().NomeDoCliente</strong></span>
+</div>
+
+<div class="">
+    <h3>@ViewData["Title"]</h3>
+</div>
+
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 border-left-theme border-3">
+                        <div class="border-bottom-theme border-1">
+                            <small class="text-muted">Solicitação do cliente</small>
+                            <h5 class="">@item.NomeDoCliente</h5>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">Data da Solicitação</small>
+                        <h5 class="">@item.DataDaSolicitacao.ToString("dd/MM/yyyy")</h5>
+                    </div>
+                    <div class="col-12 col-xl-2 col-md-6 pt-1">
+                        <small class="text-muted">E-mail</small>
+                        <h5 class="">@item.ProfissaoDoTrabalhador</h5>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row mt-3">
+        <div class="col-md col-sm-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Você não tem nenhuma Solicitação.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+}

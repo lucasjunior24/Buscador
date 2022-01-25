@@ -8,6 +8,8 @@ namespace Buscador.Models
         public string NomeDoTrabalhador { get; set; }
         public string ProfissaoDoTrabalhador { get; set; }
         public string NomeDoCliente { get; set; }
+        public bool Aprovado { get; set; }
+
 
         //Relacionamento
         public Guid TrabalhadorId { get; set; }

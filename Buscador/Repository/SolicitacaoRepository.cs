@@ -15,7 +15,7 @@ namespace Buscador.Repository
         {
         }
 
-        public async Task<List<Solicitacao>> ObteSolicitacoesDoTrabalhador(Guid trabalhadorId)
+        public async Task<List<Solicitacao>> ObteSolicitacoesDeTrabalhador(Guid trabalhadorId)
         {
             var solicitacoes = await Db.Solicitacao.AsNoTracking()
                 .Include(s => s.Trabalhador)

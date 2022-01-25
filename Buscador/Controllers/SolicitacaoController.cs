@@ -95,6 +95,19 @@ namespace Buscador.Controllers
         //    return View();
         //}
 
+        public async Task<IActionResult> MinhaSolicitacoesDeTrabalhador(Guid userId)
+        {
+            var trabalhador = await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId);
+
+            var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDeTrabalhador(trabalhador.Id);
+            var listDeSolicitacaoVm = _mapper.Map<List<SolicitacaoViewModel>>(listaSoliciacao);
+            if (listDeSolicitacaoVm == null)
+            {
+                return NotFound();
+            }
+
+            return View(listDeSolicitacaoVm);
+        }
     }
 
 

@@ -11,6 +11,7 @@ namespace Buscador.Models
         public Solicitacao Solicitacao { get; set; }
         public string Profissao { get; set; }
         public bool Solicitado { get; private set; }
+        public bool Disponivel { get; private set; }
 
         public void SolicitarTrabalhador()
         {

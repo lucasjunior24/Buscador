@@ -29,7 +29,7 @@
                 {
                     <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Trabalhador</a>
 
-                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-chevron-left"></em> Minha Solicitacoes</a>
+                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised"></em> Solicitação</a>
 
                     <hr />
                 }
@@ -37,7 +37,7 @@
                 else if (User.HasClaim(c => c.Type == "cliente"))
                 {
                     <a class="list-group-item list-group-item-action" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
-                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-chevron-left"></em> Minha Solicitacoes</a>
+                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised"></em> Solicitação</a>
 
                     <hr />
                     <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
