@@ -1,5 +1,7 @@
-﻿using Buscador.Models;
+﻿using Buscador.Interfaces;
+using Buscador.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,14 +15,46 @@ namespace Buscador.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITrabalhadorRepository _trabalhadorRepository;
+        private readonly IClienteRepository clienteRepository;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                    ITrabalhadorRepository trabalhadorRepository,
+                    IClienteRepository clienteRepository,
+                    UserManager<IdentityUser> userManager,
+                    SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
+            _trabalhadorRepository = trabalhadorRepository;
+            this.clienteRepository = clienteRepository;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if(signInManager.IsSignedIn(User))
+            {
+                var id = userManager.GetUserId(User);
+                var userId = Guid.Parse(id);
+
+                var trabalhador = await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId);
+                var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
+
+                if (User.HasClaim(c => c.Type == "trabalhador") && trabalhador == null)
+                    return RedirectToAction("Create", "Trabalhadores");
+                else if (User.HasClaim(c => c.Type == "cliente") && cliente == null)
+                {
+                    return RedirectToAction("Create", "cliente");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+
             return View();
         }
 

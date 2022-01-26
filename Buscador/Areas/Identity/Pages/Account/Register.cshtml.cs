@@ -51,8 +51,8 @@ namespace Buscador.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
             [Required]
-            [Display(Name = "Nome")]
-            public string Name { get; set; }
+            [Display(Name = "Perfil")]
+            public string Perfil { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -78,12 +78,18 @@ namespace Buscador.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Name, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddClaimAsync(user, new Claim("trabalhador", "trabalhador"));
-
+                    if(Input.Perfil == "trabalhador")
+                    {
+                        await _userManager.AddClaimAsync(user, new Claim("trabalhador", "trabalhador"));
+                    }
+                    else
+                    {
+                        await _userManager.AddClaimAsync(user, new Claim("cliente", "cliente"));
+                    }
                     _logger.LogInformation("Usúario criado com sucesso, faça login com seu Email e senha.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

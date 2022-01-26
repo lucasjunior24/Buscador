@@ -17,16 +17,17 @@
 </div>
 <hr />
 
-<div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>
-    </div>
-
-<div class="">
-    <h3>@ViewData["Title"]</h3>
-</div>
 
 @if (Model.Any())
 {
+    <div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>
+    </div>
+
+    <div class="">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+
     @foreach (var item in Model)
     {
         <div class="card mb-2">
@@ -46,9 +47,9 @@
                         <small class="text-muted">E-mail</small>
                         <h5 class="">@item.ProfissaoDoTrabalhador</h5>
                     </div>
-                   
+
                 </div>
-             </div>
+            </div>
         </div>
     }
 }

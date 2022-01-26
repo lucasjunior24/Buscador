@@ -50,6 +50,10 @@ namespace Buscador.Controllers
         public async Task<IActionResult> ObterCliente(Guid userId)
         {
             var clienteViewModel = await ObterClienteEnderecoPorUserId(userId);
+            if (User.HasClaim(c => c.Type == "cliente") && clienteViewModel == null)
+            {
+                return RedirectToAction("Create", "cliente");
+            }
             if (clienteViewModel == null)
             {
                 return NotFound();
@@ -83,7 +87,7 @@ namespace Buscador.Controllers
             var cliente = mapper.Map<Cliente>(clienteViewModel);
             await clienteRepository.Adicionar(cliente);
 
-            await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("cliente", "cliente"));
+            //await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("cliente", "cliente"));
 
             return RedirectToAction(nameof(Index));
         }

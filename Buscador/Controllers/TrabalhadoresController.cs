@@ -91,16 +91,16 @@ namespace Buscador.Controllers
             //var trabalhador = new Trabalhador();
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
-            var userIdenntity = new IdentityUser();
-            userIdenntity.Id = "1";
-            userIdenntity.Email = trabalhador.Email;
-            userIdenntity.UserName = trabalhador.Nome;
-            userIdenntity.PhoneNumber = trabalhador.Telefone;
+            //var userIdenntity = new IdentityUser();
+            //userIdenntity.Id = "1";
+            //userIdenntity.Email = trabalhador.Email;
+            //userIdenntity.UserName = trabalhador.Nome;
+            //userIdenntity.PhoneNumber = trabalhador.Telefone;
 
-            await userManager.CreateAsync(userIdenntity);
+            //await userManager.CreateAsync(userIdenntity);
             await _trabalhadorRepository.Adicionar(trabalhador);
             
-            await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("trabalhador", "trabalhador"));
+            //await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("trabalhador", "trabalhador"));
             return RedirectToAction(nameof(Index));
         }
 

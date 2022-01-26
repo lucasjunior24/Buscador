@@ -61,7 +61,11 @@ namespace Buscador.Controllers
 
             var id = userManager.GetUserId(User);
             var userId = Guid.Parse(id);
-           var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
+            var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
+            if (User.HasClaim(c => c.Type == "cliente") && cliente == null)
+            {
+                return RedirectToAction("Create", "cliente");
+            }
 
             var solicitacaoViewModel = new SolicitacaoViewModel();
 

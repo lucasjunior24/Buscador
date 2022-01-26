@@ -17,6 +17,8 @@
     <hr class="text-white" />
     <div class="row">
         <div class="list-group main-menu">
+            <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised" aria-label="Ícone Início"></em>Início</a>
+            <hr />
             @if (SignInManager.IsSignedIn(User))
             {
                 <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>
@@ -53,10 +55,6 @@
                 <a id="register" asp-area="Identity" asp-page="/Account/Register" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Cadastrar-se</a>
                 <a id="login" asp-area="Identity" asp-page="/Account/Login" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Login</a>
             }
-            <br />
-            <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised" aria-label="Ícone Início"></em>Início</a>
-            <a asp-controller="Servico" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Serviços</a>
-
         </div>
     </div>
 </div>
