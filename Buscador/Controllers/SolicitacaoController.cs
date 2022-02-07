@@ -87,7 +87,8 @@ namespace Buscador.Controllers
             if (!ModelState.IsValid) return View(solicitacaoViewModel);
 
             var solicitacao = _mapper.Map<Solicitacao>(solicitacaoViewModel);
-
+            
+            solicitacao.AguadarAprovacaoDaSolicitacao();
             solicitacao.GravarDataDaSolicitacao();
 
             await _solicitacaoRepository.Adicionar(solicitacao);
@@ -98,7 +99,7 @@ namespace Buscador.Controllers
         //{
         //    return View();
         //}
-
+        
         public async Task<IActionResult> MinhaSolicitacoesDeTrabalhador(Guid userId)
         {
             var trabalhador = await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId);
@@ -111,6 +112,18 @@ namespace Buscador.Controllers
             }
 
             return View(listDeSolicitacaoVm);
+        }
+        public async Task<IActionResult> AprovarSolicitacao(Guid solicitacaoId)
+        {
+            var soliciacao = await _solicitacaoRepository.ObterSolicitacaoPorId(solicitacaoId);
+            soliciacao.AprovarSolicitacao();
+
+            await _solicitacaoRepository.Atualizar(soliciacao);
+
+            var id = userManager.GetUserId(User);
+            var userId = Guid.Parse(id);
+
+            return RedirectToAction("MinhaSolicitacoesDeTrabalhador", new { userId = userId });
         }
     }
 

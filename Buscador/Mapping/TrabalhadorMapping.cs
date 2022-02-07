@@ -49,6 +49,10 @@ namespace Buscador.Mappings
             builder.HasOne(navigationExpression: t => t.TipoDeServico)
                 .WithOne(navigationExpression: e => e.Trabalhador);
 
+            builder.HasMany(navigationExpression: t => t.Solicitacao)
+                .WithOne(navigationExpression: s => s.Trabalhador)
+                .HasForeignKey(s => s.TrabalhadorId);
+
             builder.ToTable("Trabalhadores");
 
         }

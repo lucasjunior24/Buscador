@@ -8,7 +8,7 @@ namespace Buscador.Models
         public string NomeDoTrabalhador { get; set; }
         public string ProfissaoDoTrabalhador { get; set; }
         public string NomeDoCliente { get; set; }
-        public bool Aprovado { get; set; }
+        public StatusDaSolicitacao StatusDaSolicitacao { get; set; }
 
 
         //Relacionamento
@@ -20,6 +20,14 @@ namespace Buscador.Models
         public void GravarDataDaSolicitacao()
         {
             DataDaSolicitacao = DateTime.Now;
+        }
+        public void AguadarAprovacaoDaSolicitacao()
+        {
+            StatusDaSolicitacao = StatusDaSolicitacao.AguardandoAprovacao;
+        }
+        public void AprovarSolicitacao()
+        {
+            StatusDaSolicitacao = StatusDaSolicitacao.Aprovado;
         }
     }
 }

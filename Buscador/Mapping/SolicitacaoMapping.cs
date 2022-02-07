@@ -18,6 +18,7 @@ namespace Buscador.Mapping
                 .IsRequired()
                 .HasColumnType("varchar(14)");
 
+
             builder.ToTable("Solicitacoes");
 
         }

@@ -1,16 +1,9 @@
-﻿using Buscador.Areas.Identity.Pages.Account;
-using Buscador.Extensions;
+﻿using Buscador.Extensions;
 using Buscador.Models;
 using Buscador.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers
