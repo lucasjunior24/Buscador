@@ -11,11 +11,15 @@
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Criar Conta</h4>
             <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+   
             <div class="form-group">
                 <label asp-for="Input.Perfil"></label>
-                <input asp-for="Input.Perfil" class="form-control" />
-                <span asp-validation-for="Input.Perfil" class="text-danger"></span>
+                <select class="form-control" asp-for="Input.Perfil" asp-items="@Model.Input.Perfils">
+                    <option value="">Selecione...</option>
+                </select>
+
+                <span asp-validation-for="@Model.Input.Perfils" class="text-danger"></span>
             </div>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">

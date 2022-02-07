@@ -12,6 +12,7 @@ using Polly;
 using Polly.Retry;
 using Refit;
 using System;
+using System.Diagnostics;
 
 namespace Buscador.Extensions
 {
@@ -33,7 +34,7 @@ namespace Buscador.Extensions
                     });
         }
 
-        [System.Diagnostics.DebuggerStepThrough]
+        [DebuggerStepThrough]
         private static AsyncRetryPolicy<HttpResponseMessage> ObterPolicy(ILogger logger)
         {
             return Policy

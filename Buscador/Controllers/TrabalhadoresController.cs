@@ -54,12 +54,17 @@ namespace Buscador.Controllers
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
+            if (User.HasClaim(t => t.Type == "trabalhador") && trabalhadorViewModel == null)
+            {
+                return RedirectToAction("Create");
+            }
             if (trabalhadorViewModel == null)
             {
                 return NotFound();
             }
 
             return View(trabalhadorViewModel);
+
         }
 
         public async Task<IActionResult> Details(Guid id)

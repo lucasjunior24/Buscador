@@ -6,12 +6,15 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Buscador.Extensions;
+using Buscador.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
@@ -36,13 +39,17 @@ namespace Buscador.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-
         [BindProperty]
         public InputModel Input { get; set; }
-
+     
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public void CriarPerfis()
+        {
+            Input.Perfils = EnumHelper.CriarListaDeEnum<Perfil>();
+        }
+
 
         public class InputModel
         {
@@ -53,6 +60,7 @@ namespace Buscador.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Perfil")]
             public string Perfil { get; set; }
+            public SelectList Perfils = EnumHelper.CriarListaDeEnum<Perfil>();
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -64,12 +72,19 @@ namespace Buscador.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public void CriarPerfis()
+            {
+                Perfils = EnumHelper.CriarListaDeEnum<Perfil>();
+            }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -82,7 +97,7 @@ namespace Buscador.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if(Input.Perfil == "trabalhador")
+                    if (Input.Perfil == "trabalhador")
                     {
                         await _userManager.AddClaimAsync(user, new Claim("trabalhador", "trabalhador"));
                     }
