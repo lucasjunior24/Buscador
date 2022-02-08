@@ -52,8 +52,8 @@
             }
             else
             {
-                <a id="register" asp-area="Identity" asp-page="/Account/Register" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Cadastrar-se</a>
-                <a id="login" asp-area="Identity" asp-page="/Account/Login" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Login</a>
+                <a asp-controller="Autenticacao" asp-action="CriarUsuario"  class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Cadastrar-se</a>
+                <a asp-controller="Autenticacao" asp-action="FazerLogin" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Login</a>
             }
         </div>
     </div>
