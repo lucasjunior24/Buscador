@@ -17,17 +17,18 @@
 </div>
 <hr />
 
-<div class="mb-3">
-    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().NomeDoTrabalhador</strong></span>
-</div>
-
-<div class="">
-    <h3>@ViewData["Title"]</h3>
-</div>
-
 @if (Model.Any())
 {
-    @foreach (var item in Model)
+
+    <div class="mb-3">
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Trabalhador.Nome</strong></span>
+    </div>
+
+    <div class="">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+
+    @foreach (var item in Model.OrderBy(s => s.StatusDaSolicitacao))
     {
         <div class="card mb-2">
             <div class="card-body">
@@ -40,7 +41,7 @@
                     </div>
                     <div class="col-12 col-md-6 pt-1">
                         <small class="text-muted">Data da Solicitação</small>
-                        <h5 class="">@item.DataDaSolicitacao.ToString("dd/MM/yyyy")</h5>
+                        <h5 class="text-muted">@item.DataDaSolicitacao.ToString("dd/MM/yyyy")</h5>
                     </div>
 
                     <div class="col-12 col-md-3 pt-1">
@@ -51,9 +52,9 @@
                     </div>
                     <div class="col-12 col-md-3 pt-1">
 
-                            <a asp-action="AprovarSolicitacao" asp-controller="Solicitacao" asp-route-solicitacaoId="@item.Id" aria-label="Aprovar Solicitação" class="btn bg-theme text-white col">
-                                <em class="mdi mdi-chevron-left"></em> Aprovar
-                            </a>
+                        <a asp-action="AprovarSolicitacao" asp-controller="Solicitacao" asp-route-solicitacaoId="@item.Id" aria-label="Aprovar Solicitação" class="btn bg-theme text-white col">
+                            <em class="mdi mdi-chevron-left"></em> Aprovar
+                        </a>
 
                     </div>
 
