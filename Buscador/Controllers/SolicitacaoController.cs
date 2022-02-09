@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Buscador.Extensions;
 using Buscador.Interfaces;
 using Buscador.Models;
 using Buscador.ViewModels;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers
@@ -105,13 +107,31 @@ namespace Buscador.Controllers
             var trabalhador = await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId);
 
             var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDeTrabalhador(trabalhador.Id);
-            var listDeSolicitacaoVm = _mapper.Map<List<SolicitacaoViewModel>>(listaSoliciacao);
-            if (listDeSolicitacaoVm == null)
+
+            var listaSolicitacaoViewModel = new List<SolicitacaoViewModel>();
+            foreach (var solicitacao in listaSoliciacao)
+            {
+                var solicitacaoViewModel = new SolicitacaoViewModel()
+                {
+                    Id = solicitacao.Id,
+                    DataDaSolicitacao = solicitacao.DataDaSolicitacao,
+                    NomeDoCliente = solicitacao.NomeDoCliente,
+                    NomeDoTrabalhador = solicitacao.NomeDoTrabalhador,
+                    ProfissaoDoTrabalhador = solicitacao.ProfissaoDoTrabalhador,
+                    StatusDaSolicitacao = solicitacao.StatusDaSolicitacao.GetDescription(),
+                    ClienteId = solicitacao.ClienteId,
+                    Trabalhador = solicitacao.Trabalhador,
+                    TrabalhadorId = solicitacao.TrabalhadorId
+                };
+                listaSolicitacaoViewModel.Add(solicitacaoViewModel);
+            }
+
+            if (listaSolicitacaoViewModel.Count == 0)
             {
                 return NotFound();
             }
 
-            return View(listDeSolicitacaoVm);
+            return View(listaSolicitacaoViewModel);
         }
         public async Task<IActionResult> AprovarSolicitacao(Guid solicitacaoId)
         {

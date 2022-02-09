@@ -54,6 +54,7 @@ namespace Buscador.Controllers
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
+            trabalhadorViewModel.TipoDeTrabalhador.GetDescription();
             if (User.HasClaim(t => t.Type == "trabalhador") && trabalhadorViewModel == null)
             {
                 return RedirectToAction("Create");
@@ -93,19 +94,11 @@ namespace Buscador.Controllers
         {
             if (!ModelState.IsValid) return View(trabalhadorViewModel);
 
-            //var trabalhador = new Trabalhador();
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
-            //var userIdenntity = new IdentityUser();
-            //userIdenntity.Id = "1";
-            //userIdenntity.Email = trabalhador.Email;
-            //userIdenntity.UserName = trabalhador.Nome;
-            //userIdenntity.PhoneNumber = trabalhador.Telefone;
 
-            //await userManager.CreateAsync(userIdenntity);
             await _trabalhadorRepository.Adicionar(trabalhador);
             
-            //await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("trabalhador", "trabalhador"));
             return RedirectToAction(nameof(Index));
         }
 

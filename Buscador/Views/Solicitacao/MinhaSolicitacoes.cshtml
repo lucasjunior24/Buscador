@@ -43,23 +43,31 @@
                         <small class="text-muted">E-mail</small>
                         <h5 class="">@item.ProfissaoDoTrabalhador</h5>
                     </div>
-                    <div class="col-12 col-md-3 pt-1">
+                    <div class="col-6 col-md-3 pt-1">
                         <small class="text-muted">Status da Solicitação</small>
-                        @{var corStatus = item.StatusDaSolicitacao == StatusDaSolicitacao.Aprovado ? "text-success" : "text-primary";}
+                        @{var corStatus = item.StatusDaSolicitacao == "Aprovado" ? "text-success" : "text-primary";}
                         @*@{var corStatus = item.StatusDaSolicitacao == StatusDaSolicitacao.Reprovado ? "text-danger" : "text-primary";}*@
-                        <h5 class="@corStatus"><strong>@item.StatusDaSolicitacao</strong></h5>
+                        <h5 class="@corStatus"><strong>@item.StatusDaSolicitacao.</strong></h5>
                     </div>
-                    <div class="col-12 col-md-3 pt-1">
-
-                        <a asp-action="AprovarSolicitacao" asp-controller="Solicitacao" asp-route-solicitacaoId="@item.Id" aria-label="Whatsapp" class="btn bg-theme text-white col">
-                            Whatsapp <em class="mdi mdi-chevron-left"></em>
-                        </a>
-
-                    </div>
+                    @if (item.StatusDaSolicitacao.Equals("Aprovado"))
+                    {
+                        <div class="col-6 col-md-3 pt-1">
+                            <a aria-label="Whatsapp" class="btn btn-success text-white p-2">
+                                Whatsapp <em class="mdi mdi-whatsapp"></em>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-6 col-md-3 pt-1">
+                            <small class="text-muted">Sobre sua solicitação</small>
+                            <hp class="">Quando o trabalhador aprovar sua solicitação, será disponibilizado o wpp dele</hp>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    }
+                            }
 }
 else
 {

@@ -12,7 +12,7 @@ namespace Buscador.ViewModels
         public string NomeDoCliente { get; set; }
         public Guid TrabalhadorId { get; set; }
         public Guid ClienteId { get; set; }
-        public StatusDaSolicitacao StatusDaSolicitacao { get; set; }
+        public string StatusDaSolicitacao { get; set; }
 
         //Relacionamento
         public Trabalhador Trabalhador { get; set; }
