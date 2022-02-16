@@ -17,46 +17,46 @@
     <hr class="text-white" />
     <div class="row">
         <div class="list-group main-menu">
-            <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised" aria-label="Ícone Início"></em>Início</a>
+            <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised h4" aria-label="Ícone Início"></em>Início</a>
             <hr />
             @if (SignInManager.IsSignedIn(User))
             {
-                <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>
+                <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-account-cog icons-raised h4" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>
 
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 
-                    <button id="logout" type="submit" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Logout</button>
+                    <button id="logout" type="submit" class="list-group-item list-group-item-action"><em class="mdi mdi-logout icons-raised h4" aria-label="Ícone Tipo de Serviços"></em>Logout</button>
                 </form>
                 @if (User.HasClaim(c => c.Type == "trabalhador"))
                 {
-                    <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Trabalhador</a>
+                    <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="ObterTrabalhador" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-account icons-raised h4" aria-label="Ícone Detalhes"></em>Meu Perfil Trabalhador</a>
 
-                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised"></em> Solicitação</a>
+                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-text-box-plus icons-raised h4"></em> Solicitação</a>
 
                     <hr />
                 }
 
                 else if (User.HasClaim(c => c.Type == "cliente"))
                 {
-                    <a class="list-group-item list-group-item-action" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
-                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-cog icons-raised"></em> Solicitação</a>
+                    <a class="list-group-item list-group-item-action" asp-controller="Cliente" asp-action="ObterCliente" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-account icons-raised h4" aria-label="Ícone Detalhes"></em>Meu Perfil Cliente</a>
+                    <a class="list-group-item list-group-item-action" asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)"><em class="mdi mdi-text-box-plus icons-raised h4"></em> Solicitação</a>
 
                     <hr />
-                    <a asp-controller="Trabalhadores" asp-action="Index" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
+                    <a class="list-group-item list-group-item-action" asp-controller="Trabalhadores" asp-action="Index"><em class="mdi mdi-account-tie icons-raised h4" aria-label="Ícone Trabalhadores"></em>Trabalhadores</a>
                 }
                 else
                 {
-                    <a asp-controller="Home" asp-action="SelecionarPerfil" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised" aria-label="Ícone Serviços"></em>Definir perfil</a>
+                    <a asp-controller="Home" asp-action="SelecionarPerfil" class="list-group-item list-group-item-action"><em class="mdi mdi-hammer-wrench icons-raised h4" aria-label="Ícone Serviços"></em>Definir perfil</a>
                 }
 
             }
             else
             {
-                <a asp-controller="Autenticacao" asp-action="CriarUsuario"  class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Cadastrar-se</a>
-                <a asp-controller="Autenticacao" asp-action="FazerLogin" class="list-group-item list-group-item-action"><em class="mdi mdi-cog icons-raised" aria-label="Ícone Tipo de Serviços"></em>Login</a>
+                <a asp-controller="Autenticacao" asp-action="CriarUsuario" class="list-group-item list-group-item-action"><em class="mdi mdi-account-plus icons-raised h4" icons-login-variant" aria-label="Ícone Tipo de Serviços"></em>Cadastrar-se</a>
+                <a asp-controller="Autenticacao" asp-action="FazerLogin" class="list-group-item list-group-item-action"><em class="mdi mdi-login-variant icons-raised h4" aria-label="Ícone Tipo de Serviços"></em>Login</a>
             }
         </div>
     </div>
 </div>
-<a href="javascript:void(0)" class="closesidemenu"><em class="icons-raised bg-dark mdi mdi-close h3" aria-label="Fechar Menu"></em></a>
+<a href="javascript:void(0)" class="closesidemenu"><em class="icons-raised bg-dark mdi mdi-close h4" aria-label="Fechar Menu"></em></a>
 
