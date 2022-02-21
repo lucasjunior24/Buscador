@@ -46,7 +46,7 @@ namespace Buscador.Controllers
             return View(clienteViewModel);
         }
 
-        [Authorize(Policy = "cliente")]
+        //[Authorize(Policy = "cliente")]
         public async Task<IActionResult> ObterCliente(Guid userId)
         {
             var clienteViewModel = await ObterClienteEnderecoPorUserId(userId);

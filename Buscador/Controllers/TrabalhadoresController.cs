@@ -50,7 +50,7 @@ namespace Buscador.Controllers
             return View(trabalhadoresViewModel);
         }
 
-        [Authorize(Policy = "trabalhador")]
+        //[Authorize(Policy = "trabalhador")]
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
