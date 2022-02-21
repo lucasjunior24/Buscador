@@ -24,8 +24,8 @@ namespace Buscador
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BuscadorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<BuscadorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -36,7 +36,6 @@ namespace Buscador
                 options.AddPolicy("cliente", policy => policy.RequireClaim("cliente"));
                 options.AddPolicy("admin", policy => policy.RequireClaim("admin"));
             });
-
 
             services.AddAutoMapper(typeof(Startup));
 
