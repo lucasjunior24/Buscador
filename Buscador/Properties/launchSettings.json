@@ -13,7 +13,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "UrlViaCep": "http://viacep.com.br"
+        "UrlViaCep": "http://viacep.com.br",
+        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;"
       }
     },
     "Buscador": {
@@ -22,7 +23,8 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "UrlViaCep": "http://viacep.com.br"
+        "UrlViaCep": "http://viacep.com.br",
+        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;"
       }
     }
   }
