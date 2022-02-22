@@ -14,7 +14,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "UrlViaCep": "http://viacep.com.br",
-        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;"
+        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
       }
     },
     "Buscador": {
@@ -24,7 +24,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
         "UrlViaCep": "http://viacep.com.br",
-        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;"
+        "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-azure;User ID=buscardo-user;Password=Lucas@123;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
       }
     }
   }
