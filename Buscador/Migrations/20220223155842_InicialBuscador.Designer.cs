@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buscador.Migrations
 {
     [DbContext(typeof(BuscadorContext))]
-    [Migration("20220221181524_inicial")]
-    partial class inicial
+    [Migration("20220223155842_InicialBuscador")]
+    partial class InicialBuscador
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

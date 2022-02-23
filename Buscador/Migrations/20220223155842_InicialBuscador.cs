@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Buscador.Migrations
 {
-    public partial class inicial : Migration
+    public partial class InicialBuscador : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
