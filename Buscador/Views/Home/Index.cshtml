@@ -8,7 +8,7 @@
     ViewData["Title"] = "Início";
 }
 
-<div class="col-md-12 paginacomswiper">
+<div class="col-md-12 paginacomswiper h-50">
     <form asp-action="BuscarServicos" asp-controller="Servico" id="formularioBusca">
         <div class="card card-body">
             <div class="row">
@@ -27,7 +27,117 @@
         </div>
     </form>
 </div>
-<h3 class="text-center color-theme p-4 mt-5"><strong>Ache o Profissional que você está procurando</strong></h3>
+<div class="d-flex justify-content-between align-items-center mt-5 h-50">
+    <div>
+        <img src="~/images/landing.svg" />
+    </div>
+    <div class="pl-3">
+        <h1 class="text-start color-theme p-4 mt-5"><strong>Ache o Profissional que você está procurando</strong></h1>
+    </div>
+</div>
+
+
+<h6 class="subtitle">Mais acessados</h6>
+<div class="row ">
+    <div class="container px-0 d-flex justify-content-center ">
+        <!-- Swiper -->
+        <div class="swiper-container offer-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-auto pr-0">
+                                    <div class="avatar avatar-60 no-shadow border-0">
+                                        <div class="overlay gradient-success"></div>
+                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>MARIA DA PENHA<br><small class="text-secondary">PC-RO</small></p>
+                                    <p class="text-secondary text-mute small">Denunciar agressão</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-auto pr-0">
+                                    <div class="avatar avatar-60 no-shadow border-0">
+                                        <div class="overlay gradient-success"></div>
+                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>ALERTA CELULAR<br><small class="text-secondary">Defesa Civil</small></p>
+                                    <p class="text-secondary text-mute small">Solicitar alerta para celular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-auto pr-0">
+                                    <div class="avatar avatar-60 no-shadow border-0">
+                                        <div class="overlay gradient-success"></div>
+                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>DELEGACIA VIRTUAL<br><small class="text-secondary">PC-RO</small></p>
+                                    <p class="text-secondary text-mute small">Abrir boletim de ocorrência</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-auto pr-0">
+                                    <div class="avatar avatar-60 no-shadow border-0">
+                                        <div class="overlay gradient-success"></div>
+                                        <em class="mdi mdi-briefcase-search color-theme h3" aria-label="emprego"></em>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>VAGA ESTÁGIO<br><small class="text-secondary">SRTRO</small></p>
+                                    <p class="text-secondary text-mute small">Concorrer a vaga de estágio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-auto pr-0">
+                                    <div class="avatar avatar-60 no-shadow border-0">
+                                        <div class="overlay gradient-success"></div>
+                                        <em class="mdi mdi-microscope color-theme h3" aria-label="saude"></em>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>ÓTICA - LENTES<br><small class="text-secondary">SESAU</small></p>
+                                    <p class="text-secondary text-mute small">Solicitar lente de contato</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -64,4 +174,17 @@
         </div>
     }
 
+}
+
+@section Pagestyles{
+    <link href="~/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
+    <link href="~/css/inicio/swiper.css" rel="stylesheet" />
+    <link href="~/css/servico/buscar.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/vendor/swiper/js/swiper.min.js"></script>
+    <script src="~/js/inicio/swiper.js"></script>
+    <script>var urlAction = '@Url.Action("Detalhes", "Servico")';</script>
+    <script src="~/js/servico/buscarServico.js"></script>
 }

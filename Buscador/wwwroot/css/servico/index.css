@@ -1,0 +1,60 @@
+﻿#action-categorias, #action-orgaos, #action-todos {
+    cursor: pointer;
+}
+
+.green-theme .card-orgao {
+    background-color: #ffffff;
+    padding: 15px 15px;
+    text-align: center;
+    box-shadow: var(--boxshadow);
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.theme-dark .card-orgao {
+    background-color: #333333;
+    padding: 15px 15px;
+    text-align: center;
+    height: 80px;
+}
+
+.green-theme .card-orgao:hover {
+    background-color: #cfecd8;
+}
+
+.theme-dark .card-orgao:hover {
+    background-color: #e7f1ea87;
+}
+
+.green-theme .card-orgao em {
+    font-size: 50px;
+    color: var(--colortheme);
+}
+
+.theme-dark .card-orgao em {
+    font-size: 50px;
+    color: #ffffff
+}
+
+.green-theme .card-orgao h6 strong {
+    color: var(--colorthemedark);
+}
+
+.green-theme .card-orgao h6 {
+    color: #6c757d;
+}
+
+.theme-dark .card-orgao h6 {
+    color: #ffffff;
+}
+
+.theme-dark .card-orgao h6 strong {
+    color: #ffffff
+}
+
+.servico-fechar {
+    display: none;
+}

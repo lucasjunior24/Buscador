@@ -1,0 +1,19 @@
+﻿@media only screen and (min-width: 576px) {
+    .content {
+        padding-left: 46px;
+    }
+}
+
+.fs-42 {
+    font-size: 42px;
+    line-height: 1.0;
+}
+
+.fs-18 {
+    font-size: 20px;
+    line-height: 1.0;
+}
+
+#action-online, #action-presencial, #action-virtual {
+    cursor: pointer;
+}
