@@ -45,13 +45,9 @@ namespace Buscador.Controllers
 
                 if (User.HasClaim(c => c.Type == "trabalhador") && trabalhador == null)
                     return RedirectToAction("Create", "Trabalhadores");
-                else if (User.HasClaim(c => c.Type == "cliente") && cliente == null)
+                if (User.HasClaim(c => c.Type == "cliente") && cliente == null)
                 {
                     return RedirectToAction("Create", "cliente");
-                }
-                else
-                {
-                    return View();
                 }
             }
 

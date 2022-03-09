@@ -25,6 +25,12 @@
                             <em class="mdi mdi-account h3" aria-label="Ícone Detalhes"></em>
                         </a>
                     </div>
+                    <div class="col-auto">
+                        <a class="btn btn-link-default" asp-action="MinhaSolicitacoesDeTrabalhador" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)">
+                            <em class="mdi mdi-text-box-plus h3"></em> 
+                        </a>
+                    </div>
+
                 }
 
                 else if (User.HasClaim(c => c.Type == "cliente"))
@@ -34,18 +40,22 @@
                             <em class="mdi mdi-account h3" aria-label="Ícone Detalhes"></em>
                         </a>
                     </div>
-
                     <div class="col-auto">
                         <a class="btn btn-link-default" asp-controller="Trabalhadores" asp-action="Index">
                             <em class="mdi mdi-account-tie h3" aria-label="Ícone Detalhes"></em>
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <a asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)">
+                            <em class="mdi mdi-text-box-plus h3" aria-label="Ícone Detalhes"></em>
                         </a>
                     </div>
                 }
                 else
                 {
                     <div class="col-auto">
-                        <a class="btn btn-link-default" asp-controller="Home" asp-action="SelecionarPerfil">
-                            <em class="mdi mdi-cog h3" aria-label="Ícone Detalhes"></em>
+                        <a class="btn btn-link-default" asp-controller="Trabalhadores" asp-action="Index">
+                            <em class="mdi mdi-account-tie h3" aria-label="Ícone Detalhes"></em>
                         </a>
                     </div>
                 }

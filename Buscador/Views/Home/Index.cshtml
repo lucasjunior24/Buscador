@@ -8,7 +8,7 @@
     ViewData["Title"] = "Início";
 }
 
-<div class="col-md-12 paginacomswiper h-50">
+<div class="col-md-12 paginacomswiper">
     <form asp-action="BuscarServicos" asp-controller="Servico" id="formularioBusca">
         <div class="card card-body">
             <div class="row">
@@ -22,130 +22,133 @@
                     </div>
                     <ul id="resultadoDaPesquisa" class="list-group w-100"></ul>
                 </div>
-
             </div>
         </div>
     </form>
 </div>
-<div class="d-flex justify-content-between align-items-center mt-5 h-50">
-    <div>
-        <img src="~/images/landing.svg" />
-    </div>
-    <div class="pl-3">
-        <h1 class="text-start color-theme p-4 mt-5"><strong>Ache o Profissional que você está procurando</strong></h1>
+<div class="col">
+    <div class="row mt-5">
+        <div class="col-xl-6 mt-2">
+            <div class="d-flex justify-content-center align-items-center p-3">
+                <img class="img-fluid"  src="~/images/landing.svg" />
+            </div>
+        </div>
+        <div class="col-xl-6 mb-3 pl-3 mt-3">
+            <h1 class="text-start color-theme p-4 mt-5"><strong>Ache o Profissional que você está procurando</strong></h1>
+        </div>
     </div>
 </div>
 
-
-<h6 class="subtitle">Mais acessados</h6>
-<div class="row ">
-    <div class="container px-0 d-flex justify-content-center ">
-        <!-- Swiper -->
-        <div class="swiper-container offer-slide">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <div class="row h-100">
-                                <div class="col-auto pr-0">
-                                    <div class="avatar avatar-60 no-shadow border-0">
-                                        <div class="overlay gradient-success"></div>
-                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+<div class="mb-5">
+    <h6 class="subtitle mt-5">Mais acessados</h6>
+    <div class="row mt-2">
+        <div class="container px-0 d-flex justify-content-center ">
+            <!-- Swiper -->
+            <div class="swiper-container offer-slide">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="row h-100">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-60 no-shadow border-0">
+                                            <div class="overlay gradient-success"></div>
+                                            <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <p>MARIA DA PENHA<br><small class="text-secondary">PC-RO</small></p>
-                                    <p class="text-secondary text-mute small">Denunciar agressão</p>
+                                    <div class="col">
+                                        <p>MARIA DA PENHA<br><small class="text-secondary">PC-RO</small></p>
+                                        <p class="text-secondary text-mute small">Denunciar agressão</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <div class="row h-100">
-                                <div class="col-auto pr-0">
-                                    <div class="avatar avatar-60 no-shadow border-0">
-                                        <div class="overlay gradient-success"></div>
-                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                    <div class="swiper-slide">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="row h-100">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-60 no-shadow border-0">
+                                            <div class="overlay gradient-success"></div>
+                                            <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <p>ALERTA CELULAR<br><small class="text-secondary">Defesa Civil</small></p>
-                                    <p class="text-secondary text-mute small">Solicitar alerta para celular</p>
+                                    <div class="col">
+                                        <p>ALERTA CELULAR<br><small class="text-secondary">Defesa Civil</small></p>
+                                        <p class="text-secondary text-mute small">Solicitar alerta para celular</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <div class="row h-100">
-                                <div class="col-auto pr-0">
-                                    <div class="avatar avatar-60 no-shadow border-0">
-                                        <div class="overlay gradient-success"></div>
-                                        <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                    <div class="swiper-slide">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="row h-100">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-60 no-shadow border-0">
+                                            <div class="overlay gradient-success"></div>
+                                            <em class="mdi mdi-police-badge color-theme h3" aria-label="defesa civil"></em>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <p>DELEGACIA VIRTUAL<br><small class="text-secondary">PC-RO</small></p>
-                                    <p class="text-secondary text-mute small">Abrir boletim de ocorrência</p>
+                                    <div class="col">
+                                        <p>DELEGACIA VIRTUAL<br><small class="text-secondary">PC-RO</small></p>
+                                        <p class="text-secondary text-mute small">Abrir boletim de ocorrência</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <div class="row h-100">
-                                <div class="col-auto pr-0">
-                                    <div class="avatar avatar-60 no-shadow border-0">
-                                        <div class="overlay gradient-success"></div>
-                                        <em class="mdi mdi-briefcase-search color-theme h3" aria-label="emprego"></em>
+                    <div class="swiper-slide">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="row h-100">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-60 no-shadow border-0">
+                                            <div class="overlay gradient-success"></div>
+                                            <em class="mdi mdi-briefcase-search color-theme h3" aria-label="emprego"></em>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <p>VAGA ESTÁGIO<br><small class="text-secondary">SRTRO</small></p>
-                                    <p class="text-secondary text-mute small">Concorrer a vaga de estágio</p>
+                                    <div class="col">
+                                        <p>VAGA ESTÁGIO<br><small class="text-secondary">SRTRO</small></p>
+                                        <p class="text-secondary text-mute small">Concorrer a vaga de estágio</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <div class="row h-100">
-                                <div class="col-auto pr-0">
-                                    <div class="avatar avatar-60 no-shadow border-0">
-                                        <div class="overlay gradient-success"></div>
-                                        <em class="mdi mdi-microscope color-theme h3" aria-label="saude"></em>
+                    <div class="swiper-slide">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="row h-100">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-60 no-shadow border-0">
+                                            <div class="overlay gradient-success"></div>
+                                            <em class="mdi mdi-microscope color-theme h3" aria-label="saude"></em>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <p>ÓTICA - LENTES<br><small class="text-secondary">SESAU</small></p>
-                                    <p class="text-secondary text-mute small">Solicitar lente de contato</p>
+                                    <div class="col">
+                                        <p>ÓTICA - LENTES<br><small class="text-secondary">SESAU</small></p>
+                                        <p class="text-secondary text-mute small">Solicitar lente de contato</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
     </div>
 </div>
-
+<br />
 @if (SignInManager.IsSignedIn(User))
 {
     @if ((User.HasClaim(c => c.Type == "trabalhador")) || (User.HasClaim(c => c.Type == "cliente")))
     {
         <br />
     }
-
     else
     {
         <div class="card card-body">
@@ -173,7 +176,6 @@
             </div>
         </div>
     }
-
 }
 
 @section Pagestyles{
