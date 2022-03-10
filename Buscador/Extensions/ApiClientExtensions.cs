@@ -1,9 +1,7 @@
 ﻿
 using Buscador.Utils.ApiClient;
-
 using System.Net;
 using System.Net.Http;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

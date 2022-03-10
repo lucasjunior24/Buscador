@@ -30,9 +30,7 @@
                             <em class="mdi mdi-text-box-plus h3"></em> 
                         </a>
                     </div>
-
                 }
-
                 else if (User.HasClaim(c => c.Type == "cliente"))
                 {
                     <div class="col-auto">
@@ -46,7 +44,7 @@
                         </a>
                     </div>
                     <div class="col-auto">
-                        <a asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)">
+                        <a class="btn btn-link-default" asp-action="MinhaSolicitacoes" asp-controller="Solicitacao" asp-route-userId="@UserManager.GetUserId(User)">
                             <em class="mdi mdi-text-box-plus h3" aria-label="Ícone Detalhes"></em>
                         </a>
                     </div>

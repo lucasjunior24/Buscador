@@ -8,40 +8,47 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Cliente" class="color-theme">Lista de Clientes</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            <li class="breadcrumb-item active color-theme" aria-current="page" >@ViewData["Title"]</li>
         </ol>
     </nav>
 </div>
 
 <div class="d-sm-none">
-    <a asp-action="Index" asp-controller="Cliente" aria-label="Lista de Clientes"><em class="mdi mdi-chevron-left h1"></em> Lista de Clientes</a>
+    <a asp-action="Index" asp-controller="Home" class="breadcrumb-item color-theme">Início</a>
 </div>
 <hr />
 
-<div class="card">
-    <div class="card-body">
-        <form asp-action="FazerLogin" class="form-horizontal row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group col-md-6">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+<div class="row mt-3">
+    <div class="col-md-6">
+        <h1 class="text-start color-theme p-4 mt-5"><strong>Ache o Profissional que você está procurando</strong></h1>
+    </div>
+    <div class="col-md-6 mt-2 mb-5">
+        <div class="card mb-3">
+            <div class="card-body">
+                <form asp-action="FazerLogin">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control p-2" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control p-2" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
 
-            <hr />
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+                    <hr />
+                    <div class="form-group">
+                        <input type="submit" value="Cadastrar" class="btn btn-primary p-2" />
+                        <a class="btn btn-secondary p-2" asp-action="Index">Voltar</a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
