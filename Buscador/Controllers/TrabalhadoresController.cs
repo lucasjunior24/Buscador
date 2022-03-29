@@ -41,7 +41,7 @@ namespace Buscador.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var trabalhadores = await _trabalhadorRepository.ObterTodos();

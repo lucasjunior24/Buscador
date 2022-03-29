@@ -5,24 +5,25 @@ namespace Buscador.ViewModels
 {
     public class UsuarioViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Campo {0} Obrigatório")]
+        [EmailAddress(ErrorMessage = "Inclua um '@' no endereço de e-mail.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Campo {0} Obrigatório")]
         [Display(Name = "Perfil")]
         public string Perfil { get; set; }
         public SelectList Perfils { get; set; }
 
-    [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Campo {0} Obrigatório")]
+        [StringLength(100, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar Senha")]
+        [Required(ErrorMessage = "Campo {0} Obrigatório")]
+        [Compare("Password", ErrorMessage = "As senhas precisam ser iguais")]
         public string ConfirmPassword { get; set; }
     }
 }

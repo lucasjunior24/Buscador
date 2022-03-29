@@ -25,7 +25,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Perfil" class="control-label"></label>
-                <input asp-for="Perfil" class="form-control" />
+                <select class="form-control" asp-for="Perfil" asp-items="@Model.Perfils">
+                    <option value="">Selecione...</option>
+                </select>
                 <span asp-validation-for="Perfil" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
