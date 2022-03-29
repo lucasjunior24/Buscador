@@ -15,7 +15,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "UrlViaCep": "http://viacep.com.br",
         "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-development;Persist Security Info=False;User ID=buscardo-user;Password=Lucas@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-
       }
     },
     "Buscador": {
@@ -26,7 +25,6 @@
         "ASPNETCORE_ENVIRONMENT": "Production",
         "UrlViaCep": "http://viacep.com.br",
         "SQLCONNSTR_DefaultConnection": "Server=buscador-server.database.windows.net;Initial Catalog=buscador-development;Persist Security Info=False;User ID=buscardo-user;Password=Lucas@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-
       }
     }
   }
