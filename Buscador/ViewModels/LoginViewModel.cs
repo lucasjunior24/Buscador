@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Buscador.ViewModels
 {
     public class LoginViewModel
     {
-
         [EmailAddress(ErrorMessage = "Inclua um '@' no endereço de e-mail.")]
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Campo '{0}' Obrigatório")]
