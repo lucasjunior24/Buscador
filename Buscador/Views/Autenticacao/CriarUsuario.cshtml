@@ -8,7 +8,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme">Início</a></li>
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Cliente" class="color-theme">Lista de Clientes</a></li>
+            <li class="breadcrumb-item"><a  asp-controller="Autenticacao" asp-action="FazerLogin" class="color-theme">Login</a></li>
             <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
         </ol>
     </nav>
@@ -19,40 +19,57 @@
 </div>
 <hr />
 
-<div class="card">
-    <div class="card-body">
-        <form asp-action="CriarUsuario" class="form-horizontal row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Perfil" class="control-label"></label>
-                <select class="form-control" asp-for="Perfil" asp-items="@Model.Perfils">
-                    <option value="">Selecione...</option>
-                </select>
-                <span asp-validation-for="Perfil" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
 
-            <div class="form-group col-md-6">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <hr />
+<div class="row mt-md-5">
+    <div class="col-md-6 mt-md-5">
+        <h1 class="text-start color-theme p-4 mt-md-3"><strong>Crie sua conta </strong></h1>
+        <h1 class="text-start color-theme p-4 mt-md-3">
+            <strong>
+                Faça seu cadastro de <br />
+                forma rápida e fácil
+            </strong>
+        </h1>
 
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
-            </div>
-        </form>
+    </div>
+    <div class="col-md-6 mt-2 mb-5 mt-md-5">
+        <div class="card mb-3" style="max-width: 500px">
+            <div class="card-body">
+     
+                <form asp-action="CriarUsuario" class="form-horizontal row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Perfil" class="control-label"></label>
+                        <select class="form-control" asp-for="Perfil" asp-items="@Model.Perfils">
+                            <option value="">Selecione...</option>
+                        </select>
+                        <span asp-validation-for="Perfil" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="d-grid gap-2">
+                        <input type="submit" value="Cadastrar" class="btn btn-lg btn-primary" />
+                        <a class="btn btn-lg btn-outline-success" asp-controller="Autenticacao" asp-action="FazerLogin">Login</a>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+
+
     </div>
 </div>
 

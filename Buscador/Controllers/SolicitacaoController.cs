@@ -126,10 +126,7 @@ namespace Buscador.Controllers
                 listaSolicitacaoViewModel.Add(solicitacaoViewModel);
             }
 
-            if (listaSolicitacaoViewModel.Count == 0)
-            {
-                return NotFound();
-            }
+
 
             return View(listaSolicitacaoViewModel);
         }

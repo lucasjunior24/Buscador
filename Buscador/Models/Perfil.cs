@@ -4,9 +4,9 @@ namespace Buscador.Models
 {
     public enum Perfil
     {
-        [Description("cliente")]
+        [Description("Cliente")]
         Cliente,
-        [Description("trabalhador")]
+        [Description("Trabalhador")]
         Trabalhador
     }
 }

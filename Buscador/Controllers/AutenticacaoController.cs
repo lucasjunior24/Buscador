@@ -36,7 +36,7 @@ namespace Buscador.Controllers
                 var result = await _userManager.CreateAsync(user, usuarioViewModel.Password);
                 if (result.Succeeded)
                 {
-                    if (usuarioViewModel.Perfil == "trabalhador")
+                    if (usuarioViewModel.Perfil == "Trabalhador")
                     {
                         await _userManager.AddClaimAsync(user, new Claim("trabalhador", "trabalhador"));
                     }
