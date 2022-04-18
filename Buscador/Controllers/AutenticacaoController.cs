@@ -32,7 +32,7 @@ namespace Buscador.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = usuarioViewModel.Email, Email = usuarioViewModel.Email,  };
+                var user = new IdentityUser { UserName = usuarioViewModel.Email};
                 var result = await _userManager.CreateAsync(user, usuarioViewModel.Password);
                 if (result.Succeeded)
                 {

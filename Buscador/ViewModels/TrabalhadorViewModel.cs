@@ -17,6 +17,7 @@ namespace Buscador.ViewModels
         public string Documento { get; set; }
         public bool Solicitado { get; set; }
         public string SolicitadoMap { get; set; }
+        [Display(Name = "Tipo de Trabalhador")]
         public string TipoDeTrabalhador { get; set; }
         public TipoDeServicoViewModel TipoDeServico { get; set; }
         public EnderecoTrabalhadorViewModel EnderecoTrabalhador { get; set; }

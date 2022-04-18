@@ -24,44 +24,44 @@
         <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Voltar</a>
     </div>
 </div>
+<div class="mb-3">
+    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
+</div>
 
 <div class="card mb-2 pt-2">
     <div class="card-body">
-
         <div class="row">
-            <div class="mb-3">
-                <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
-            </div>
-
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
                 <h6>@Model.Nome</h6>
             </div>
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
                 <h6>@Model.Foto</h6>
             </div>
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
                 <h6>@Model.Documento</h6>
             </div>
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
                 <h6>@Model.Email</h6>
             </div>
-            <div class="col-md-4 mt-0">
+
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
                 <h6>@Model.Telefone</h6>
             </div>
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
                 <h6>@Model.TipoDeTrabalhador</h6>
             </div>
-            <div class="col-md-4 mt-0">
+            <div class="col-6 col-xl-3 col-md-6 pt-1">
                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
                 <h6>@Model.Profissao</h6>
             </div>
         </div>
+        <br/>
 
         <div class="row mt-3">
             <div class="col-12 col-xl-10 col-md-9 pt-1">
