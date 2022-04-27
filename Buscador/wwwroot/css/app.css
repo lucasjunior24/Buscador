@@ -22,8 +22,10 @@
 /* Basic */
 
 :root {
-    --colortheme: #76079b;
-    --colorthemedark: #500d66;
+    /*    #122657*/
+    /*#312f5a;*/
+    --colortheme: #122657;
+    --colorthemedark: #243447;
     --background-color: #f6f6f6;
 }
 
@@ -913,7 +915,7 @@ a{
 
 .card {
     border-radius: 10px;
-    border: 1;
+    border: 1px;
 }
 
 .card .card-body {

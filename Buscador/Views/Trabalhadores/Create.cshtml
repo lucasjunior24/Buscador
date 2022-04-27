@@ -22,82 +22,86 @@
 <hr />
 
 <div class="card">
-    <div class="card-body">
-        <form asp-action="Create" class="form-horizontal row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="UserId" class="form-control" value="@UserManager.GetUserId(User)" type="hidden" />
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                <span asp-validation-for="Documento" class="text-danger"></span>
-            </div>
-
-            <div class="form-group col-md-6" id="">
-                <label asp-for="TipoDeTrabalhador" class="control-label"></label>
-                <select class="form-control" asp-for="TipoDeTrabalhador" asp-items="@Model.TiposDeTrabalhadores">
-                    <option value="">Selecione...</option>
-                </select>
-
-                <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Profissao" class="control-label"></label>
-                <input asp-for="Profissao" class="form-control" />
-                <span asp-validation-for="Profissao" class="text-danger"></span>
-            </div>
-            <hr />
-            @*<h4>Tipo de Servico</h4>
-        <hr />
-        <div class="row" id="TipoDeServico">
-            <partial name="_TipoDeServico" />
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="UserId" class="form-control" value="@UserManager.GetUserId(User)" type="hidden" />
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
-        <hr />*@
-
-            <div class="form-group">
-                <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="EnderecoTrabalhador.Cep" class="form-control mask-cep Cep" maxlength="7" />
-                    <button id="btnBuscarCep" href="#" class="btn-buscar">
-                        <em class="mdi mdi-magnify"></em>
-                    </button>
-                </div>
+        <div class="form-group">
+            <label asp-for="FotoUpload" class="control-label"></label>
+            <div>
+                <input type="file" class="input" id="FotoUpload" asp-for="FotoUpload" />
+                <label data-browse="Procurar" style="width: 400px" class="custom-file-input" for="FotoUpload">Procurar </label>
+                <label style="display: none" id="img_nome"></label>
             </div>
-            <span asp-validation-for="EnderecoTrabalhador.Cep" class="text-danger"></span>
+            <span asp-validation-for="FotoUpload" class="text-danger"></span>
+        </div>
 
-            <div class="collapse row" id="Endereco">
-                <h4>Endereço</h4>
-                <hr />
+        <div class="form-group col-md-6">
+            <label asp-for="Telefone" class="control-label"></label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Documento" class="control-label"></label>
+            <input asp-for="Documento" class="form-control" />
+            <span asp-validation-for="Documento" class="text-danger"></span>
+        </div>
 
-                <partial name="_EnderecoTrabalhadores" />
+        <div class="form-group col-md-6" id="">
+            <label asp-for="TipoDeTrabalhador" class="control-label"></label>
+            <select class="form-control" asp-for="TipoDeTrabalhador" asp-items="@Model.TiposDeTrabalhadores">
+                <option value="">Selecione...</option>
+            </select>
+
+            <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Profissao" class="control-label"></label>
+            <input asp-for="Profissao" class="form-control" />
+            <span asp-validation-for="Profissao" class="text-danger"></span>
+        </div>
+        <hr />
+        @*<h4>Tipo de Servico</h4>
+            <hr />
+            <div class="row" id="TipoDeServico">
+                <partial name="_TipoDeServico" />
             </div>
+            <hr />*@
 
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        <div class="form-group">
+            <label asp-for="EnderecoTrabalhador.Cep" class="control-label"></label>
+            <div class="input-group">
+                <input asp-for="EnderecoTrabalhador.Cep" class="form-control mask-cep Cep" maxlength="7" />
+                <button id="btnBuscarCep" href="#" class="btn-buscar">
+                    <em class="mdi mdi-magnify"></em>
+                </button>
             </div>
-        </form>
-    </div>
+        </div>
+        <span asp-validation-for="EnderecoTrabalhador.Cep" class="text-danger"></span>
+
+        <div class="collapse row" id="Endereco">
+            <h4>Endereço</h4>
+            <hr />
+
+            <partial name="_EnderecoTrabalhadores" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        </div>
+    </form>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -105,4 +109,12 @@
     <script src="https://cdn.sistemas.ro.gov.br/vendors/jquerymask/jquery.mask.min.js" integrity="sha384-Oi37e7LmpRb9jNYAht/B08xyeBKI19ErNaJ1sR6z52Mrkb3Qxdpgyz5/IZOyh3HP" crossorigin="anonymous"></script>
     <script src="~/js/minhasInformacoes/dadosBasicos.js"></script>
     <script src="~/js/helpers/BuscaCepHelper.js"></script>
+    <script>
+        $("#FotoUpload").change(function () {
+            $("#img_nome").text(this.files[0].name);
+            $("#img_nome")[0].style.display = 'block';
+        });
+        $("#FotoUpload").attr("data-val", "true");
+        $("#FotoUpload").attr("data-val-required", "Preencha o campo Imagem");
+    </script>
 }

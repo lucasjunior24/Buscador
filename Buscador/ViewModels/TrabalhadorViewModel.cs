@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,7 @@ namespace Buscador.ViewModels
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public string Nome { get; set; }
-        //public IFormFile FotoTrabalhador { get; set; }
+        public IFormFile FotoUpload { get; set; }
         public string Foto { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }

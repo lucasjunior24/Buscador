@@ -6,10 +6,13 @@ using Buscador.Models.Dto;
 using Buscador.Utils.ApiClient;
 using Buscador.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,6 +28,7 @@ namespace Buscador.Controllers
         private readonly IEnderecoTrabalhadorRepository enderecoTrabalhadorRepository;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
@@ -32,7 +36,8 @@ namespace Buscador.Controllers
                                        IViaCepClient viaCepClient,
                                        IEnderecoTrabalhadorRepository enderecoTrabalhadorRepository,
                                        UserManager<IdentityUser> userManager,
-                                       SignInManager<IdentityUser> signInManager)
+                                       SignInManager<IdentityUser> signInManager,
+                                       IWebHostEnvironment hostingEnvironment)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
@@ -40,6 +45,7 @@ namespace Buscador.Controllers
             this.enderecoTrabalhadorRepository = enderecoTrabalhadorRepository;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _hostingEnvironment = hostingEnvironment;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Index()
@@ -54,7 +60,7 @@ namespace Buscador.Controllers
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
-            trabalhadorViewModel.TipoDeTrabalhador.GetDescription();
+            //trabalhadorViewModel.TipoDeTrabalhador.GetDescription();
             if (User.HasClaim(t => t.Type == "trabalhador") && trabalhadorViewModel == null)
             {
                 return RedirectToAction("Create");
@@ -94,9 +100,15 @@ namespace Buscador.Controllers
         {
             if (!ModelState.IsValid) return View(trabalhadorViewModel);
 
+            var imgPrefixo = Guid.NewGuid() + "_";
+            if (!await UploadArquivo(trabalhadorViewModel.FotoUpload, imgPrefixo))
+            {
+                return View(trabalhadorViewModel);
+            }
+
+            trabalhadorViewModel.Foto = imgPrefixo + trabalhadorViewModel.FotoUpload.FileName;
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
-
             await _trabalhadorRepository.Adicionar(trabalhador);
             
             return RedirectToAction(nameof(Index));
@@ -176,6 +188,31 @@ namespace Buscador.Controllers
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoEServico(Guid id)
         {
             return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoEServico(id));
+        }
+
+        private async Task<bool> UploadArquivo(IFormFile arquivo, string imgPrefixo)
+        {
+            if (arquivo.Length <= 0) return false;
+
+            string projectRootPath = _hostingEnvironment.ContentRootPath;
+
+            var path = Path.Combine(projectRootPath,
+                                    "wwwroot/imagens",
+                                    imgPrefixo + arquivo.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                ModelState.AddModelError(string.Empty, "Ja existe um arquivo com este nome!");
+                return false;
+            }
+
+            // gravar arquivo em disco
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await arquivo.CopyToAsync(stream);
+            }
+
+            return true;
         }
     }
 }
