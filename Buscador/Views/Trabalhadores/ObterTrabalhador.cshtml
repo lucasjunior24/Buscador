@@ -27,104 +27,109 @@
 <div class="mb-3">
     <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
 </div>
+<div class="row">
+    <div class="col-md-4 pt-1">
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3 col-sm-4 col-md-12">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="~/imagens/@Model.Foto" alt="@Model.Foto" style="width: 100%; height: 100%; border-radius: 50%;" class="" />
+                        </div>
+                    </div>
+                    <div class="col-9 col-sm-8 col-md-12 p-sm-3">
+                        <h6>Você pode atualizadar ou remover seu perfil a qualquer momento</h6>
+                        <p class="text-mute">Para melhor experiencia matenha seus dados atualizados.</p>
+                    </div>
+                    <div class="col p-sm-3">
+                        <div class="d-grid gap-2 pt-2">
+                            <button type="button" class="btn btn-warning mb-1" onclick="mostrarModalEditarTrabalhador()">
+                                <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
+                            </button>
 
-<div class="card mb-2 pt-2">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
-                <h6>@Model.Nome</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
-                <h6>@Model.Foto</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
-                <h6>@Model.Documento</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
-                <h6>@Model.Email</h6>
-            </div>
-
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
-                <h6>@Model.Telefone</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
-                <h6>@Model.TipoDeTrabalhador</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
-                <h6>@Model.Profissao</h6>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="card mb-2 pt-2">
-    <div class="card-body">
-        <div class="row mt-3">
-            <div class="col-12 col-xl-10 col-md-9 pt-1">
-                <h4>Caso queira atualizadar ou remover seu perfil</h4>
-                <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
-            </div>
-            <div class="col-12 col-xl-2 pt-1 col-md-3">
-                <div class="d-grid justify-content-end">
-                    <button type="button" class="btn btn-warning mb-1" onclick="mostrarModalEditarTrabalhador()">
-                        <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger mb-1" onclick="mostrarModalExcluirTrabalhador()">
-                        <em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir
-                    </button>
-                    @*<a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@Model.Id"><em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir</a>*@
+                            <button type="button" class="btn btn-danger mb-1" onclick="mostrarModalExcluirTrabalhador()">
+                                <em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 
-<div class="card mb-2 pt-2">
-    <div class="card-body">
-        <div class="row mt-3">
-            <div class="mb-3">
-                <h4 class="text-mute">Endereço do trabalhador</h4>
-            </div>
-            <div class="col-md-4 mt-0">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Logradouro)</small>
-                <h6>@Model.EnderecoTrabalhador.Logradouro</h6>
-            </div>
-            <div class="col-md-4 mt-0">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Cidade)</small>
-                <h6>@Model.EnderecoTrabalhador.Cidade</h6>
-            </div>
-            <div class="col-md-4 mt-0">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Numero)</small>
-                <h6>@Model.EnderecoTrabalhador.Numero</h6>
-            </div>
-            <div class="col-md-4 mt-0">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Cep)</small>
-                <h6>@Model.EnderecoTrabalhador.Cep</h6>
-            </div>
-            <div class="col-md-4 mt-0">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Complemento)</small>
-                <h6>@Model.EnderecoTrabalhador.Complemento</h6>
-            </div>
-            <div class="col-md-4">
-                <div class="d-grid justify-content-center">
-                    <button type="button" class="btn btn-warning mb-1" onclick="mostrarModal()">
-                        <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar Endereço
-                    </button>
+    <div class="col-md-8 pt-1">
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 col col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
+                        <h6>@Model.Nome</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
+                        <h6>@Model.Documento</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
+                        <h6>@Model.Email</h6>
+                    </div>
+
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
+                        <h6>@Model.Telefone</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
+                        <h6>@Model.TipoDeTrabalhador</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
+                        <h6>@Model.Profissao</h6>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row mt-3">
+                    <div class="mb-3">
+                        <h4 class="text-mute">Endereço do trabalhador</h4>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Logradouro)</small>
+                        <h6>@Model.EnderecoTrabalhador.Logradouro</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Cidade)</small>
+                        <h6>@Model.EnderecoTrabalhador.Cidade</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Numero)</small>
+                        <h6>@Model.EnderecoTrabalhador.Numero</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Cep)</small>
+                        <h6>@Model.EnderecoTrabalhador.Cep</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoTrabalhador.Complemento)</small>
+                        <h6>@Model.EnderecoTrabalhador.Complemento</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-grid justify-content-center">
+                            <button type="button" class="btn btn-warning mb-1" onclick="mostrarModal()">
+                                <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar Endereço
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </div>
 </div>
- 
+
+
 
 <div class="modal fade" id="editarTrabalhador" tabindex="1" aria-labelledby="editarTrabalhador" aria-hidden="true">
     <div class="modal-dialog">

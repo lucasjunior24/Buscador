@@ -33,6 +33,19 @@ namespace Buscador.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(140)");
 
+            builder.Property(t => t.CursoOuFormaçao)
+                .IsRequired()
+                .HasColumnType("varchar(1000)");
+
+            builder.Property(t => t.Descricao)
+                .IsRequired()
+                .HasColumnType("varchar(1000)");
+
+            builder.Property(t => t.TempoExperiencia)
+                .IsRequired()
+                .HasColumnType("varchar(200)");
+
+
             builder.Property(x => x.TipoDeTrabalhador)
               .IsRequired()
               .HasColumnType("varchar(50)")

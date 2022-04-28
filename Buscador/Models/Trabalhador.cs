@@ -13,7 +13,9 @@ namespace Buscador.Models
         public string Profissao { get; set; }
         public bool Solicitado { get; private set; }
         public bool Disponivel { get; private set; }
-
+        public string TempoExperiencia { get; set; }
+        public string Descricao { get; set; }
+        public string CursoOuFormaçao { get; set; }
         public void SolicitarTrabalhador()
         {
             Solicitado = true;

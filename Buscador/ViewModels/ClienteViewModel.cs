@@ -14,6 +14,7 @@ namespace Buscador.ViewModels
         public string Foto { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+        [Display(Name = "CPF")]
         public string Documento { get; set; }
         public EnderecoClienteViewModel EnderecoCliente { get; set; }
     }
