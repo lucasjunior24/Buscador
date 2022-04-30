@@ -13,6 +13,7 @@ namespace Buscador.Data.Context
         public DbSet<EnderecoTrabalhador> EnderecoDosTrabalhadores { get; set; }
         public DbSet<TipoDeServico> TiposDeServicos { get; set; }
         public DbSet<Solicitacao> Solicitacao { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(BuscadorContext).Assembly);

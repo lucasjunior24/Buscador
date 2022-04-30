@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buscador.Migrations
 {
     [DbContext(typeof(BuscadorContext))]
-    [Migration("20220418140528_inicial")]
-    partial class inicial
+    [Migration("20220430172037_Categoria")]
+    partial class Categoria
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,25 @@ namespace Buscador.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Icone")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categorias");
+                });
 
             modelBuilder.Entity("Buscador.Models.Cliente", b =>
                 {
@@ -220,6 +239,17 @@ namespace Buscador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CategoriaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CursoOuFormaçao")
+                        .IsRequired()
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(1000)");
+
                     b.Property<bool>("Disponivel")
                         .HasColumnType("bit");
 
@@ -249,6 +279,10 @@ namespace Buscador.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TempoExperiencia")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("TipoDeTrabalhador")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
@@ -257,6 +291,9 @@ namespace Buscador.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId")
+                        .IsUnique();
 
                     b.ToTable("Trabalhadores");
                 });
@@ -310,6 +347,22 @@ namespace Buscador.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Trabalhador");
+                });
+
+            modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
+                {
+                    b.HasOne("Buscador.Models.Categoria", "Categoria")
+                        .WithOne("Trabalhador")
+                        .HasForeignKey("Buscador.Models.Trabalhador", "CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+                {
                     b.Navigation("Trabalhador");
                 });
 

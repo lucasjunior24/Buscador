@@ -19,6 +19,25 @@ namespace Buscador.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Icone")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("Buscador.Models.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -218,6 +237,9 @@ namespace Buscador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CategoriaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CursoOuFormaçao")
                         .IsRequired()
                         .HasColumnType("varchar(1000)");
@@ -267,6 +289,9 @@ namespace Buscador.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId")
+                        .IsUnique();
 
                     b.ToTable("Trabalhadores");
                 });
@@ -320,6 +345,22 @@ namespace Buscador.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Trabalhador");
+                });
+
+            modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
+                {
+                    b.HasOne("Buscador.Models.Categoria", "Categoria")
+                        .WithOne("Trabalhador")
+                        .HasForeignKey("Buscador.Models.Trabalhador", "CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+                {
                     b.Navigation("Trabalhador");
                 });
 

@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Buscador.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Categoria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Icone = table.Column<string>(type: "varchar(100)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
@@ -30,9 +43,13 @@ namespace Buscador.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Documento = table.Column<string>(type: "varchar(14)", nullable: false),
                     TipoDeTrabalhador = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CategoriaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Profissao = table.Column<string>(type: "varchar(140)", nullable: false),
                     Solicitado = table.Column<bool>(type: "bit", nullable: false),
                     Disponivel = table.Column<bool>(type: "bit", nullable: false),
+                    TempoExperiencia = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(1000)", nullable: false),
+                    CursoOuFormaçao = table.Column<string>(type: "varchar(1000)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     Foto = table.Column<string>(type: "varchar(200)", nullable: false),
@@ -42,6 +59,12 @@ namespace Buscador.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trabalhadores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trabalhadores_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,6 +197,12 @@ namespace Buscador.Migrations
                 table: "TiposDeServicos",
                 column: "TrabalhadorId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trabalhadores_CategoriaId",
+                table: "Trabalhadores",
+                column: "CategoriaId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -195,6 +224,9 @@ namespace Buscador.Migrations
 
             migrationBuilder.DropTable(
                 name: "Trabalhadores");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
         }
     }
 }

@@ -56,6 +56,7 @@ namespace Buscador
             services.AddRazorPages();
             services.AddScoped<BuscadorContext>();
 
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<ITrabalhadorRepository, TrabalhadorRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ITipoDeServicoRepository, TipoDeServicoRepository>();

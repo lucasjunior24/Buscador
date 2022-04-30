@@ -9,6 +9,8 @@ namespace Buscador.Models
         public TipoDeTrabalhador TipoDeTrabalhador { get; set; }
         public TipoDeServico TipoDeServico { get; set; }
         public EnderecoTrabalhador EnderecoTrabalhador { get; set; }
+        public Guid CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
         public List<Solicitacao> Solicitacao { get; set; }
         public string Profissao { get; set; }
         public bool Solicitado { get; private set; }
