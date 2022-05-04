@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +30,7 @@ namespace Buscador.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly IWebHostEnvironment _hostingEnvironment;
-
+        private readonly ICategoriaRepository _categoriaRepository;
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
                                        IMapper mapper,
@@ -37,7 +38,8 @@ namespace Buscador.Controllers
                                        IEnderecoTrabalhadorRepository enderecoTrabalhadorRepository,
                                        UserManager<IdentityUser> userManager,
                                        SignInManager<IdentityUser> signInManager,
-                                       IWebHostEnvironment hostingEnvironment)
+                                       IWebHostEnvironment hostingEnvironment,
+                                       ICategoriaRepository categoriaRepository)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
@@ -46,6 +48,7 @@ namespace Buscador.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
             _hostingEnvironment = hostingEnvironment;
+            _categoriaRepository = categoriaRepository;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Index()
@@ -85,11 +88,16 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var categorias = await _categoriaRepository.ObterTodos();
+
             var trabalhador = new TrabalhadorViewModel()
             {
-                TiposDeTrabalhadores = EnumHelper.CriarListaDeEnum<TipoDeTrabalhador>()
+                TiposDeTrabalhadores = EnumHelper.CriarListaDeEnum<TipoDeTrabalhador>(),
+                ListagemDeCategorias = categorias.OrderBy(c => c.Nome)
+                                                            .Select(d => new SelectListItem { Text = d.Nome, Value = d.Id.ToString() })
+                                                            .ToList(),
             };
             return View(trabalhador);
         }
@@ -110,8 +118,8 @@ namespace Buscador.Controllers
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Adicionar(trabalhador);
-            
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId });
         }
 
         [HttpPost]

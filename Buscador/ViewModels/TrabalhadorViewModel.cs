@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Buscador.ViewModels
@@ -40,6 +42,11 @@ namespace Buscador.ViewModels
         public string Descricao { get; set; }
 
         public SelectList TiposDeTrabalhadores { get; set; }
+
+        public List<SelectListItem> ListagemDeCategorias { get; set; }
+        [DisplayName("Categoria")]
+        [Required(ErrorMessage = "Campo '{0}' Obrigatório")]
+        public Guid CategoriaId { get; set; }
 
     }
 }
