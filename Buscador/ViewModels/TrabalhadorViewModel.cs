@@ -31,6 +31,7 @@ namespace Buscador.ViewModels
         [Display(Name = "Seus cursos ou sua Formação profissional")]
         public string CursoOuFormaçao { get; set; }
         public EnderecoTrabalhadorViewModel EnderecoTrabalhador { get; set; }
+        public CategoriaViewModel Categoria { get; set; }
         public string Profissao { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(200, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]

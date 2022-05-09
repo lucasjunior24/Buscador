@@ -53,7 +53,7 @@ namespace Buscador.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var trabalhadores = await _trabalhadorRepository.ObterTodos();
+            var trabalhadores = await _trabalhadorRepository.ObterTodosComCategoria();
             var trabalhadoresViewModel = _mapper.Map<IEnumerable<TrabalhadorViewModel>>(trabalhadores);
             trabalhadoresViewModel.Select(t => t.Solicitado ? t.SolicitadoMap = "Sim" : t.SolicitadoMap = "Não");
             return View(trabalhadoresViewModel);
@@ -175,7 +175,6 @@ namespace Buscador.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AtualizarEndereco(TrabalhadorViewModel trabalhadorViewModel)
         {
-
             if (!ModelState.IsValid) return RedirectToAction("ObterTrabalhador", new { userId = trabalhadorViewModel.UserId });
 
             await enderecoTrabalhadorRepository.Atualizar(_mapper.Map<EnderecoTrabalhador>(trabalhadorViewModel.EnderecoTrabalhador));
@@ -190,7 +189,7 @@ namespace Buscador.Controllers
 
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEndereco(Guid id)
         {
-            return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEndereco(id));
+            return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorComCategoria(id));
         }
 
         private async Task<TrabalhadorViewModel> ObterTrabalhadorEnderecoEServico(Guid id)
