@@ -1,5 +1,6 @@
 ﻿using Buscador.Extensions;
 using Buscador.Models;
+using Buscador.Utils.Enum;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

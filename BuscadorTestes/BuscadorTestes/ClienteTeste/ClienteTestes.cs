@@ -1,9 +1,9 @@
-using Buscador.Interfaces;
-using Buscador.Models;
+using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
+using Moq;
 using System;
 using System.Threading.Tasks;
 using Xunit;
-using Moq;
 
 namespace TestesDoBuscador.ClienteTeste
 {

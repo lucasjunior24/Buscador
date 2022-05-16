@@ -1,6 +1,6 @@
 ﻿using Buscador.Extensions;
-using Buscador.Models;
-using Buscador.ViewModels;
+using Buscador.Models.ViewModels;
+using Buscador.Utils.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

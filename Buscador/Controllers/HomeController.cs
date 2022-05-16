@@ -1,13 +1,11 @@
-﻿using Buscador.Interfaces;
-using Buscador.Models;
+﻿using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Buscador.Models;
-using Buscador.ViewModels;
+using Buscador.Models.Entitiies;
+using Buscador.Models.ViewModels;
 
 namespace Buscador.Utils.AutoMapperConfig
 {

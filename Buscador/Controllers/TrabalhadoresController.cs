@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Buscador.Extensions;
-using Buscador.Interfaces;
-using Buscador.Models;
 using Buscador.Models.Dto;
+using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
+using Buscador.Models.ViewModels;
 using Buscador.Utils.ApiClient;
-using Buscador.ViewModels;
+using Buscador.Utils.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Buscador.Controllers
