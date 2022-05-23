@@ -2,6 +2,7 @@
 using Buscador.Models.Dto;
 using Buscador.Models.Entitiies;
 using Buscador.Models.Interfaces;
+using Buscador.Models.Services;
 using Buscador.Models.ViewModels;
 using Buscador.Utils.ApiClient;
 using Microsoft.AspNetCore.Authorization;
@@ -20,21 +21,23 @@ namespace Buscador.Controllers
         private readonly IClienteRepository clienteRepository;
         private readonly IMapper mapper;
         private readonly IViaCepClient viaCepClient;
-        UserManager<IdentityUser> userManager;
-        SignInManager<IdentityUser> signInManager;
-
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IUploadArquivo _uploadArquivo;
 
         public ClienteController(IClienteRepository clienteRepository,
                                        IMapper mapper,
-                                       IViaCepClient viaCepClient, 
-                                       UserManager<IdentityUser> userManager, 
-                                       SignInManager<IdentityUser> signInManager)
+                                       IViaCepClient viaCepClient,
+                                       UserManager<IdentityUser> userManager,
+                                       SignInManager<IdentityUser> signInManager, 
+                                       IUploadArquivo uploadArquivo)
         {
             this.clienteRepository = clienteRepository;
             this.mapper = mapper;
             this.viaCepClient = viaCepClient;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _uploadArquivo = uploadArquivo;
         }
 
         public async Task<IActionResult> Index()
@@ -83,10 +86,17 @@ namespace Buscador.Controllers
         {
             if (!ModelState.IsValid) return View(clienteViewModel);
 
+
+            var imgPrefixo = Guid.NewGuid() + "_";
+            if (!await _uploadArquivo.RealizarUploadArquivo(clienteViewModel.FotoUpload, imgPrefixo))
+            {
+                return View(clienteViewModel);
+            }
+
+            clienteViewModel.Foto = imgPrefixo + clienteViewModel.FotoUpload.FileName;
+
             var cliente = mapper.Map<Cliente>(clienteViewModel);
             await clienteRepository.Adicionar(cliente);
-
-            //await userManager.AddClaimAsync(await userManager.GetUserAsync(User), new Claim("cliente", "cliente"));
 
             return RedirectToAction(nameof(Index));
         }

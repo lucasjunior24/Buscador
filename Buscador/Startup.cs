@@ -3,6 +3,7 @@ using Buscador.Data.Context;
 using Buscador.Extensions;
 using Buscador.Models.Interfaces;
 using Buscador.Models.Repository;
+using Buscador.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -62,8 +63,9 @@ namespace Buscador
             services.AddScoped<ITipoDeServicoRepository, TipoDeServicoRepository>();
             services.AddScoped<IEnderecoTrabalhadorRepository, EnderecoTrabalhadorRepository>();
             services.AddScoped<IEnderecoClienteRepository, EnderecoClienteRepository>();
-
             services.AddScoped<ISolicitacaoRepository, SolicitacaoRepository>();
+
+            services.AddScoped<IUploadArquivo, UploadArquivo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

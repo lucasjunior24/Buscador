@@ -68,14 +68,15 @@ namespace Buscador.Controllers
                 return RedirectToAction("Create", "cliente");
             }
 
-            var solicitacaoViewModel = new SolicitacaoViewModel();
+            var solicitacaoViewModel = new SolicitacaoViewModel
+            {
+                NomeDoTrabalhador = trabalhador.Nome,
+                ProfissaoDoTrabalhador = trabalhador.Profissao,
+                TrabalhadorId = trabalhador.Id,
 
-            solicitacaoViewModel.NomeDoTrabalhador = trabalhador.Nome;
-            solicitacaoViewModel.ProfissaoDoTrabalhador = trabalhador.Profissao;
-            solicitacaoViewModel.TrabalhadorId = trabalhador.Id;
-
-            solicitacaoViewModel.ClienteId = cliente.Id;
-            solicitacaoViewModel.NomeDoCliente = cliente.Nome;
+                ClienteId = cliente.Id,
+                NomeDoCliente = cliente.Nome
+            };
 
             return View(solicitacaoViewModel);
         }
@@ -139,7 +140,7 @@ namespace Buscador.Controllers
             var id = userManager.GetUserId(User);
             var userId = Guid.Parse(id);
 
-            return RedirectToAction("MinhaSolicitacoesDeTrabalhador", new { userId = userId });
+            return RedirectToAction("MinhaSolicitacoesDeTrabalhador", new { userId });
         }
     }
 

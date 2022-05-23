@@ -9,8 +9,8 @@ namespace Buscador.Models.ViewModels
         [Key]
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public IFormFile FotoUpload { get; set; }
         public string Nome { get; set; }
+        public IFormFile FotoUpload { get; set; }
         public string Foto { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
