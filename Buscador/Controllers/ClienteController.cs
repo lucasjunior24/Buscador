@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Buscador.Interfaces;
-using Buscador.Models;
 using Buscador.Models.Dto;
+using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
+using Buscador.Models.ViewModels;
 using Buscador.Utils.ApiClient;
-using Buscador.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

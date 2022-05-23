@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Buscador.Models;
-using Buscador.ViewModels;
+using Buscador.Models.Entitiies;
+using Buscador.Models.ViewModels;
 
 namespace Buscador.Utils.AutoMapperConfig
 {
@@ -9,6 +9,7 @@ namespace Buscador.Utils.AutoMapperConfig
         public AutoMapperConfig()
         {
             CreateMap<Trabalhador, TrabalhadorViewModel>().ReverseMap();
+            CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
             CreateMap<EnderecoCliente, EnderecoClienteViewModel>().ReverseMap();
             CreateMap<EnderecoTrabalhador, EnderecoTrabalhadorViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();

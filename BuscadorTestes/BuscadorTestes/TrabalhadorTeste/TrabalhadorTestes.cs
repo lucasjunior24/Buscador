@@ -1,9 +1,10 @@
-using Buscador.Interfaces;
-using Buscador.Models;
+using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
+using Buscador.Utils.Enum;
+using Moq;
 using System;
 using System.Threading.Tasks;
 using Xunit;
-using Moq;
 
 namespace TestesDoBuscador.TrabalhadorTeste
 {
@@ -48,11 +49,11 @@ namespace TestesDoBuscador.TrabalhadorTeste
                 }
             };
 
-            trabalhadorMock.Setup(x => x.ObterTrabalhadorEndereco(id)).ReturnsAsync(trabalhador);
+            trabalhadorMock.Setup(x => x.ObterTrabalhadorEnderecoEServico(id)).ReturnsAsync(trabalhador);
             var repoTrabalhador = trabalhadorMock.Object;
 
             //Act
-            var resultado = await repoTrabalhador.ObterTrabalhadorEndereco(id);
+            var resultado = await repoTrabalhador.ObterTrabalhadorEnderecoEServico(id);
 
             //Assert
             Assert.IsType<Trabalhador>(resultado);

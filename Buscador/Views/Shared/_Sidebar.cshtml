@@ -19,6 +19,8 @@
         <div class="list-group main-menu">
             <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised h4" aria-label="Ícone Início"></em>Início</a>
             <hr />
+            <a asp-controller="Categoria" asp-action="Index" class="list-group-item list-group-item-action active h-16px"><em class="mdi mdi-home icons-raised h4" aria-label="Ícone Início"></em>Categoria</a>
+            <hr />
             @if (SignInManager.IsSignedIn(User))
             {
                 <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="list-group-item list-group-item-action"><em class="mdi mdi-account-cog icons-raised h4" aria-label="Ícone Tipo de Serviços"></em>Olár @UserManager.GetUserName(User)!</a>

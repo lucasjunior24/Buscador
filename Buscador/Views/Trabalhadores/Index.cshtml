@@ -35,18 +35,18 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3 border-left-theme border-3">
+                    <div class="col-4 border-left-theme border-3">
                         <div class="d-flex justify-content-start align-items-start">
                             <img src="~/imagens/@item.Foto" alt="@item.Foto" style="width: 80px; height: 80px; border-radius: 50%; " class="" />
                         </div>
                     </div>
-                    <div class="col-9 border-left-theme border-3">
+                    <div class="col-8 border-left-theme border-3">
                         <div class="">
                             <small class="text-muted">Nome</small>
                             <h4>@item.Nome</h4>
                         </div>
                     </div>
-                  
+
                     <div class="col-6 col-xl-3 col-md-6 pt-1">
                         <small class="text-muted">E-mail</small>
                         <h6>@item.Email</h6>
@@ -56,12 +56,12 @@
                         <small class="text-muted">Profissão</small>
                         <h6>@item.Profissao</h6>
                     </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">Categoria</small>
+                         <h5 class="text-primary font-weight-bold" >@item.Categoria.Nome <em class="@item.Categoria.Icone bg-background h4" aria-label="Ícone Categoria"></em></h5>
+                    </div>
                     <div class="col-xl-3 col-6 pt-2">
                         <a class="btn btn-primary mr-2 btn-lg" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em> Detalhes</a>
-                        @*<a class="btn btn-warning mr-2" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em></a>
-            <a class="btn btn-danger mr-2" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em></a>*@
-                        @*<a class="btn btn-outline-primary"  asp-action="SolicitarTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-chevron-right h3" aria-label="Ícone Solicitar Trabalhador"></em></a>*@
-                        @*<a class="btn btn-outline-primary" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@item.Id"><em class="mdi mdi-chevron-right h5" aria-label="Ícone Solicitar Trabalhador"></em></a>*@
                     </div>
                 </div>
             </div>

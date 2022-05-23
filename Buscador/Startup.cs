@@ -1,8 +1,8 @@
 using Buscador.Data;
 using Buscador.Data.Context;
 using Buscador.Extensions;
-using Buscador.Interfaces;
-using Buscador.Repository;
+using Buscador.Models.Interfaces;
+using Buscador.Models.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -56,6 +56,7 @@ namespace Buscador
             services.AddRazorPages();
             services.AddScoped<BuscadorContext>();
 
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<ITrabalhadorRepository, TrabalhadorRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ITipoDeServicoRepository, TipoDeServicoRepository>();

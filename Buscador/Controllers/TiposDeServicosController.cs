@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Buscador.Models.Entitiies;
+using Buscador.Models.Interfaces;
+using Buscador.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Buscador.Data.Context;
-using Buscador.ViewModels;
-using Buscador.Interfaces;
-using AutoMapper;
-using Buscador.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Buscador.Controllers
 {
