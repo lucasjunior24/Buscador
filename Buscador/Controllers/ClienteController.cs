@@ -24,13 +24,15 @@ namespace Buscador.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly IUploadArquivo _uploadArquivo;
+        private readonly IEnderecoClienteRepository enderecoClienteRepository;
 
         public ClienteController(IClienteRepository clienteRepository,
                                        IMapper mapper,
                                        IViaCepClient viaCepClient,
                                        UserManager<IdentityUser> userManager,
                                        SignInManager<IdentityUser> signInManager, 
-                                       IUploadArquivo uploadArquivo)
+                                       IUploadArquivo uploadArquivo,
+                                       IEnderecoClienteRepository enderecoClienteRepository)
         {
             this.clienteRepository = clienteRepository;
             this.mapper = mapper;
@@ -38,6 +40,7 @@ namespace Buscador.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
             _uploadArquivo = uploadArquivo;
+            this.enderecoClienteRepository = enderecoClienteRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -76,7 +79,8 @@ namespace Buscador.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var clienteViewModel = new ClienteViewModel();
+            return View(clienteViewModel);
         }
 
 
@@ -88,18 +92,43 @@ namespace Buscador.Controllers
 
 
             var imgPrefixo = Guid.NewGuid() + "_";
-            if (!await _uploadArquivo.RealizarUploadArquivo(clienteViewModel.FotoUpload, imgPrefixo))
+            if (!await _uploadArquivo.RealizarUploadArquivo(clienteViewModel.FotoUploadCliente, imgPrefixo))
             {
                 return View(clienteViewModel);
             }
 
-            clienteViewModel.Foto = imgPrefixo + clienteViewModel.FotoUpload.FileName;
+            clienteViewModel.Foto = imgPrefixo + clienteViewModel.FotoUploadCliente.FileName;
 
             var cliente = mapper.Map<Cliente>(clienteViewModel);
             await clienteRepository.Adicionar(cliente);
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarDadosDoCliente(ClienteViewModel clienteViewModel)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("ObterCliente", new { userId = clienteViewModel.UserId });
+
+            var cliente = mapper.Map<Cliente>(clienteViewModel);
+            await clienteRepository.Atualizar(cliente);
+
+            return RedirectToAction("ObterCliente", new { userId = clienteViewModel.UserId });
+        }
+
+        [HttpPost, ActionName("excluirCliente")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> excluirCliente(Guid id)
+        {
+            var clienteViewModel = await ObterClienteEndereco(id);
+
+            if (clienteViewModel == null) return NotFound();
+
+            await clienteRepository.Remover(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         public async Task<JsonResult> BuscarCep(string cep)
         {
@@ -110,6 +139,18 @@ namespace Buscador.Controllers
             {
                 return Json(new { dados, type = "fail" });
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AtualizarEndereco(ClienteViewModel clienteViewModel)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("ObterCliente", new { userId = clienteViewModel.UserId });
+
+            await enderecoClienteRepository.Atualizar(mapper.Map<EnderecoCliente>(clienteViewModel.EnderecoCliente));
+
+            return RedirectToAction("ObterCliente", new { userId = clienteViewModel.UserId });
+
         }
 
         private async Task<ClienteViewModel> ObterClienteEnderecoPorUserId(Guid userId)

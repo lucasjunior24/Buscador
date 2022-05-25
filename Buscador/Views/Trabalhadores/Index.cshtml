@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Buscador.ViewModels.TrabalhadorViewModel>
+﻿@model IEnumerable<Buscador.Models.ViewModels.TrabalhadorViewModel>
 
 @{
     ViewData["Title"] = "Lista de Trabalhadores";
@@ -61,7 +61,7 @@
                          <h5 class="text-primary font-weight-bold" >@item.Categoria.Nome <em class="@item.Categoria.Icone bg-background h4" aria-label="Ícone Categoria"></em></h5>
                     </div>
                     <div class="col-xl-3 col-6 pt-2">
-                        <a class="btn btn-primary mr-2 btn-lg" asp-action="Details" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em> Detalhes</a>
+                        <a class="btn btn-primary mr-2 btn-lg" asp-action="DetalhesDoTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em> Detalhes</a>
                     </div>
                 </div>
             </div>

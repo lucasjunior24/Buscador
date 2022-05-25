@@ -1,60 +1,232 @@
-﻿@model Buscador.ViewModels.ClienteViewModel
+﻿@model Buscador.Models.ViewModels.ClienteViewModel
 
 @{
     ViewData["Title"] = "Minhas Informações";
 }
 
+
 <div class="d-none d-sm-block">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Cliente" class="color-theme">Lista de Clientes</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme"> Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Minhas Informações</li>
         </ol>
     </nav>
 </div>
 <div class="d-sm-none">
-    <a asp-action="Index" asp-controller="Trabalhadores" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Lista de Trabalhadores</a>
+    <a asp-action="Index" asp-controller="Home" aria-label="Botão Início"><em class="mdi mdi-chevron-left h1"></em> Inicio</a>
 </div>
 <hr />
 
-<div class="row">
-    <div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
-    </div>
-
-
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
-        <h6>@Model.Nome</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
-        <h6>@Model.Foto</h6>
-    </div>
-    <div class="col-md-4 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
-        <h6>@Model.Documento</h6>
-    </div>
-    <div class="col-md-6 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
-        <h6>@Model.Email</h6>
-    </div>
-    <div class="col-md-6 mt-0">
-        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
-        <h6>@Model.Telefone</h6>
+<div class="row mt-3 mb-3">
+    <div class="col-3">
+        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Voltar</a>
     </div>
 </div>
+<div class="mb-3">
+    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.Nome</strong></span>
+</div>
+<div class="row">
+    <div class="col-md-4 pt-1">
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3 col-sm-4 col-md-12">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="~/imagens/@Model.Foto" alt="@Model.Foto" style="width: 100%; height: 100%; border-radius: 50%;" class="" />
+                        </div>
+                    </div>
+                    <div class="col-9 col-sm-8 col-md-12 p-sm-3">
+                        <h6>Você pode atualizadar ou remover seu perfil a qualquer momento</h6>
+                        <p class="text-mute">Para melhor experiencia matenha seus dados atualizados.</p>
+                    </div>
+                    <div class="col p-sm-3">
+                        <div class="d-grid gap-2 pt-2">
+                            <button type="button" class="btn btn-warning mb-1" onclick="mostrarModalEditarCliente()">
+                                <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar
+                            </button>
 
-
-<div class="row mt-4">
-    <div class="col-md-10">
-        <h2>Mantenha suas informações atualizadas</h2>
-        <h6 class="text-mute">Para facilitar a solicitação de serviços. Os formulários serão preenchidos automaticamente com seus dados informados.</h6>
+                            <button type="button" class="btn btn-danger mb-1" onclick="mostrarModalExcluirCliente()">
+                                <em class="mdi mdi-delete-forever h5" aria-label="Ícone Excluir"></em> Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-2">
-        <div class="d-grid mx-auto">
-            <a asp-action="Atualizar" asp-controller="MinhasInformacoes" class="btn-lg btn-rounded-solicitar bg-theme text-white text-center">Atualizar</a>
-            <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+
+    <div class="col-md-8 pt-1">
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 col col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
+                        <h6>@Model.Nome</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
+                        <h6>@Model.Documento</h6>
+                    </div>
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
+                        <h6>@Model.Email</h6>
+                    </div>
+
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
+                        <h6>@Model.Telefone</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 pt-2">
+            <div class="card-body">
+                <div class="row mt-3">
+                    <div class="mb-3">
+                        <h4 class="text-mute">Endereço do trabalhador</h4>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoCliente.Logradouro)</small>
+                        <h6>@Model.EnderecoCliente.Logradouro</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoCliente.Cidade)</small>
+                        <h6>@Model.EnderecoCliente.Cidade</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoCliente.Numero)</small>
+                        <h6>@Model.EnderecoCliente.Numero</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoCliente.Cep)</small>
+                        <h6>@Model.EnderecoCliente.Cep</h6>
+                    </div>
+                    <div class="col-md-4 mt-0">
+                        <small class="text-muted">@Html.DisplayNameFor(model => Model.EnderecoCliente.Complemento)</small>
+                        <h6>@Model.EnderecoCliente.Complemento</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-grid justify-content-center">
+                            <button type="button" class="btn btn-warning mb-1" onclick="mostrarModal()">
+                                <em class="mdi mdi-pencil h5" aria-label="Ícone Editar"></em> Editar Endereço
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" id="editarCliente" tabindex="1" aria-labelledby="editarCliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editarCliente">Atualizar dados:</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" x></span>
+                </button>
+            </div>
+            <form asp-action="EditarDadosDoCliente">
+                <partial name="_EditarCliente" />
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<partial name="Delete" />
+
+<div class="modal fade" id="exampleModal" tabindex="1" aria-labelledby="exemploModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exemploModal">Atualizar endereço</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" x></span>
+                </button>
+
+            </div>
+
+            <form asp-action="AtualizarEndereco">
+                <div class="modal-body">
+                    <input type="hidden" asp-for="EnderecoCliente.ClienteId" />
+                    <input type="hidden" asp-for="UserId" />
+                    <input type="hidden" asp-for="EnderecoCliente.Id" />
+
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Cep" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Cep" class="form-control" />
+                        <span asp-validation-for="EnderecoCliente.Cep" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Logradouro" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Logradouro" class="form-control Rua" />
+                        <span asp-validation-for="EnderecoCliente.Logradouro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Numero" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Numero" class="form-control" />
+                        <span asp-validation-for="EnderecoCliente.Numero" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Complemento" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Complemento" class="form-control" />
+                        <span asp-validation-for="EnderecoCliente.Complemento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Bairro" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Bairro" class="form-control Bairro" />
+                        <span asp-validation-for="EnderecoCliente.Bairro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Cidade" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Cidade" class="form-control Municipio" />
+                        <span asp-validation-for="EnderecoCliente.Cidade" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EnderecoCliente.Estado" class="control-label"></label>
+                        <input asp-for="EnderecoCliente.Estado" class="form-control Uf" />
+                        <span asp-validation-for="EnderecoCliente.Estado" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="justify-content-end">
+                        <input type="submit" value="Atualizar Endereço" class="btn btn-outline-success" />
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function mostrarModal() {
+            var myModal = document.getElementById('exampleModal')
+            let minhaModal = new bootstrap.Modal(myModal);
+            minhaModal.show();
+        }
+
+        function mostrarModalEditarCliente() {
+            var editarClienteModal = document.getElementById('editarCliente')
+            let minhaModal = new bootstrap.Modal(editarClienteModal);
+            minhaModal.show();
+        }
+
+        function mostrarModalExcluirCliente() {
+            var editarClienteModal = document.getElementById('excluirCliente')
+            let minhaModal = new bootstrap.Modal(editarClienteModal);
+            minhaModal.show();
+        }
+    </script>
+}

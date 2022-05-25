@@ -1,4 +1,4 @@
-﻿@model Buscador.ViewModels.TrabalhadorViewModel
+﻿@model Buscador.Models.ViewModels.TrabalhadorViewModel
 
 @{
     ViewData["Title"] = "Detalhes sobre o Trabalhador";
@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-4 col-lg-3 col-xxl-2">
         <div class="d-grid mx-auto mb-3">
-            <a type="button" class="btn text-center text-white bg-theme p-18 pt-3 pb-3" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
+            <a class="btn text-center text-white bg-theme p-18 pt-3 pb-3" asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
                 Solicitar
             </a>
         </div>
@@ -103,43 +103,6 @@
                         <h6>@Model.Profissao</h6>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="card mb-2 pt-2">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
-                <h6>@Model.Nome</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Foto)</small>
-                <h6>@Model.Foto</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Documento)</small>
-                <h6>@Model.Documento</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
-                <h6>@Model.Email</h6>
-            </div>
-
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Telefone)</small>
-                <h6>@Model.Telefone</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
-                <h6>@Model.TipoDeTrabalhador</h6>
-            </div>
-            <div class="col-6 col-xl-3 col-md-6 pt-1">
-                <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
-                <h6>@Model.Profissao</h6>
             </div>
         </div>
     </div>

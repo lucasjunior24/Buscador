@@ -1,4 +1,4 @@
-﻿@model Buscador.Models.ViewModels.TrabalhadorViewModel
+﻿@model Buscador.Models.ViewModels.ClienteViewModel
 
 <div class="modal-body">
     <input type="hidden" asp-for="UserId" />
@@ -28,16 +28,7 @@
         <input asp-for="Documento" class="form-control" />
         <span asp-validation-for="Documento" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="TipoDeTrabalhador" class="control-label"></label>
-        <input asp-for="TipoDeTrabalhador" class="form-control" />
-        <span asp-validation-for="TipoDeTrabalhador" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Profissao" class="control-label"></label>
-        <input asp-for="Profissao" class="form-control" />
-        <span asp-validation-for="Profissao" class="text-danger"></span>
-    </div>
+
     <div class="modal-footer">
         <div class="justify-content-end">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

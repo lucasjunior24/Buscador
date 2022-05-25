@@ -75,7 +75,7 @@ namespace Buscador.Controllers
 
         }
 
-        public async Task<IActionResult> Details(Guid id)
+        public async Task<IActionResult> DetalhesDoTrabalhador(Guid id)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);
             if (trabalhadorViewModel == null)

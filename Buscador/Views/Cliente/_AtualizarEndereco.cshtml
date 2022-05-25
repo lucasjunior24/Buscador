@@ -1,6 +1,4 @@
-﻿@model Buscador.Models.ViewModels.TrabalhadorViewModel
-
-
+﻿@model Buscador.Models.ViewModels.ClienteViewModel
 @{
     ViewData["Title"] = "Atualizar Endereço";
 }
@@ -14,10 +12,10 @@
 
 <form asp-action="AtualizarEndereco">
     <div class="modal-body">
-        <input type="hidden" asp-for="EnderecoTrabalhador.TrabalhadorId" />
-        <input type="hidden" asp-for="EnderecoTrabalhador.Id" />
+        <input type="hidden" asp-for="EnderecoCliente.ClienteId" />
+        <input type="hidden" asp-for="EnderecoCliente.Id" />
 
-        <partial name="_EnderecoTrabalhadores" />
+        <partial name="_EnderecoCliente" />
 
         <div class="modal-footer">
             <div class="justify-content-end">
