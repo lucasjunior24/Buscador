@@ -123,10 +123,7 @@
 
             <form asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
                 <div class="modal-body">
-                    <input type="hidden" asp-for="EnderecoTrabalhador.TrabalhadorId" />
-                    <input type="hidden" asp-for="UserId" />
                     <div class="row">
-
                         <div class="col-6">
                             <div class="d-flex justify-content-center align-items-center">
                                 <img src="~/imagens/@Model.Foto" alt="@Model.Foto" style="width: 100%; height: 100%; border-radius: 50%;" class="" />

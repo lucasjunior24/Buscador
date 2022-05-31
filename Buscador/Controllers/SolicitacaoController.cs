@@ -45,21 +45,40 @@ namespace Buscador.Controllers
         public async Task<IActionResult> MinhaSolicitacoes(Guid userId)
         {
             var listaSoliciacao = await _solicitacaoRepository.ObteSolicitacoesDoCliente(userId);
-            var listDeSolicitacaoVm = _mapper.Map<List<SolicitacaoViewModel>>(listaSoliciacao);
-            if (listDeSolicitacaoVm == null)
+
+
+            var listaSolicitacaoViewModel = new List<SolicitacaoViewModel>();
+            foreach (var solicitacao in listaSoliciacao)
+            {
+                var trabalhador = await _trabalhadorRepository.ObterPorId(solicitacao.TrabalhadorId);
+                var solicitacaoViewModel = new SolicitacaoViewModel()
+                {
+                    Id = solicitacao.Id,
+                    FotoTrabalhador = trabalhador.Foto,
+                    DataDaSolicitacao = solicitacao.DataDaSolicitacao,
+                    NomeDoCliente = solicitacao.NomeDoCliente,
+                    NomeDoTrabalhador = solicitacao.NomeDoTrabalhador,
+                    ProfissaoDoTrabalhador = solicitacao.ProfissaoDoTrabalhador,
+                    StatusDaSolicitacao = solicitacao.StatusDaSolicitacao.GetDescription(),
+                    ClienteId = solicitacao.ClienteId,
+                    Trabalhador = solicitacao.Trabalhador,
+                    TrabalhadorId = solicitacao.TrabalhadorId
+                };
+                listaSolicitacaoViewModel.Add(solicitacaoViewModel);
+            }
+
+            if (listaSolicitacaoViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(listDeSolicitacaoVm);
+            return View(listaSolicitacaoViewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Guid trabalhadorId)
         {
-            var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
-            trabalhador.SolicitarTrabalhador();
-            await _trabalhadorRepository.Atualizar(trabalhador);
-
             var id = userManager.GetUserId(User);
             var userId = Guid.Parse(id);
             var cliente = await clienteRepository.ObterClienteEnderecoPorUserId(userId);
@@ -67,6 +86,8 @@ namespace Buscador.Controllers
             {
                 return RedirectToAction("Create", "cliente");
             }
+
+            var trabalhador = await _trabalhadorRepository.ObterPorId(trabalhadorId);
 
             var solicitacaoViewModel = new SolicitacaoViewModel
             {
@@ -78,16 +99,6 @@ namespace Buscador.Controllers
                 NomeDoCliente = cliente.Nome
             };
 
-            return View(solicitacaoViewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SolicitacaoViewModel solicitacaoViewModel)
-        {
-
-            if (!ModelState.IsValid) return View(solicitacaoViewModel);
-
             var solicitacao = _mapper.Map<Solicitacao>(solicitacaoViewModel);
             
             solicitacao.AguadarAprovacaoDaSolicitacao();
@@ -97,11 +108,7 @@ namespace Buscador.Controllers
 
             return RedirectToAction("Index", "Trabalhadores");
         }
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-        
+
         public async Task<IActionResult> MinhaSolicitacoesDeTrabalhador(Guid userId)
         {
             var trabalhador = await _trabalhadorRepository.ObterTrabalhadorEnderecoPorUserId(userId);
@@ -117,6 +124,7 @@ namespace Buscador.Controllers
                     DataDaSolicitacao = solicitacao.DataDaSolicitacao,
                     NomeDoCliente = solicitacao.NomeDoCliente,
                     NomeDoTrabalhador = solicitacao.NomeDoTrabalhador,
+                    FotoTrabalhador = trabalhador.Foto,
                     ProfissaoDoTrabalhador = solicitacao.ProfissaoDoTrabalhador,
                     StatusDaSolicitacao = solicitacao.StatusDaSolicitacao.GetDescription(),
                     ClienteId = solicitacao.ClienteId,
@@ -125,8 +133,6 @@ namespace Buscador.Controllers
                 };
                 listaSolicitacaoViewModel.Add(solicitacaoViewModel);
             }
-
-
 
             return View(listaSolicitacaoViewModel);
         }
