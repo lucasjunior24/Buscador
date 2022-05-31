@@ -21,7 +21,7 @@
 @if (Model.Any())
 {
     <div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>
+        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().NomeDoCliente</strong></span>
     </div>
 
     <div class="">
@@ -33,16 +33,24 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 border-left-theme border-3">
-                        <div class="border-bottom-theme border-1">
-                            <small class="text-muted">Solicitado</small>
-                            <h5 class="">@item.ProfissaoDoTrabalhador</h5>
+                     <div class="col-4 border-left-theme border-3">
+                        <div class="d-flex justify-content-start align-items-start">
+                            <img src="~/imagens/@item.FotoTrabalhador" alt="@item.FotoTrabalhador" style="width: 80px; height: 80px; border-radius: 50%; " class="" />
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 pt-1">
-                        <small class="text-muted">E-mail</small>
-                        <h5 class="">@item.ProfissaoDoTrabalhador</h5>
+                    <div class="col-8 border-left-theme border-3">
+
+                            <small class="text-muted">Nome</small>
+                            <h4>@item.NomeDoTrabalhador</h4>
+
                     </div>
+                    <div class="col-6 col-md-3 border-left-theme border-3">
+                        
+                            <small class="text-muted">Profissao Do Trabalhador</small>
+                            <h5 class="">@item.ProfissaoDoTrabalhador</h5>
+             
+                    </div>
+ 
                     <div class="col-6 col-md-3 pt-1">
                         <small class="text-muted">Status da Solicitação</small>
                         @{var corStatus = item.StatusDaSolicitacao == "Aprovado" ? "text-success" : "text-primary";}
@@ -59,15 +67,16 @@
                     }
                     else
                     {
-                        <div class="col-6 col-md-3 pt-1">
+                        <div class="col-md-6  pt-1">
                             <small class="text-muted">Sobre sua solicitação</small>
-                            <hp class="">Quando o trabalhador aprovar sua solicitação, será disponibilizado o wpp dele</hp>
+                            <p class="">Quando o trabalhador aprovar sua solicitação, será disponibilizado o wpp dele</p>
                         </div>
                     }
                 </div>
             </div>
         </div>
-                            }
+
+     }
 }
 else
 {
