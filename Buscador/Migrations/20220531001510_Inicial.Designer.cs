@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buscador.Migrations
 {
     [DbContext(typeof(BuscadorContext))]
-    [Migration("20220430172037_Categoria")]
-    partial class Categoria
+    [Migration("20220531001510_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Buscador.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Categoria", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,7 +40,7 @@ namespace Buscador.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Cliente", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Buscador.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Buscador.Models.EnderecoCliente", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.EnderecoCliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace Buscador.Migrations
                     b.ToTable("EnderecoDosClientes");
                 });
 
-            modelBuilder.Entity("Buscador.Models.EnderecoTrabalhador", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.EnderecoTrabalhador", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +160,7 @@ namespace Buscador.Migrations
                     b.ToTable("EnderecoDosTrabalhadores");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Solicitacao", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Solicitacao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -198,7 +198,7 @@ namespace Buscador.Migrations
                     b.ToTable("Solicitacoes");
                 });
 
-            modelBuilder.Entity("Buscador.Models.TipoDeServico", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.TipoDeServico", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace Buscador.Migrations
                     b.ToTable("TiposDeServicos");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Trabalhador", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,37 +298,37 @@ namespace Buscador.Migrations
                     b.ToTable("Trabalhadores");
                 });
 
-            modelBuilder.Entity("Buscador.Models.EnderecoCliente", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.EnderecoCliente", b =>
                 {
-                    b.HasOne("Buscador.Models.Cliente", "Cliente")
+                    b.HasOne("Buscador.Models.Entitiies.Cliente", "Cliente")
                         .WithOne("EnderecoCliente")
-                        .HasForeignKey("Buscador.Models.EnderecoCliente", "ClienteId")
+                        .HasForeignKey("Buscador.Models.Entitiies.EnderecoCliente", "ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cliente");
                 });
 
-            modelBuilder.Entity("Buscador.Models.EnderecoTrabalhador", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.EnderecoTrabalhador", b =>
                 {
-                    b.HasOne("Buscador.Models.Trabalhador", "Trabalhador")
+                    b.HasOne("Buscador.Models.Entitiies.Trabalhador", "Trabalhador")
                         .WithOne("EnderecoTrabalhador")
-                        .HasForeignKey("Buscador.Models.EnderecoTrabalhador", "TrabalhadorId")
+                        .HasForeignKey("Buscador.Models.Entitiies.EnderecoTrabalhador", "TrabalhadorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Trabalhador");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Solicitacao", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Solicitacao", b =>
                 {
-                    b.HasOne("Buscador.Models.Cliente", "Cliente")
+                    b.HasOne("Buscador.Models.Entitiies.Cliente", "Cliente")
                         .WithMany("Solicitacao")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Buscador.Models.Trabalhador", "Trabalhador")
+                    b.HasOne("Buscador.Models.Entitiies.Trabalhador", "Trabalhador")
                         .WithMany("Solicitacao")
                         .HasForeignKey("TrabalhadorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -339,41 +339,41 @@ namespace Buscador.Migrations
                     b.Navigation("Trabalhador");
                 });
 
-            modelBuilder.Entity("Buscador.Models.TipoDeServico", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.TipoDeServico", b =>
                 {
-                    b.HasOne("Buscador.Models.Trabalhador", "Trabalhador")
+                    b.HasOne("Buscador.Models.Entitiies.Trabalhador", "Trabalhador")
                         .WithOne("TipoDeServico")
-                        .HasForeignKey("Buscador.Models.TipoDeServico", "TrabalhadorId")
+                        .HasForeignKey("Buscador.Models.Entitiies.TipoDeServico", "TrabalhadorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Trabalhador");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Trabalhador", b =>
                 {
-                    b.HasOne("Buscador.Models.Categoria", "Categoria")
+                    b.HasOne("Buscador.Models.Entitiies.Categoria", "Categoria")
                         .WithOne("Trabalhador")
-                        .HasForeignKey("Buscador.Models.Trabalhador", "CategoriaId")
+                        .HasForeignKey("Buscador.Models.Entitiies.Trabalhador", "CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Categoria", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Categoria", b =>
                 {
                     b.Navigation("Trabalhador");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Cliente", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Cliente", b =>
                 {
                     b.Navigation("EnderecoCliente");
 
                     b.Navigation("Solicitacao");
                 });
 
-            modelBuilder.Entity("Buscador.Models.Trabalhador", b =>
+            modelBuilder.Entity("Buscador.Models.Entitiies.Trabalhador", b =>
                 {
                     b.Navigation("EnderecoTrabalhador");
 
