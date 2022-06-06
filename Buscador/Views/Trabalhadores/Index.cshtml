@@ -18,15 +18,15 @@
 <hr />
 
 @*<div class="mb-3">
-        <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@User.NomeCompleto()</strong></span>
+    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@User.NomeCompleto()</strong></span>
     </div>*@
 
 @*<div class="d-flex justify-content-between">
     <h3>@ViewData["Title"]</h3>
     <p supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" class="float-right">
-        <a asp-action="Create" class="btn btn-primary">Adicionar</a>
+    <a asp-action="Create" class="btn btn-primary">Adicionar</a>
     </p>
-</div>*@
+    </div>*@
 
 @if (Model.Any())
 {
@@ -35,48 +35,47 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4 border-left-theme border-3">
-                        <div class="d-flex justify-content-start align-items-start">
-                            <img src="~/imagens/@item.Foto" alt="@item.Foto" style="width: 80px; height: 80px; border-radius: 50%; " class="" />
+                    <div class="col-12 border-left-theme border-3 pb-2 flex-inline">
+                        <div class="d-flex align-items-cente">
+                            <img src="~/imagens/@item.Foto" alt="@item.Foto" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px;" class="" />
+                            <div class="">
+                                <small class="text-muted">Trabalhador</small>
+                                <h5>@item.Nome</h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-8 border-left-theme border-3">
-                        <div class="">
-                            <small class="text-muted">Nome</small>
-                            <h4>@item.Nome</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-xl-3 col-md-6 pt-1">
-                        <small class="text-muted">E-mail</small>
-                        <h6>@item.Email</h6>
-                    </div>
-
-                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                    <div class="col-6 pt-1 col-md-3 border-left-theme border-3">
                         <small class="text-muted">Profissão</small>
                         <h6>@item.Profissao</h6>
                     </div>
-                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+
+                    <div class="col-6 pt-1 col-md-3">
                         <small class="text-muted">Categoria</small>
-                         <h5 class="text-primary font-weight-bold" >@item.Categoria.Nome <em class="@item.Categoria.Icone bg-background h4" aria-label="Ícone Categoria"></em></h5>
+                        <h6 class="text-primary font-weight-bold">@item.Categoria.Nome <em class="@item.Categoria.Icone bg-background h5" aria-label="Ícone Categoria"></em></h6>
                     </div>
-                    <div class="col-xl-3 col-6 pt-2">
-                        <a class="btn btn-primary mr-2 btn-lg" asp-action="DetalhesDoTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em> Detalhes</a>
+
+                    <div class="col-6 pt-1 col-md-3">
+                        <small class="text-muted">E-mail</small>
+                        <h6>@item.Email</h6>
                     </div>
+                    <div class="col-6 col-md-3 pt-1">
+                        <a class="btn text-center text-white bg-theme px-5 py-3" asp-action="DetalhesDoTrabalhador" asp-route-id="@item.Id"><em class="mdi mdi-account-details text-white h5" aria-label="Ícone Detalhes"></em> Detalhes</a>
+                    </div>
+
                 </div>
             </div>
         </div>
     }
 }
-    else
-    {
-        <div class="row mt-3">
-            <div class="col-md col-sm-12 mb-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Você não fez nenhuma Solicitação.</h4>
-                    </div>
+else
+{
+    <div class="row mt-3">
+        <div class="col-md col-sm-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Você não fez nenhuma Solicitação.</h4>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}

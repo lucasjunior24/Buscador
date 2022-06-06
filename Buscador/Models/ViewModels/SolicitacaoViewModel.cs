@@ -11,6 +11,8 @@ namespace Buscador.Models.ViewModels
         public DateTime DataDaSolicitacao { get; set; }
         public string FotoTrabalhador { get; set; }
         [Display(Name = "Nome do Trabalhador")]
+        public string FotoCliente { get; set; }
+        [Display(Name = "Nome do Cliente")]
         public string NomeDoTrabalhador { get; set; }
         [Display(Name = "Profissao do Trabalhador")]
         public string ProfissaoDoTrabalhador { get; set; }

@@ -118,13 +118,14 @@ namespace Buscador.Controllers
             var listaSolicitacaoViewModel = new List<SolicitacaoViewModel>();
             foreach (var solicitacao in listaSoliciacao)
             {
+                var cliente = await clienteRepository.ObterPorId(solicitacao.ClienteId);
                 var solicitacaoViewModel = new SolicitacaoViewModel()
                 {
                     Id = solicitacao.Id,
                     DataDaSolicitacao = solicitacao.DataDaSolicitacao,
                     NomeDoCliente = solicitacao.NomeDoCliente,
                     NomeDoTrabalhador = solicitacao.NomeDoTrabalhador,
-                    FotoTrabalhador = trabalhador.Foto,
+                    FotoCliente = cliente.Foto,
                     ProfissaoDoTrabalhador = solicitacao.ProfissaoDoTrabalhador,
                     StatusDaSolicitacao = solicitacao.StatusDaSolicitacao.GetDescription(),
                     ClienteId = solicitacao.ClienteId,

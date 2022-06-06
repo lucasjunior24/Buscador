@@ -33,33 +33,51 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 border-left-theme border-3">
-                        <div class="border-bottom-theme border-1">
-                            <small class="text-muted">Solicitado por</small>
-                            <h5 class="">@item.NomeDoCliente</h5>
+                    <div class="col-4 border-left-theme border-3">
+                        <div class="d-flex justify-content-start align-items-start">
+                            <img src="~/imagens/@item.FotoCliente" alt="@item.FotoCliente" style="width: 80px; height: 80px; border-radius: 50%; " class="" />
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 pt-1">
+                    <div class="col-8 border-left-theme border-3">
+                        <small class="text-muted">Solicitado por:</small>
+                        <h4>@item.NomeDoCliente</h4>
+                    </div>
+
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
                         <small class="text-muted">Data da Solicitação</small>
                         <h5 class="text-muted">@item.DataDaSolicitacao.ToString("dd/MM/yyyy")</h5>
                     </div>
 
-                    <div class="col col-md-6 pt-1">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="">
-                                <small class="text-muted">Status da Solicitação</small>
-                                @{var corStatus = item.StatusDaSolicitacao == "Aprovado" ? "text-success" : "text-primary";}
-                                @*@{var corStatus = item.StatusDaSolicitacao == StatusDaSolicitacao.Reprovado ? "text-danger" : "text-primary";}*@
-                                <h5 class="@corStatus"><strong>@item.StatusDaSolicitacao</strong></h5>
-                            </div>
-                            <div class="">
-                                <a asp-action="AprovarSolicitacao" asp-controller="Solicitacao" asp-route-solicitacaoId="@item.Id" aria-label="Aprovar Solicitação" class="btn btn-outline-success">
-                                    Aprovar  <em class="mdi mdi-check-circle"></em>
-                                </a>
-                            </div>
-                        </div>
-                      
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">Tempo solicitado</small>
+                        <h5 class="text-muted">1 dia</h5>
                     </div>
+
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                        <small class="text-muted">Status da Solicitação</small>
+                        @{
+                            var corStatus = item.StatusDaSolicitacao == "Aprovado" ? "text-success" : "text-primary";
+                        }
+                        @*@{var corStatus = item.StatusDaSolicitacao == StatusDaSolicitacao.Reprovado ? "text-danger" : "text-primary";}*@
+                        <h5 class="@corStatus"><strong>@item.StatusDaSolicitacao</strong></h5>
+                    </div>
+                    @if (item.StatusDaSolicitacao != "Aprovado")
+                    {
+                        <div class="col-6 col-xl-3 col-md-6 pt-1">
+                            <a asp-action="AprovarSolicitacao" asp-controller="Solicitacao" asp-route-solicitacaoId="@item.Id" aria-label="Aprovar Solicitação" class="btn btn-primary">
+                                Aprovar  <em class="mdi mdi-check-circle"></em>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-6 col-xl-3 col-md-6 pt-1">
+                            <a aria-label="Whatsapp" class="btn btn-success text-white">
+                                Whatsapp <em class="mdi mdi-whatsapp"></em>
+                            </a>
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>

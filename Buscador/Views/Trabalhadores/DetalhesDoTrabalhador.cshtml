@@ -81,11 +81,11 @@
                         <small class="text-muted">@Html.DisplayNameFor(model => Model.CursoOuFormaçao)</small>
                         <h6>@Model.CursoOuFormaçao</h6>
                     </div>
-                    <div class="col-md-6 pt-1">
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
                         <small class="text-muted">@Html.DisplayNameFor(model => Model.Email)</small>
                         <h6>@Model.Email</h6>
                     </div>
-                    <div class="col-md-6 pt-1">
+                    <div class="col-6 col-xl-3 col-md-6 pt-1">
                         <small class="text-muted">@Html.DisplayNameFor(model => Model.TempoExperiencia)</small>
                         <h6>@Model.TempoExperiencia</h6>
                     </div>
@@ -98,10 +98,7 @@
                         <small class="text-muted">@Html.DisplayNameFor(model => Model.TipoDeTrabalhador)</small>
                         <h6>@Model.TipoDeTrabalhador</h6>
                     </div>
-                    <div class="col-6 col-xl-3 col-md-6 pt-1">
-                        <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
-                        <h6>@Model.Profissao</h6>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -124,16 +121,16 @@
             <form asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="d-flex justify-content-center align-items-center">
-                                <img src="~/imagens/@Model.Foto" alt="@Model.Foto" style="width: 100%; height: 100%; border-radius: 50%;" class="" />
+                                <img src="~/imagens/@Model.Foto" alt="@Model.Foto" style="width:100%; height: 100%; border-radius: 50%;" class="" />
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="col">
                                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Profissao)</small>
-                                <h5>@Model.Profissao</h5>
+                                <h6>@Model.Profissao</h6>
                             </div>
                             <div class="col ">
                                 <small class="text-muted">@Html.DisplayNameFor(model => Model.Nome)</small>
