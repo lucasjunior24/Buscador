@@ -16,7 +16,7 @@ namespace Buscador.Mapping
 
             builder.Property(s => s.NomeDoTrabalhador)
                 .IsRequired()
-                .HasColumnType("varchar(14)");
+                .HasColumnType("varchar(200)");
 
 
             builder.ToTable("Solicitacoes");

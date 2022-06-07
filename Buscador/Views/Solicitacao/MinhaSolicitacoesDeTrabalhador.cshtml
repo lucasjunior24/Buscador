@@ -33,17 +33,17 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4 border-left-theme border-3">
-                        <div class="d-flex justify-content-start align-items-start">
-                            <img src="~/imagens/@item.FotoCliente" alt="@item.FotoCliente" style="width: 80px; height: 80px; border-radius: 50%; " class="" />
+                     <div class="col-12 border-left-theme border-3 pb-2 flex-inline">
+                        <div class="d-flex align-items-cente" >
+                            <img src="~/imagens/@item.FotoCliente" alt="@item.FotoCliente" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px;" class="" />
+                            <div class="" >
+                                <small class="text-muted">Solicitado por:</small>
+                                <h5>@item.NomeDoCliente</h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-8 border-left-theme border-3">
-                        <small class="text-muted">Solicitado por:</small>
-                        <h4>@item.NomeDoCliente</h4>
-                    </div>
-
-                    <div class="col-6 col-xl-3 col-md-6 pt-1">
+                   
+                    <div class="col-6 pt-1 col-md-3 border-left-theme border-3">
                         <small class="text-muted">Data da Solicitação</small>
                         <h5 class="text-muted">@item.DataDaSolicitacao.ToString("dd/MM/yyyy")</h5>
                     </div>
