@@ -74,7 +74,6 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
 
         }
-
         public async Task<IActionResult> DetalhesDoTrabalhador(Guid id)
         {
             var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);

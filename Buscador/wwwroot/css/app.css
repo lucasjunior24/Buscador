@@ -24,7 +24,7 @@
 :root {
     /*    #122657*/
     /*#312f5a;*/
-    --colortheme: #122657;
+    --colortheme: rgb(12, 23, 36);
     --colorthemedark: #243447;
     --background-color: #f6f6f6;
 }
