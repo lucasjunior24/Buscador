@@ -29,6 +29,7 @@ namespace Buscador.Controllers
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly IUploadArquivo _uploadArquivo;
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly IClienteRepository clienteRepository;
 
         public TrabalhadoresController(ITrabalhadorRepository trabalhadorRepository,
                                        IMapper mapper,
@@ -37,7 +38,8 @@ namespace Buscador.Controllers
                                        UserManager<IdentityUser> userManager,
                                        SignInManager<IdentityUser> signInManager,
                                        IUploadArquivo uploadArquivo,
-                                       ICategoriaRepository categoriaRepository)
+                                       ICategoriaRepository categoriaRepository,
+                                       IClienteRepository clienteRepository)
         {
             _trabalhadorRepository = trabalhadorRepository;
             _mapper = mapper;
@@ -47,6 +49,7 @@ namespace Buscador.Controllers
             this.signInManager = signInManager;
             _uploadArquivo = uploadArquivo;
             _categoriaRepository = categoriaRepository;
+            this.clienteRepository = clienteRepository;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Index()
@@ -57,9 +60,10 @@ namespace Buscador.Controllers
             return View(trabalhadoresViewModel);
         }
 
-        //[Authorize(Policy = "trabalhador")]
+        [Authorize(Policy = "trabalhador")]
         public async Task<IActionResult> ObterTrabalhador(Guid userId)
         {
+           
             var trabalhadorViewModel = await ObterTrabalhadorEnderecoPorUserId(userId);
             //trabalhadorViewModel.TipoDeTrabalhador.GetDescription();
             if (User.HasClaim(t => t.Type == "trabalhador") && trabalhadorViewModel == null)
@@ -74,14 +78,21 @@ namespace Buscador.Controllers
             return View(trabalhadorViewModel);
 
         }
+        [AllowAnonymous]
         public async Task<IActionResult> DetalhesDoTrabalhador(Guid id)
         {
-            var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);
-            if (trabalhadorViewModel == null)
-            {
-                return NotFound();
-            }
+            var userId = userManager.GetUserId(User);
 
+            if ( userId == null)
+            {
+                return RedirectToAction("FazerLogin", "Autenticacao");
+            }
+            var trabalhadorViewModel = await ObterTrabalhadorEndereco(id);
+            if (User.HasClaim(t => t.Type == "trabalhador") || trabalhadorViewModel == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             return View(trabalhadorViewModel);
         }
 

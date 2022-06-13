@@ -17,9 +17,13 @@
 </div>
 <hr />
 
-@*<div class="mb-3">
-    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@User.NomeCompleto()</strong></span>
-    </div>*@
+<div class="mb-3">
+    <span class="text-mute">Seja bem-vindo(a), </span><span><strong>Para ver mais informações sobre os trabalhadores você precisa ta logado com uma conta de Cliente</strong></span>
+</div>
+<div class="mb-3">
+   <p class="text-mute">Se não tem, clique aqui para criar!</p>
+    <a asp-controller="Autenticacao"asp-action="CriarUsuario" class="btn btn-primary">Criar Conta</a>
+</div>
 
 @*<div class="d-flex justify-content-between">
     <h3>@ViewData["Title"]</h3>
