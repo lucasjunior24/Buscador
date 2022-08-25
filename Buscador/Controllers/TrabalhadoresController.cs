@@ -2,6 +2,7 @@
 using Buscador.Extensions;
 using Buscador.Models.Dto;
 using Buscador.Models.Entitiies;
+using Buscador.Models.Helpers;
 using Buscador.Models.Interfaces;
 using Buscador.Models.Services;
 using Buscador.Models.ViewModels;
@@ -71,6 +72,8 @@ namespace Buscador.Controllers
                 return NotFound();
             }
 
+            trabalhadorViewModel.Documento = CpfHelper.AnonimizarCpf(trabalhadorViewModel.Documento);
+
             return View(trabalhadorViewModel);
 
         }
@@ -113,6 +116,7 @@ namespace Buscador.Controllers
             }
 
             trabalhadorViewModel.Foto = imgPrefixo + trabalhadorViewModel.FotoUpload.FileName;
+            trabalhadorViewModel.Documento = CpfHelper.RemoveMascaraDoCpf(trabalhadorViewModel.Documento);
 
             var trabalhador = _mapper.Map<Trabalhador>(trabalhadorViewModel);
             await _trabalhadorRepository.Adicionar(trabalhador);
@@ -194,5 +198,6 @@ namespace Buscador.Controllers
         {
             return _mapper.Map<TrabalhadorViewModel>(await _trabalhadorRepository.ObterTrabalhadorEnderecoEServico(id));
         }
+
     }
 }

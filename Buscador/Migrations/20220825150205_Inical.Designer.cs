@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buscador.Migrations
 {
     [DbContext(typeof(BuscadorContext))]
-    [Migration("20220607152332_NomeTrabalhador")]
-    partial class NomeTrabalhador
+    [Migration("20220825150205_Inical")]
+    partial class Inical
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Buscador.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Inical : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -123,7 +123,7 @@ namespace Buscador.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataDaSolicitacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NomeDoTrabalhador = table.Column<string>(type: "varchar(14)", nullable: false),
+                    NomeDoTrabalhador = table.Column<string>(type: "varchar(200)", nullable: false),
                     ProfissaoDoTrabalhador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NomeDoCliente = table.Column<string>(type: "varchar(200)", nullable: false),
                     StatusDaSolicitacao = table.Column<int>(type: "int", nullable: false),
