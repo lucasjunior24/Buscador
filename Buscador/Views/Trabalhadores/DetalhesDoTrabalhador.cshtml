@@ -36,7 +36,6 @@
 </div>
 <hr />
 
-
 <div class="row">
     <div class="col-md-4 pt-1">
         <div class="card mb-2 pt-2">
@@ -111,15 +110,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exemploModal">Solicitar Trabalhador</h4>
+                <h4 class="modal-title" id="exemploModal">Selecione o tipo de atendimento</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" x></span>
                 </button>
-
             </div>
-
-            <form asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
-                <div class="modal-body">
+            <div class="modal-body">
+                <div>
                     <div class="row">
                         <div class="col-4">
                             <div class="d-flex justify-content-center align-items-center">
@@ -138,12 +135,111 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-2">
+                        <a @*asp-action="ExibirUnidadesDisponiveis" asp-controller="Agendamento" asp-route-servicoid="@Model.Id"*@ onclick="mostrarModalAgende()">
+                            <div class="col p-2" id="action-presencial">
+                                <div class="card-tipoDeAtendimento text-secondary">
+                                    <div class="align-self-center">
+                                        <em class="mdi mdi-city" aria-label="Presencial"></em>
+                                        <h5>Presencial</h5>
+                                        <small class="card-text">Agendamento para atendimento presencial</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="col p-2" id="action-online">
+                            <form asp-controller="Solicitacao" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
+                                <button type="submit" class="border-0">
+                                    <div class="card-tipoDeAtendimento">
+                                        <div class="align-self-center">
+                                            <em class="mdi mdi-laptop-windows" aria-label="Online"></em>
+                                            <h5>Online</h5>
+                                            <small class="card-text">Solicitação para atendimento online</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-        
+            </div>
+            <div class="modal-footer">
+                <div class="justify-content-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="agendeModal" tabindex="1" aria-labelledby="agendeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="agendeModal">Agendar encontro presencial</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" x></span>
+                </button>
+
+            </div>
+
+            <form asp-controller="Agendamento" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
+                <div class="modal-body">
+                    <div class="agendador-date">
+                        <div class="contianer">
+                            <div class="calendar">
+                                <div class="calendar-header">
+
+                                    <span class="month-picker" id="month-picker"> May </span>
+
+                                    <div class="year-picker" id="year-picker">
+                                        <span class="year-change" id="pre-year">
+                                            <span class="text-center"><</span>
+                                        </span>
+                                        <span id="year">2020 </span>
+                                        <span class="year-change" id="next-year">
+                                            <span class="align-text-bottom">></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="calendar-body">
+                                    <div class="calendar-week-days">
+                                        <div>Dom</div>
+                                        <div>Seg</div>
+                                        <div>Ter</div>
+                                        <div>Qua</div>
+                                        <div>Qui</div>
+                                        <div>Sex</div>
+                                        <div>Sab</div>
+                                    </div>
+                                    <div class="calendar-days">
+                                    </div>
+                                </div>
+                                <div class="calendar-footer">
+                                </div>
+                                <div class="date-time-formate">
+                                    <div class="day-text-formate">Hoje</div>
+                                    <div class="date-time-value">
+                                        <div class="time-formate">02:51:20</div>
+                                        <div class="date-formate">23 - july - 2022</div>
+                                    </div>
+                                </div>
+                                <div class="month-list mt-2 mb-0">
+
+                                </div>
+                                <div class="calendar-header d-flex justify-content-center align-items-center m-0 px-2">
+                                    <h5 class="m-0 dia-agendado-date" id="dia-selecionado-teste">Escolha uma data</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <div class="justify-content-end">
-                        <input type="submit" value="Solicitar Trabalhador" class="btn btn-outline-success" />
-
+                        <input type="submit" value="Confirmar agendamento" class="btn btn-outline-success" />
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>
                 </div>
@@ -161,7 +257,14 @@
             let minhaModal = new bootstrap.Modal(myModal);
             minhaModal.show();
         }
-
+        function mostrarModalAgende() {
+            var agendeModal = document.getElementById('agendeModal')
+            let minhaAgendeModal = new bootstrap.Modal(agendeModal);
+            minhaAgendeModal.show();
+        }
     </script>
+
+    <script src="~/js/agendamento/index.js"></script>
 }
 
+<link href="~/css/agendamento/index.css" rel="stylesheet" />

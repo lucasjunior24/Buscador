@@ -5,7 +5,7 @@ namespace Buscador.Models.ViewModels
     public class LoginViewModel
     {
         [EmailAddress(ErrorMessage = "Inclua um '@' no endereço de e-mail.")]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Campo '{0}' Obrigatório")]
         [MaxLength(500, ErrorMessage = "Tamanho máximo de 500 caracteres.")]
         public string Email { get; set; }
