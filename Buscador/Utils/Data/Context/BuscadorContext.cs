@@ -1,4 +1,5 @@
-﻿using Buscador.Models.Entitiies;
+﻿using Buscador.Models.Entities;
+using Buscador.Models.Entitiies;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buscador.Data.Context
@@ -14,6 +15,7 @@ namespace Buscador.Data.Context
         public DbSet<TipoDeServico> TiposDeServicos { get; set; }
         public DbSet<Solicitacao> Solicitacao { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Agendamento> Agendamentos { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(BuscadorContext).Assembly);

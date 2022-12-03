@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Buscador.Models.ViewModels.AgendamentoViewModel>
+
+    @{
+        ViewData["Title"] = "Meus Agendamentos";
+    }
+
+    <div class="d-none d-sm-block">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="color-theme"><em class="mdi mdi-home"></em> Início</a></li>
+                <li class="breadcrumb-item active color-theme" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-sm-none">
+        <a asp-action="Index" asp-controller="Home" aria-label="Botão Início" class="breadcrumb-inicio color-theme"><em class="mdi mdi-chevron-left"></em> Início</a>
+    </div>
+    <hr />
+
+
+    @if (Model.Any())
+    {
+        <div class="mb-3">
+            <span class="text-mute">Seja bem-vindo(a), </span><span><strong>@Model.FirstOrDefault().Cliente.Nome</strong></span>
+        </div>
+
+        <div class="">
+            <h3>@ViewData["Title"]</h3>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 border-left-theme border-3 pb-2 flex-inline">
+                            <div class="d-flex align-items-cente">
+                                <img src="~/imagens/@item.Trabalhador.Foto" alt="@item.Trabalhador.Foto" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px;" class="" />
+                                <div class="">
+                                    <small class="text-muted">Trabalhador</small>
+                                    <h5>@item.Trabalhador.Nome</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pt-1 col-md-3 border-left-theme border-3">
+                            <small class="text-muted">Profissao do Trabalhador</small>
+                            <h6 class="">@item.Trabalhador.Profissao</h6>
+
+                        </div>
+                        <div class="col-6 col-md-3 pt-1">
+                            <small class="text-muted">Data do agendamento</small>
+                            <h5 class="text-muted">@item.DataDoAgendamento.ToString("dd/MM/yyyy")</h5>
+                        </div>
+
+                        <div class="col-6 col-md-3 pt-1">
+                            <small class="text-muted">Dia agendado</small>
+                            <h5 class="text-muted">@item.DiaAgendado.ToString("dd/MM/yyyy")</h5>
+                        </div>
+                        <div class="col-6 col-md-3 pt-1">
+                            <small class="text-muted">Status do Agendamento</small>
+                            @{
+                                var corStatus = item.StatusDoAgendamento == 0 ? "text-success" : "text-primary";
+                            }
+                            @*@{var corStatus = item.StatusDaSolicitacao == StatusDaSolicitacao.Reprovado ? "text-danger" : "text-primary";}*@
+                            <h6 class="@corStatus"><strong>@item.StatusDoAgendamento</strong></h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+    else
+    {
+        <div class="row mt-3">
+            <div class="col-md col-sm-12 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Você não fez nenhuma Solicitação.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

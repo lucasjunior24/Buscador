@@ -101,8 +101,11 @@
         justify-content: center;
         padding: 5px;
         position: relative;
-        cursor: pointer;
         animation: to-top 1s forwards;
+    }
+
+    .calendar-days .dia-disponivel {
+        cursor: pointer;
     }
 
 .month-picker {
@@ -170,7 +173,15 @@
     color: var(--dark-text);
 }
 
-.calendar-days div:hover {
+.dia-que-ja-passou {
+    cursor: not-allowed;
+    background-color: #c3c2c8;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    border-radius: 20%;
+    color: var(--dark-text);
+}
+
+.calendar-days .dia-disponivel:hover {
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
     background-color: rgb(253, 147, 230);
     border-radius: 20%;

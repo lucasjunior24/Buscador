@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Buscador.Models.Entities;
 using Buscador.Models.Entitiies;
 using Buscador.Models.ViewModels;
 
@@ -16,6 +17,7 @@ namespace Buscador.Utils.AutoMapperConfig
             CreateMap<TipoDeServico, TipoDeServicoViewModel>().ReverseMap();
 
             CreateMap<Solicitacao, SolicitacaoViewModel>().ReverseMap();
+            CreateMap<Agendamento, AgendamentoViewModel>().ReverseMap();
         }
     }
 }

@@ -185,7 +185,9 @@
 
             </div>
 
-            <form asp-controller="Agendamento" asp-action="Create" asp-route-trabalhadorId="@Model.Id">
+            <form asp-controller="Agendamento" asp-action="Create">
+                <input id="dia-escolhido-value" type="hidden" name="DiaAgendado" />
+                <input value="@Model.Id" name="TrabalhadorId" type="hidden" />
                 <div class="modal-body">
                     <div class="agendador-date">
                         <div class="contianer">
@@ -239,7 +241,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="justify-content-end">
-                        <input type="submit" value="Confirmar agendamento" class="btn btn-outline-success" />
+                        <input type="submit" value="Confirmar agendamento" class="btn btn-outline-success disabled" id="btn-agendamento" />
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>
                 </div>
@@ -261,6 +263,10 @@
             var agendeModal = document.getElementById('agendeModal')
             let minhaAgendeModal = new bootstrap.Modal(agendeModal);
             minhaAgendeModal.show();
+        }
+
+        function realizarAgendamento() {
+
         }
     </script>
 

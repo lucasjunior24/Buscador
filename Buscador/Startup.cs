@@ -64,6 +64,8 @@ namespace Buscador
             services.AddScoped<IEnderecoTrabalhadorRepository, EnderecoTrabalhadorRepository>();
             services.AddScoped<IEnderecoClienteRepository, EnderecoClienteRepository>();
             services.AddScoped<ISolicitacaoRepository, SolicitacaoRepository>();
+            services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+            services.AddScoped<IAgendamentoDoClienteRepository, AgendamentoDoClienteRepository>();
 
             services.AddScoped<IUploadArquivo, UploadArquivo>();
         }

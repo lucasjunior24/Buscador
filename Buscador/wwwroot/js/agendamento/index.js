@@ -71,20 +71,6 @@ const generateCalendar = (month, year) => {
 
         let day = document.createElement('div');
 
-        day.addEventListener("click", function () {
-
-            calendar_days.childNodes.forEach(item => {
-                if (item.classList.contains("dia"))
-                    item.classList.remove("dia")
-
-            })
-            this.classList.add('dia')
-
-            var diaEscolhido = `Encontro marcado para ${this.textContent}/${month + 1}/${year}`
-            console.log("Dia escolhido: ", diaEscolhido)
-
-            document.getElementById("dia-selecionado-teste").textContent = diaEscolhido
-        })
         if (i >= first_day.getDay()) {
             day.innerHTML = i - first_day.getDay() + 1;
 
@@ -94,7 +80,63 @@ const generateCalendar = (month, year) => {
             ) {
                 day.classList.add('current-date');
             }
+            if (
+                (month <= currentDate.getMonth() &&
+                    year <= currentDate.getFullYear() && i - first_day.getDay() + 1 <= currentDate.getDate())
+            ) {
+                day.classList.add('dia-que-ja-passou');
+                //if (month < currentDate.getMonth()) {
+                //    day.classList.add('dia-que-ja-passou');
+                //}
+            }
+            if (
+                year < currentDate.getFullYear()) {
+                day.classList.add('dia-que-ja-passou');
+            }
+            if (
+                year === currentDate.getFullYear() && month < currentDate.getMonth()) {
+                day.classList.add('dia-que-ja-passou');
+            }
+            if (day.classList.contains(('dia-que-ja-passou'))) {
+
+                console.log("eu")
+            } else {
+                day.classList.add('dia-disponivel')
+            }
         }
+
+        day.addEventListener("click", function () {
+
+            calendar_days.childNodes.forEach(item => {
+                if (item.classList.contains("dia"))
+                    item.classList.remove("dia")
+            })
+
+            if (this.classList.contains("dia-que-ja-passou")) {
+                this.classList.remove("dia")
+
+                var diaEscolhido = `O dia escolhido não esta disponivel`;
+                console.log("Dia escolhido: ", diaEscolhido)
+                document.getElementById("dia-selecionado-teste").textContent = diaEscolhido
+
+                document.getElementById("btn-agendamento").classList.add('disabled')
+            } else {                                                   
+                this.classList.add('dia')
+                var diaEscolhido = `Encontro marcado para ${this.textContent}/${month + 1}/${year}`
+                console.log("Dia escolhido: ", diaEscolhido)
+
+                document.getElementById("dia-selecionado-teste").textContent = diaEscolhido
+                document.getElementById("btn-agendamento").classList.remove('disabled')
+
+                document.getElementById("dia-escolhido-value").value = `${this.textContent}/${month + 1}/${year}`
+            }
+
+            //var diaEscolhido = `Encontro marcado para ${this.textContent}/${month + 1}/${year}`
+            //console.log("Dia escolhido: ", diaEscolhido)
+
+            //document.getElementById("dia-selecionado-teste").textContent = diaEscolhido
+        })
+
         calendar_days.appendChild(day);
     }
 };
