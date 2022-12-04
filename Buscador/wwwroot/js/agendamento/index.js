@@ -66,7 +66,6 @@ const generateCalendar = (month, year) => {
 
     let first_day = new Date(year, month);
 
-
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
 
         let day = document.createElement('div');
@@ -97,11 +96,19 @@ const generateCalendar = (month, year) => {
                 year === currentDate.getFullYear() && month < currentDate.getMonth()) {
                 day.classList.add('dia-que-ja-passou');
             }
+            let dia = new Date(year, month, i - first_day.getDay() + 1);
+
+            if (dia.getDay() === 0 || dia.getDay() === 6) {
+                day.classList.add('dia-que-ja-passou');
+                console.log("final de semana: ", dia.getDate())
+            }
             if (day.classList.contains(('dia-que-ja-passou'))) {
 
-                console.log("eu")
+                console.log("dia-que-ja-passou")
             } else {
                 day.classList.add('dia-disponivel')
+                //console.log("final de semana: ", i - first_day.getDay() + 1)
+                //console.log("final de semana: ", first_day.getDay())
             }
         }
 
